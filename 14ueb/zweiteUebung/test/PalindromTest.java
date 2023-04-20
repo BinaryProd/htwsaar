@@ -33,26 +33,29 @@ public class PalindromTest {
 
     @BeforeEach
     public void setUp() {
-        palindrom1 = "Rentner";
-        palindrom2 = "Lagerregal";
-        palindrom3 = "Reittier";
-        palindrom4 = "Reliefpfeiler";
-        palindrom5 = "Reliefventil";
-        wort1 = "Sonnenschein";
-        wort2 = "Blumenstrauß";
-        wort3 = "Telefonnummer";
-        wort4 = "Schokolade";
-        wort5 = "Fahrrad";
+        palindrom1 = "rentner";
+        palindrom2 = "lagerregal";
+        palindrom3 = "reittier";
+        palindrom4 = "reliefpfeiler";
+        palindrom5 = "litneventil";
+        wort1 = "sonnenschein";
+        wort2 = "blumenstrauß";
+        wort3 = "telefonnummer";
+        wort4 = "schokolade";
+        wort5 = "fahrrad";
     }
 
     @Test
-    public void testpalIter() {
+    public void test_pal_Iter_True() {
         assertTrue(palIter.istPalindrom(palindrom1));
         assertTrue(palIter.istPalindrom(palindrom2));
         assertTrue(palIter.istPalindrom(palindrom3));
         assertTrue(palIter.istPalindrom(palindrom4));
         assertTrue(palIter.istPalindrom(palindrom5));
+    }
 
+    @Test
+    public void test_pal_Iter_False() {
         assertFalse(palIter.istPalindrom(wort1));
         assertFalse(palIter.istPalindrom(wort2));
         assertFalse(palIter.istPalindrom(wort3));
@@ -61,13 +64,16 @@ public class PalindromTest {
     }
 
     @Test
-    public void testpalRek() {
+    public void test_pal_Rek_True() {
         assertTrue(palRek.istPalindrom(palindrom1));
         assertTrue(palRek.istPalindrom(palindrom2));
         assertTrue(palRek.istPalindrom(palindrom3));
         assertTrue(palRek.istPalindrom(palindrom4));
         assertTrue(palRek.istPalindrom(palindrom5));
+    }
 
+    @Test
+    public void test_pal_Rek_False() {
         assertFalse(palRek.istPalindrom(wort1));
         assertFalse(palRek.istPalindrom(wort2));
         assertFalse(palRek.istPalindrom(wort3));
