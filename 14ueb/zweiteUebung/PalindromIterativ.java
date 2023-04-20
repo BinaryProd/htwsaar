@@ -25,6 +25,7 @@ public class PalindromIterativ implements Palindrom {
     public boolean istPalindrom(String wort) {
         int links = 0;
         int rechts = wort.length() - 1;
+
         while (links < rechts) {
             if (wort.charAt(links) != wort.charAt(rechts)) {
                 return false;

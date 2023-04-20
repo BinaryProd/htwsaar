@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 public class PalindromAuswertung {
 
@@ -48,7 +47,7 @@ public class PalindromAuswertung {
      *             a string to be checked.
      */
     public void run(String[] args) {
-        checkStringorFile(args);
+        checkStringOrFile(args);
     }
 
     /**
@@ -61,18 +60,22 @@ public class PalindromAuswertung {
      * @param args an array of strings representing the input, either a file path or
      *             a string to be checked.
      */
-    public void checkStringorFile(String[] args) {
+    public void checkStringOrFile(String[] args) {
         if (args.length == 0) {
             usage();
             System.exit(0);
         }
+
         for (String arg : args) {
             File file = new File(arg);
             if (file.isFile()) {
                 System.out.println("Die Eingabe ist eine Datei.");
                 System.out.println("Die Datei " + arg + " wird eingelesen.");
+
                 String content = readFiles(arg);
-                String[] worte = content.split("\\s+");
+                //String[] worte = content.split("\\s+"); 
+                String[] worte = content.split("\\n"); // this is for sentences
+
                 for (String wort : worte) {
                     PalindromResult result = checkPalindrome(wort);
                     ausgabe(result);
@@ -80,6 +83,7 @@ public class PalindromAuswertung {
             } else {
                 System.out.println("Die Eingabe ist ein String.");
                 System.out.println("Der String " + arg + " wird eingelesen.");
+
                 PalindromResult result = checkPalindrome(arg);
                 ausgabe(result);
             }
@@ -116,8 +120,10 @@ public class PalindromAuswertung {
         boolean isTextFile = false;
         Path path = Paths.get(arg);
         String contentType = "";
+
         try {
             contentType = Files.probeContentType(path);
+
             if (!path.toFile().isFile()) {
                 throw new PalindromException("Die Datei " + arg + " existiert nicht.");
             }
@@ -130,13 +136,16 @@ public class PalindromAuswertung {
             if (contentType == null || !contentType.startsWith("text/")) {
                 throw new PalindromException("Die Datei " + arg + " ist keine Text Datei.");
             }
+
             isTextFile = true;
+
         } catch (PalindromException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Fehler beim Lesen der Datei " + arg);
             System.exit(1);
         }
+
         return isTextFile;
     }
 
@@ -161,8 +170,13 @@ public class PalindromAuswertung {
         boolean istPalindromRekursiv = palRek.istPalindrom(cleanInput);
         long endTimeRekursiv = System.nanoTime();
 
-        return new PalindromResult(cleanInput, istPalindromIterativ, endTimeIterativ - startTimeIterativ,
-                istPalindromRekursiv, endTimeRekursiv - startTimeRekursiv);
+        return new PalindromResult(
+                cleanInput, 
+                istPalindromIterativ, 
+                endTimeIterativ - startTimeIterativ,
+                istPalindromRekursiv, 
+                endTimeRekursiv - startTimeRekursiv
+        );
     }
 
     /**
@@ -185,11 +199,13 @@ public class PalindromAuswertung {
     public void ausgabe(PalindromResult palindromResult) {
         StringBuilder sb = new StringBuilder();
         sb.append("Das Wort " + palindromResult.getWort() + " ist ");
+
         if (palindromResult.istBooleanInterativ() && palindromResult.istBooleanRekursiv()) {
             sb.append("ein Palindrom.");
         } else {
             sb.append("kein Palindrom.");
         }
+
         sb.append("\n Die Iterative Methode hat : " + palindromResult.getTimeIterativ() + " Nanosekunden gebraucht.");
         sb.append("\n Die Rekursive Methode hat : " + palindromResult.getTimeRekursiv() + " Nanosekunden gebraucht.");
 

@@ -24,8 +24,14 @@ public class PalindromResult {
      * @param booleanRekursiv  the boolean result of Recursive method
      * @param timeRekursiv     the time taken by Recursive method
      */
-    public PalindromResult(String wort, boolean booleanInterativ, long timeInterativ, boolean booleanRekursiv,
-            long timeRekursiv) {
+    public PalindromResult(
+            String wort, 
+            boolean booleanInterativ, 
+            long timeInterativ, 
+            boolean booleanRekursiv,
+            long timeRekursiv
+        ) {
+
         this.wort = wort;
         this.booleanInterativ = booleanInterativ;
         this.booleanRekursiv = booleanRekursiv;
