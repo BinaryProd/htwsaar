@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This script is used to run the JVT tool on a set of files.
+
+javac -cp .:../Utils/junit-platform-console-standalone-1.9.2.jar *.java
+
+java -jar ../Utils/junit-platform-console-standalone-1.9.2.jar --class-path . --scan-class-path
