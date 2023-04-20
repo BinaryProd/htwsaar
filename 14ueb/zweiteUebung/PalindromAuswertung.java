@@ -15,8 +15,6 @@ import java.nio.file.Paths;
 
 public class PalindromAuswertung {
 
-    private static final String REGEX = "[^a-zA-ZäöüÄÖÜ]";
-
     private PalindromIterativ palIter;
     private PalindromRekursiv palRek;
 
@@ -158,7 +156,7 @@ public class PalindromAuswertung {
      *         and recursive algorithms.
      */
     public PalindromResult checkPalindrome(String input) {
-        String cleanInput = input.replaceAll(REGEX, "").toLowerCase();
+        String cleanInput = input.toLowerCase();
         PalindromException.stringTest(cleanInput);
         cleanInput = cleanInput.trim();
 

@@ -46,3 +46,4 @@ peep
 repaper
 stats
 solos solos
+Solos
