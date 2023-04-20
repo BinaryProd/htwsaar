@@ -1,3 +1,10 @@
+/**
+ * <h1> Gcd </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 public class Gcd {
     /**
      * This method calculates the greatest common divisor of two long integers using the Euclidean algorithm.
