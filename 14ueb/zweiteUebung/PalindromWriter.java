@@ -9,6 +9,7 @@ public class PalindromWriter {
         long timeRekursiv = palindromResult.getTimeRekursiv();
         long timeIterativ = palindromResult.getTimeIterativ();
         String wort = palindromResult.getWort();
+
         try (FileWriter fw = new FileWriter(FILENAME, true)) {
             fw.write(timeIterativ + ", " + timeRekursiv + ", \n");
             System.out.println("Wrote to file: " + wort);

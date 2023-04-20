@@ -45,4 +45,4 @@ refer
 peep
 repaper
 stats
-solos
+solos solos
