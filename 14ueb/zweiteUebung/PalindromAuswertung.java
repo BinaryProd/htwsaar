@@ -71,19 +71,18 @@ public class PalindromAuswertung {
                 System.out.println("Die Datei " + arg + " wird eingelesen.");
 
                 String content = readFiles(arg);
-                //String[] worte = content.split("\\s+"); 
                 String[] worte = content.split("\\n"); // this is for sentences
 
                 for (String wort : worte) {
                     PalindromResult result = checkPalindrome(wort);
-                    ausgabe(result);
+                    PalindromOutput.ausgabe(result);
                 }
             } else {
                 System.out.println("Die Eingabe ist ein String.");
                 System.out.println("Der String " + arg + " wird eingelesen.");
 
                 PalindromResult result = checkPalindrome(arg);
-                ausgabe(result);
+                PalindromOutput.ausgabe(result);
             }
         }
     }
@@ -158,7 +157,7 @@ public class PalindromAuswertung {
     public PalindromResult checkPalindrome(String input) {
         String cleanInput = input.toLowerCase();
         PalindromException.stringTest(cleanInput);
-        cleanInput = cleanInput.trim();
+        cleanInput = cleanInput.strip().replace(" ", "");
 
         long startTimeIterativ = System.nanoTime();
         boolean istPalindromIterativ = palIter.istPalindrom(cleanInput);
@@ -187,28 +186,4 @@ public class PalindromAuswertung {
         System.out.println("Datei: Palindrom wird aus der Datei ausgegeben.");
     }
 
-    /**
-     * This method prints the result of palindrome check to the console and writes
-     * it to a file.
-     * 
-     * @param palindromResult A {@link PalindromResult} object containing the result
-     *                        of palindrome check.
-     */
-    public void ausgabe(PalindromResult palindromResult) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Das Wort " + palindromResult.getWort() + " ist ");
-
-        if (palindromResult.istBooleanInterativ() && palindromResult.istBooleanRekursiv()) {
-            sb.append("ein Palindrom.");
-        } else {
-            sb.append("kein Palindrom.");
-        }
-
-        sb.append("\n Die Iterative Methode hat : " + palindromResult.getTimeIterativ() + " Nanosekunden gebraucht.");
-        sb.append("\n Die Rekursive Methode hat : " + palindromResult.getTimeRekursiv() + " Nanosekunden gebraucht.");
-
-        System.out.println(sb);
-
-        PalindromWriter.writeToFile(palindromResult);
-    }
 }
