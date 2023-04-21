@@ -74,16 +74,24 @@ public class PalindromAuswertung {
                 String[] worte = content.split("\\n"); // this is for sentences
 
                 for (String wort : worte) {
-                    PalindromResult result = checkPalindrome(wort);
-                    PalindromOutput.ausgabe(result);
+                    sendToCheckPalindrome(wort);
                 }
             } else {
                 System.out.println("Die Eingabe ist ein String.");
                 System.out.println("Der String " + arg + " wird eingelesen.");
-
-                PalindromResult result = checkPalindrome(arg);
-                PalindromOutput.ausgabe(result);
+                sendToCheckPalindrome(arg);
             }
+        }
+    }
+
+    public void sendToCheckPalindrome(String wort) {
+        try {
+            PalindromResult result = checkPalindrome(wort);
+            PalindromOutput.ausgabe(result);
+        } catch (PalindromException e) {
+            System.out.println(e);
+        } catch ( Exception e ) {
+            System.out.println(e);
         }
     }
 
@@ -100,7 +108,6 @@ public class PalindromAuswertung {
                 content = Files.readString(Paths.get(arg));
             } catch (IOException e) {
                 System.out.println("Fehler beim Lesen der Datei " + arg);
-                System.exit(1);
             }
         }
         return content;
@@ -114,7 +121,6 @@ public class PalindromAuswertung {
      *         can be read.
      */
     public boolean isTextFile(String arg) {
-        boolean isTextFile = false;
         Path path = Paths.get(arg);
         String contentType = "";
 
@@ -134,30 +140,31 @@ public class PalindromAuswertung {
                 throw new PalindromException("Die Datei " + arg + " ist keine Text Datei.");
             }
 
-            isTextFile = true;
+            return true;
 
         } catch (PalindromException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Fehler beim Lesen der Datei " + arg);
-            System.exit(1);
         }
 
-        return isTextFile;
+        return false;
+
     }
 
     /**
      * This method checks whether the input string is a palindrome or not.
      * 
      * @param input a string to be checked for palindrome.
+     * @throws PalindromException if the word is empty
      * @return a PalindromResult object representing the input string, whether it's
      *         a palindrome or not, and the time it took to check using iterative
      *         and recursive algorithms.
      */
-    public PalindromResult checkPalindrome(String input) {
-        String cleanInput = input.toLowerCase();
+    public PalindromResult checkPalindrome(String input) throws PalindromException {
+        String cleanInput = input.strip();
         PalindromException.stringTest(cleanInput);
-        cleanInput = cleanInput.strip().replace(" ", "");
+        cleanInput = cleanInput.toLowerCase().replace(" ", "");
 
         long startTimeIterativ = System.nanoTime();
         boolean istPalindromIterativ = palIter.istPalindrom(cleanInput);
@@ -173,7 +180,7 @@ public class PalindromAuswertung {
                 endTimeIterativ - startTimeIterativ,
                 istPalindromRekursiv, 
                 endTimeRekursiv - startTimeRekursiv
-        );
+                );
     }
 
     /**
