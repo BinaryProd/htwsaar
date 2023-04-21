@@ -30,7 +30,13 @@ public class PalindromOutput {
         writeToFile(palindromResult);
     }
 
-    public static void writeToFile(PalindromResult palindromResult) {
+    /**
+     * This method prints the result of palindrome check to the file
+     * 
+     * @param palindromResult A {@link PalindromResult} object containing the result
+     *                        of palindrome check.
+     */
+    private static void writeToFile(PalindromResult palindromResult) {
         long timeRekursiv = palindromResult.getTimeRekursiv();
         long timeIterativ = palindromResult.getTimeIterativ();
         String wort = palindromResult.getWort();
