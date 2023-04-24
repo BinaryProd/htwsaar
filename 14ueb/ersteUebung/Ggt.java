@@ -8,6 +8,5 @@ public interface Ggt {
      * @return The GGT of the two long integers
      * @throws GgtException if either of the input values is not a valid long integer
      */
-    long ggt(long a, long b) throws GgtException;
-    
+    public long ggt(long a, long b) throws GgtException; 
 }

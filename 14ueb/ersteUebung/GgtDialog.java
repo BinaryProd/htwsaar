@@ -121,7 +121,8 @@ public class GgtDialog {
         System.out.print(">>> ");
         long zahl2 = EingabeUtils.scanLong(scanner);
 
-        System.out.println("Der Ggt ist: " + GgtIterativ.ggt(zahl1, zahl2));
+        GgtIterativ ggt = new GgtIterativ();
+        System.out.println("Der Ggt ist: " + ggt.ggt(zahl1, zahl2));
     }
 
     /**
@@ -136,6 +137,7 @@ public class GgtDialog {
         System.out.print(">>> ");
         long zahl2 = EingabeUtils.scanLong(scanner);
 
-        System.out.println("Der Ggt ist: " + GgtRekursiv.ggt(zahl1, zahl2));
+        GgtRekursiv ggt = new GgtRekursiv();
+        System.out.println("Der Ggt ist: " + ggt.ggt(zahl1, zahl2));
     }
 }
