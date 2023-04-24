@@ -41,4 +41,5 @@ class GgtException extends RuntimeException {
         if (number1 == 0 && number2 == 0) {
             throw new GgtException(FEHLER_NULL);
         }
+    }
 }
