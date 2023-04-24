@@ -12,10 +12,12 @@ public class GgtDialog {
 
     // private fields for various menu options and their corresponding int and
     // String values
-    private static final int GGT = 1;
+    private static final int GGT_ITERATIV = 1;
+    private static final int GGT_REKURSIV = 2;
     private static final int EXIT = 10;
 
-    private static final String GGT_STRING = " : Ggt berechnen";
+    private static final String GGT_ITERATIV_STRING = " : Ggt iterativ berechnen";
+    private static final String GGT_REKURSIV_STRING = " : Ggt rekursiv berechnen";
     private static final String EXIT_STRING = " : Das Programm beenden";
 
     private Scanner scanner = EingabeUtils.scanOpen();
@@ -66,7 +68,8 @@ public class GgtDialog {
     public void ggtMenuAusgabe() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\n").append(GGT).append(GGT_STRING)
+        sb.append("\n").append(GGT_ITERATIV).append(GGT_ITERATIV_STRING)
+            .append("\n").append(GGT_REKURSIV).append(GGT_REKURSIV_STRING)
             .append("\n").append(EXIT).append(EXIT_STRING).append("\n")
             .append(">>> ");
 
@@ -90,8 +93,11 @@ public class GgtDialog {
      */
     public void ggtEingabeBearbeitung(int userInput) {
         switch (userInput) {
-            case GGT:
-                ggt();
+            case GGT_ITERATIV:
+                ggtIterativ();
+                break;
+            case GGT_REKURSIV:
+                ggtRekursiv();
                 break;
             case EXIT:
                 System.out.println("Das Programm wird beendet");
@@ -104,9 +110,9 @@ public class GgtDialog {
     }
 
     /**
-     * This method give the ggt of the two number giving by the user
+     * This method give the ggt of the two number giving by the user iteratively
      */
-    public void ggt() {
+    public void ggtIterativ() {
         System.out.println("Erste zahl:");
         System.out.print(">>> ");
         long zahl1 = EingabeUtils.scanLong(scanner);
@@ -115,7 +121,21 @@ public class GgtDialog {
         System.out.print(">>> ");
         long zahl2 = EingabeUtils.scanLong(scanner);
 
-        System.out.println("Der Ggt ist: " + Ggt.ggt(zahl1, zahl2));
+        System.out.println("Der Ggt ist: " + GgtIterativ.ggt(zahl1, zahl2));
     }
 
+    /**
+     * This method give the ggt of the two number giving by the user recursively
+     */
+    public void ggtRekursiv() {
+        System.out.println("Erste zahl:");
+        System.out.print(">>> ");
+        long zahl1 = EingabeUtils.scanLong(scanner);
+
+        System.out.println("Zweite zahl:");
+        System.out.print(">>> ");
+        long zahl2 = EingabeUtils.scanLong(scanner);
+
+        System.out.println("Der Ggt ist: " + GgtRekursiv.ggt(zahl1, zahl2));
+    }
 }
