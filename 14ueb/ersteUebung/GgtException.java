@@ -7,7 +7,7 @@
  */
 class GgtException extends RuntimeException {
 
-    private static final String FEHLER_NUMMER = "Die Zahl muss groesser als 0 sein";
+    private static final String FEHLER_NUMMER = "Die Zahl darf nicht 0 sein";
     private static final String FEHLER_NULL = "Beide Zahlen duerfen nicht 0 sein";
 
     public GgtException() {
@@ -24,8 +24,8 @@ class GgtException extends RuntimeException {
      * @param long
      * @throws GgtException
      */
-    public static void checkIfValidNumber(long number) throws GgtException {
-        if (number < 0) {
+    public static void checkIfNumberNull(long number) throws GgtException {
+        if (number == 0) {
             throw new GgtException(FEHLER_NUMMER);
         }
     }

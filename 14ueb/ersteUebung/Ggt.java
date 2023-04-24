@@ -15,19 +15,23 @@ public class Ggt {
      * @throws GgtException if either of the input values is not a valid long integer
      */
     public static long ggt(long a, long b) throws GgtException {
-        GgtException.checkIfValidNumber(a);
-        GgtException.checkIfValidNumber(b);
+        GgtException.checkIfNumberNull(a);
+        GgtException.checkIfNumberNull(b);
         GgtException.checkIfBothNumbersAreZero(a, b);
 
-        if (a == 0) {
+        if (a == 0 || b == 1) {
             return b;
         } 
-
-        if (b == 0) {
+        if (b == 0 || a == 1) {
             return a;
         }
+        if ( a == b ) {
+            return Math.abs(a);
+        }
 
-        return ggtBerechner(a, b);
+
+
+        return ggtBerechner(Math.abs(a), Math.abs(b));
     }
 
     /**
