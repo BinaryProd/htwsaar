@@ -21,6 +21,9 @@ public class GgtIterativ {
     public static long ggt(long a, long b) throws GgtException {
         GgtException.checkIfBothNumbersAreZero(a, b);
 
+        a = Math.abs(a);
+        b = Math.abs(b);
+
         if (a == 0 || b == 1) {
             return b;
         }
@@ -28,7 +31,7 @@ public class GgtIterativ {
             return a;
         }
         if (a == b || a == -b) {
-            return Math.abs(a);
+            return a;
         }
 
         while (b != 0) {
@@ -36,6 +39,6 @@ public class GgtIterativ {
             a = b;
             b = tmp % b;
         }
-        return Math.abs(a);
+        return a;
     }
 }

@@ -17,17 +17,20 @@ public class GgtRekursiv {
     public static long ggt(long a, long b) throws GgtException {
         GgtException.checkIfBothNumbersAreZero(a, b);
 
+        a = Math.abs(a);
+        b = Math.abs(b);
+
         if (a == 0 || b == 1) {
             return b;
         } 
         if (b == 0 || a == 1) {
             return a;
         }
-        if ( a == b || a == -b) {
-            return Math.abs(a);
+        if ( a == b ) {
+            return a;
         }
 
-        return ggtBerechner(Math.abs(a), Math.abs(b));
+        return ggtBerechner(a, b);
     }
 
     /**
