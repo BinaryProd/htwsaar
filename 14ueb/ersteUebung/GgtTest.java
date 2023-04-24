@@ -42,18 +42,16 @@ public class GgtTest {
     
     @Test
     public void testGgtIterativWithZero()  {
-        assertThrows(GgtException.class, () -> GgtIterativ.ggt(0, 25));
-        
-        assertThrows(GgtException.class, () -> GgtIterativ.ggt(-25, 0));
+        assertEquals(25, GgtIterativ.ggt(0, 25));
+        assertEquals(25, GgtIterativ.ggt(-25, 0));
 
     }
 
     @Test
     public void testGgtRekursivRekursivWithZero()  {
-        assertThrows(GgtException.class, () -> GgtRekursiv.ggt(0, 25));
+        assertEquals(25, GgtRekursiv.ggt(0, 25));
+        assertEquals(25, GgtRekursiv.ggt(-25, 0));
         
-        assertThrows(GgtException.class, () -> GgtRekursiv.ggt(-25, 0));
-
     }
     
     @Test
