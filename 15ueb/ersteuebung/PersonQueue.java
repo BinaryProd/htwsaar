@@ -113,4 +113,47 @@ public class PersonQueue extends PrimaryQueue {
     public String toString() {
         return super.toString();
     }
+
+    private class Iterator implements PersonIterator {
+        private int currentIndex;
+
+        public Iterator() {
+            currentIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size();
+        }
+
+        @Override
+        public Person next() {
+            return get(currentIndex++);
+        }
+    }
+
+    public void print() {
+        StringBuilder sb = new StringBuilder();
+        Iterator iter = new Iterator(); 
+
+        sb.append(iter.next() + "\n");
+        while ( iter.hasNext()) {
+            sb.append(iter.next() + "\n");
+        }  
+        System.out.println(sb.toString());
+    }
+
+    public String smallest() {
+        Iterator iter = new Iterator(); 
+        String min = iter.next().getVorname();
+
+        while ( iter.hasNext()) {
+            String next = iter.next().getVorname();
+            if (next.compareTo(min) < 0) {
+                min = next;
+            }
+        }  
+        return min;
+    } 
+
 }

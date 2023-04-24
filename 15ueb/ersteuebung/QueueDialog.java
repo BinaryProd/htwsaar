@@ -35,8 +35,10 @@ public class QueueDialog {
     private static final int REMOVE_AT_INDEX_INT = 6;
     private static final int GET_INT = 7;
     private static final int AUSGABE_INT = 8;
-    private static final int CLEAR_QUEUE_INT = 9;
-    private static final int REMOVE_QUEUE_INT = 10;
+    private static final int AUSGABE_PRINT_INT = 9;
+    private static final int SMALLEST_INT = 10;
+    private static final int CLEAR_QUEUE_INT = 11;
+    private static final int REMOVE_QUEUE_INT = 12;
 
     private static final String ADD_LAST_STRING = " : Element hinten anfügen";
     private static final String ADD_FIRST_STRING = " : Element vorne anfügen";
@@ -46,6 +48,8 @@ public class QueueDialog {
     private static final String REMOVE_AT_INDEX_STRING = " : Element an Index entfernen";
     private static final String GET_STRING = " : Element an Index abfragen";
     private static final String AUSGABE_STRING = " : Liste ausgeben";
+    private static final String AUSGABE_PRINT_STRING = " : Liste ausgeben mit print ( nur fuer PersonQueue )";
+    private static final String SMALLEST_STRING = " : Kleinster Vorname ausgeben ( nur fuer PersonQueue )";
     private static final String CLEAR_QUEUE_STRING = " : Liste leeren";
     private static final String REMOVE_QUEUE_STRING = " : Queue entfernen";
 
@@ -162,6 +166,8 @@ public class QueueDialog {
             .append(REMOVE_AT_INDEX_INT).append(REMOVE_AT_INDEX_STRING).append("\n")
             .append(GET_INT).append(GET_STRING).append("\n")
             .append(AUSGABE_INT).append(AUSGABE_STRING).append("\n")
+            .append(AUSGABE_PRINT_INT).append(AUSGABE_PRINT_STRING).append("\n")
+            .append(SMALLEST_INT).append(SMALLEST_STRING).append("\n")
             .append(CLEAR_QUEUE_INT).append(CLEAR_QUEUE_STRING).append("\n")
             .append(REMOVE_QUEUE_INT).append(REMOVE_QUEUE_STRING).append("\n")
             .append(">>> ");    
@@ -199,6 +205,12 @@ public class QueueDialog {
                 break;
             case AUSGABE_INT:
                 ausgabe();
+                break;
+            case AUSGABE_PRINT_INT:
+                ausgabePrint();
+                break;
+            case SMALLEST_INT:
+                smallest();
                 break;
             case CLEAR_QUEUE_INT:
                 clear();
@@ -354,6 +366,27 @@ public class QueueDialog {
      */
     public void ausgabe() {
         System.out.println(queue.toString());
+    }
+
+    /**
+     * This method is used to print the queue.
+     */
+    public void ausgabePrint() {
+        if (queue instanceof PersonQueue) {
+            PersonQueue personQueue = (PersonQueue) queue;
+            personQueue.print();
+        } else {
+            System.out.println("Die Queue ist keine PersonQueue");
+        }
+    }
+
+    public void smallest() {
+        if (queue instanceof PersonQueue) {
+            PersonQueue personQueue = (PersonQueue) queue;
+            System.out.println(personQueue.smallest());
+        } else {
+            System.out.println("Die Queue ist keine PersonQueue");
+        }
     }
 
     /**
