@@ -5,7 +5,7 @@
  * @version 1.0.
  * @since 2023-04-11
  */
-public class GgtRekursiv {
+public class GgtRekursiv implements Ggt {
     /**
      * This method calculates the greatest common divisor of two long integers using the Euclidean algorithm.
      *
@@ -14,7 +14,8 @@ public class GgtRekursiv {
      * @return The GGT of the two long integers
      * @throws GgtException if either of the input values is not a valid long integer
      */
-    public static long ggt(long a, long b) throws GgtException {
+    @Override
+    public long ggt(long a, long b) throws GgtException {
         GgtException.checkIfBothNumbersAreZero(a, b);
 
         a = Math.abs(a);
