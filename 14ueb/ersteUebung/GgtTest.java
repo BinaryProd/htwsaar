@@ -23,71 +23,138 @@ public class GgtTest {
     }
     
     @Test
-    public void testGgtWithNumberNegativ() {
-        long result = Ggt.ggt(-25, 100);
+    public void testGgtIterativWithNumberNegativ() {
+        long result = GgtIterativ.ggt(-25, 100);
         assertEquals(25, result);
         
-        long result2 = Ggt.ggt(-100, 5);
+        long result2 = GgtIterativ.ggt(-100, 5);
+        assertEquals(5, result2);
+    }
+
+    @Test
+    public void testGgtRekursivWithNumberNegativ() {
+        long result = GgtRekursiv.ggt(-25, 100);
+        assertEquals(25, result);
+        
+        long result2 = GgtRekursiv.ggt(-100, 5);
         assertEquals(5, result2);
     }
     
     @Test
-    public void testGgtWithZero()  {
-        assertThrows(GgtException.class, () -> Ggt.ggt(0, 25));
+    public void testGgtIterativWithZero()  {
+        assertThrows(GgtException.class, () -> GgtIterativ.ggt(0, 25));
         
-        assertThrows(GgtException.class, () -> Ggt.ggt(-25, 0));
+        assertThrows(GgtException.class, () -> GgtIterativ.ggt(-25, 0));
+
+    }
+
+    @Test
+    public void testGgtRekursivRekursivWithZero()  {
+        assertThrows(GgtException.class, () -> GgtRekursiv.ggt(0, 25));
+        
+        assertThrows(GgtException.class, () -> GgtRekursiv.ggt(-25, 0));
 
     }
     
     @Test
-    public void testGgtWithSameNumbers()  {
-        long result = Ggt.ggt(10, 10);
+    public void testGgtIterativWithSameNumbers()  {
+        long result = GgtIterativ.ggt(10, 10);
         assertEquals(10, result);
     }
     
     @Test
-    public void testGgtWithOneNumber()  {
-        long result1 = Ggt.ggt(10, 1);
+    public void testGgtRekursivWithSameNumbers()  {
+        long result = GgtRekursiv.ggt(10, 10);
+        assertEquals(10, result);
+    }
+
+    @Test
+    public void testGgtIterativWithOneNumber()  {
+        long result1 = GgtIterativ.ggt(10, 1);
         assertEquals(1, result1);
         
-        long result2 = Ggt.ggt(1, 10);
+        long result2 = GgtIterativ.ggt(1, 10);
         assertEquals(1, result2);
     }
     
     @Test
-    public void testGgtWithLargeNumbers()  {
-        long result = Ggt.ggt(1000000000, 500000000);
+    public void testGgtRekursivWithOneNumber()  {
+        long result1 = GgtRekursiv.ggt(10, 1);
+        assertEquals(1, result1);
+        
+        long result2 = GgtRekursiv.ggt(1, 10);
+        assertEquals(1, result2);
+    }
+
+    @Test
+    public void testGgtIterativWithLargeNumbers()  {
+        long result = GgtIterativ.ggt(1000000000, 500000000);
         assertEquals(500000000, result);
     }
 
     @Test
-    public void testGgtSameNumbers()  {
-        long result = Ggt.ggt(5, 5);
+    public void testGgtRekursivWithLargeNumbers()  {
+        long result = GgtRekursiv.ggt(1000000000, 500000000);
+        assertEquals(500000000, result);
+    }
+
+    @Test
+    public void testGgtIterativSameNumbers()  {
+        long result = GgtIterativ.ggt(5, 5);
         assertEquals(5, result);
 
-        long result2 = Ggt.ggt(-5, 5);
+        long result2 = GgtIterativ.ggt(-5, 5);
         assertEquals(5, result2);
 
-        long result3 = Ggt.ggt(5, -5);
+        long result3 = GgtIterativ.ggt(5, -5);
         assertEquals(5, result3);
 
-        long result4 = Ggt.ggt(-5, -5);
+        long result4 = GgtIterativ.ggt(-5, -5);
         assertEquals(5, result4);
     }
 
     @Test
-    public void testGgtWithOne()  {
-        long result = Ggt.ggt(5, 1);
+    public void testGgtRekursivSameNumbers()  {
+        long result = GgtRekursiv.ggt(5, 5);
+        assertEquals(5, result);
+
+        long result2 = GgtRekursiv.ggt(-5, 5);
+        assertEquals(5, result2);
+
+        long result3 = GgtRekursiv.ggt(5, -5);
+        assertEquals(5, result3);
+
+        long result4 = GgtRekursiv.ggt(-5, -5);
+        assertEquals(5, result4);
+    }
+
+    @Test
+    public void testGgtIterativWithOne()  {
+        long result = GgtIterativ.ggt(5, 1);
         assertEquals(1, result);
 
-        long result2 = Ggt.ggt(-1, 5);
+        long result2 = GgtIterativ.ggt(-1, 5);
         assertEquals(1, result2);
 
-        long result3 = Ggt.ggt(1, -5);
+        long result3 = GgtIterativ.ggt(1, -5);
         assertEquals(1, result3);
 
-        long result4 = Ggt.ggt(-1, -5);
+        long result4 = GgtIterativ.ggt(-1, -5);
+        assertEquals(1, result4);
+    }
+
+    @Test
+    public void testGgtRekursivWithOne()  {
+        long result = GgtRekursiv.ggt(5, 1);
+        assertEquals(1, result);
+
+        long result2 = GgtRekursiv.ggt(-1, 5);
+        assertEquals(1, result2);
+
+        long result3 = GgtRekursiv.ggt(1, -5);
+        assertEquals(1, result3);
+
+        long result4 = GgtRekursiv.ggt(-1, -5);
         assertEquals(1, result4);
     }
 }
-
