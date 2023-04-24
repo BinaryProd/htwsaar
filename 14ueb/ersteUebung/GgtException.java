@@ -8,6 +8,7 @@
 class GgtException extends RuntimeException {
 
     private static final String FEHLER_NUMMER = "Die Zahl muss groesser als 0 sein";
+    private static final String FEHLER_NULL = "Beide Zahlen duerfen nicht 0 sein";
 
     public GgtException() {
         super();
@@ -28,4 +29,16 @@ class GgtException extends RuntimeException {
             throw new GgtException(FEHLER_NUMMER);
         }
     }
+
+    /**
+     * Check if both numbers are 0
+     *
+     * @param number1
+     * @param number2
+     * @throws GgtException
+     */
+    public static void checkIfBothNumbersAreZero(long number1, long number2) throws GgtException {
+        if (number1 == 0 && number2 == 0) {
+            throw new GgtException(FEHLER_NULL);
+        }
 }

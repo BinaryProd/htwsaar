@@ -115,7 +115,7 @@ public class GgtDialog {
         System.out.print(">>> ");
         long zahl2 = EingabeUtils.scanLong(scanner);
 
-        System.out.println(Ggt.ggt(zahl1, zahl2));
+        System.out.println("Der Ggt ist: " + Ggt.ggt(zahl1, zahl2));
     }
 
 }
