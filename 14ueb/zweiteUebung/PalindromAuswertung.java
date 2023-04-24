@@ -127,10 +127,7 @@ public class PalindromAuswertung {
         try {
             contentType = Files.probeContentType(path);
 
-            if (!path.toFile().isFile()) {
-                throw new PalindromException("Die Datei " + arg + " existiert nicht.");
-            }
-            if (!path.toFile().exists()) {
+            if (!path.toFile().isFile() || !path.toFile().exists()) {
                 throw new PalindromException("Die Datei " + arg + " existiert nicht.");
             }
             if (!path.toFile().canRead()) {
