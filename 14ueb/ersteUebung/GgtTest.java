@@ -19,10 +19,10 @@ public class GgtTest {
     @Test
     public void testGgtWithZero() {
         long result = Ggt.ggt(25, 0);
-        assertEquals(0, result);
+        assertEquals(25, result);
         
         long result2 = Ggt.ggt(0, 25);
-        assertEquals(0, result2);
+        assertEquals(25, result2);
     }
     
     @Test

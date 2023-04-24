@@ -17,13 +17,14 @@ public class Ggt {
     public static long ggt(long a, long b) throws GgtException {
         GgtException.checkIfValidNumber(a);
         GgtException.checkIfValidNumber(b);
+        GgtException.checkIfBothNumbersAreZero(a, b);
 
         if (a == 0) {
-            return a;
+            return b;
         } 
 
         if (b == 0) {
-            return b;
+            return a;
         }
 
         return ggtBerechner(a, b);
