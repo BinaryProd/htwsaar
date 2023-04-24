@@ -19,18 +19,6 @@ class GgtException extends RuntimeException {
     }
 
     /**
-     * Check if long is positiv or null
-     *
-     * @param long
-     * @throws GgtException
-     */
-    public static void checkIfNumberNull(long number) throws GgtException {
-        if (number == 0) {
-            throw new GgtException(FEHLER_NUMMER);
-        }
-    }
-
-    /**
      * Check if both numbers are 0
      *
      * @param number1

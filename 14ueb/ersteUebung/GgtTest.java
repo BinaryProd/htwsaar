@@ -11,8 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GgtTest {
 
     @Test
-    public void testGgt() {
-        long result = Ggt.ggt(10, 25);
+    public void testGgtIterativ() {
+        long result = GgtIterativ.ggt(10, 25);
+        assertEquals(5, result);
+    }
+
+    @Test
+    public void testGgtRekursiv() {
+        long result = GgtRekursiv.ggt(10, 25);
         assertEquals(5, result);
     }
     
