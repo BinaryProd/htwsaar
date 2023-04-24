@@ -23,8 +23,8 @@ public class PalindromTest {
     private String wort4;
     private String wort5;
 
-    private PalindromRekursiv palRek = new PalindromRekursiv();
-    private PalindromIterativ palIter = new PalindromIterativ();
+    private Palindrom palIter;
+    private Palindrom palRek;
 
     public PalindromTest() {
         palIter = new PalindromIterativ();
