@@ -17,21 +17,20 @@ public class GgtTest {
     }
     
     @Test
-    public void testGgtWithZero() {
-        long result = Ggt.ggt(25, 0);
+    public void testGgtWithNumberNegativ() {
+        long result = Ggt.ggt(-25, 100);
         assertEquals(25, result);
         
-        long result2 = Ggt.ggt(0, 25);
-        assertEquals(25, result2);
+        long result2 = Ggt.ggt(-100, 5);
+        assertEquals(5, result2);
     }
     
     @Test
-    public void testGgtWithNegativeNumbers()  {
-        assertThrows(GgtException.class, () -> Ggt.ggt(-10, 25));
+    public void testGgtWithZero()  {
+        assertThrows(GgtException.class, () -> Ggt.ggt(0, 25));
         
-        assertThrows(GgtException.class, () -> Ggt.ggt(10, -25));
+        assertThrows(GgtException.class, () -> Ggt.ggt(-25, 0));
 
-        assertThrows(GgtException.class, () -> Ggt.ggt(-10, -10));
     }
     
     @Test
@@ -53,6 +52,36 @@ public class GgtTest {
     public void testGgtWithLargeNumbers()  {
         long result = Ggt.ggt(1000000000, 500000000);
         assertEquals(500000000, result);
+    }
+
+    @Test
+    public void testGgtSameNumbers()  {
+        long result = Ggt.ggt(5, 5);
+        assertEquals(5, result);
+
+        long result2 = Ggt.ggt(-5, 5);
+        assertEquals(5, result2);
+
+        long result3 = Ggt.ggt(5, -5);
+        assertEquals(5, result3);
+
+        long result4 = Ggt.ggt(-5, -5);
+        assertEquals(5, result4);
+    }
+
+    @Test
+    public void testGgtWithOne()  {
+        long result = Ggt.ggt(5, 1);
+        assertEquals(1, result);
+
+        long result2 = Ggt.ggt(-1, 5);
+        assertEquals(1, result2);
+
+        long result3 = Ggt.ggt(1, -5);
+        assertEquals(1, result3);
+
+        long result4 = Ggt.ggt(-1, -5);
+        assertEquals(1, result4);
     }
 }
 
