@@ -11,5 +11,5 @@ public interface Queue {
     public Object removeAtIndex(int i);
     public int capacity();
     public void clear();
-    public void print();
+    public String toString();
 }

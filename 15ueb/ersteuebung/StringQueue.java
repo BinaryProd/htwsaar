@@ -98,11 +98,11 @@ public class StringQueue extends PrimaryQueue {
     /**
      * Prints the contents of the StringQueue to the console.
      *
-     * @param q the StringQueue to print
+     * @param q the StringQueue to toString
      */
     @Override
-    public void print() {
-        super.print();
+    public String toString() {
+        return super.toString();
     }
 }
 

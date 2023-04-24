@@ -199,12 +199,15 @@ public class PrimaryQueue implements Queue {
     /**
      * Prints the contents of the queue to the console.
      */
-    public void print() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < queue.length; i++) {
             if (queue[i] != null) {
-                System.out.println(queue[i]);
+                sb.append("\n" + queue[i]);
             }
         }
+        return sb.toString();
     }
 
     public void sort() {

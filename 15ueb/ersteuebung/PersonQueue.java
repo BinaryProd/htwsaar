@@ -107,10 +107,10 @@ public class PersonQueue extends PrimaryQueue {
     /**
      * Prints the contents of the PersonQueue to the console.
      *
-     * @param q the PersonQueue to print
+     * @param q the PersonQueue to toString
      */
     @Override
-    public void print() {
-        super.print();
+    public String toString() {
+        return super.toString();
     }
 }

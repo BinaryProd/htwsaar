@@ -34,7 +34,7 @@ public class QueueDialog {
     private static final int REMOVE_LAST_INT = 5;
     private static final int REMOVE_AT_INDEX_INT = 6;
     private static final int GET_INT = 7;
-    private static final int PRINT_INT = 8;
+    private static final int AUSGABE_INT = 8;
     private static final int CLEAR_QUEUE_INT = 9;
     private static final int REMOVE_QUEUE_INT = 10;
 
@@ -45,7 +45,7 @@ public class QueueDialog {
     private static final String REMOVE_LAST_STRING = " : Element hinten entfernen";
     private static final String REMOVE_AT_INDEX_STRING = " : Element an Index entfernen";
     private static final String GET_STRING = " : Element an Index abfragen";
-    private static final String PRINT_STRING = " : Liste ausgeben";
+    private static final String AUSGABE_STRING = " : Liste ausgeben";
     private static final String CLEAR_QUEUE_STRING = " : Liste leeren";
     private static final String REMOVE_QUEUE_STRING = " : Queue entfernen";
 
@@ -94,8 +94,8 @@ public class QueueDialog {
     }
 
     /**
-     * This method is used to print the different choices for interacting with the Queue and its Artikel.
-     * It uses a StringBuilder to append the different menu options and their corresponding int and string values and prints them to the console.
+     * This method is used to toString the different choices for interacting with the Queue and its Artikel.
+     * It uses a StringBuilder to append the different menu options and their corresponding int and string values and toStrings them to the console.
      */
     public void queueErstellenMenuAusgabe() {
         StringBuilder sb = new StringBuilder();
@@ -106,7 +106,7 @@ public class QueueDialog {
             .append(EXIT_INT).append(EXIT_STRING).append("\n")
             .append(">>> ");
 
-        System.out.print(sb.toString());
+        System.out.println(sb.toString());
     } 
 
     public void queueErstellenEingabeBearbeitung(int userInput) {
@@ -161,7 +161,7 @@ public class QueueDialog {
             .append(REMOVE_LAST_INT).append(REMOVE_LAST_STRING).append("\n")
             .append(REMOVE_AT_INDEX_INT).append(REMOVE_AT_INDEX_STRING).append("\n")
             .append(GET_INT).append(GET_STRING).append("\n")
-            .append(PRINT_INT).append(PRINT_STRING).append("\n")
+            .append(AUSGABE_INT).append(AUSGABE_STRING).append("\n")
             .append(CLEAR_QUEUE_INT).append(CLEAR_QUEUE_STRING).append("\n")
             .append(REMOVE_QUEUE_INT).append(REMOVE_QUEUE_STRING).append("\n")
             .append(">>> ");    
@@ -197,8 +197,8 @@ public class QueueDialog {
             case GET_INT:
                 get();
                 break;
-            case PRINT_INT:
-                print();
+            case AUSGABE_INT:
+                ausgabe();
                 break;
             case CLEAR_QUEUE_INT:
                 clear();
@@ -350,10 +350,10 @@ public class QueueDialog {
     }
 
     /**
-     * This method is used to print the queue.
+     * This method is used to toString the queue.
      */
-    public void print() {
-        queue.print();
+    public void ausgabe() {
+        System.out.println(queue.toString());
     }
 
     /**

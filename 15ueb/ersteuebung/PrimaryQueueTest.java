@@ -86,7 +86,6 @@ public class PrimaryQueueTest {
         q.addAtIndex(3, 1);
         q.addAtIndex(2, 1);
         q.addAtIndex(8, 8);
-        q.print();
         assertEquals(4, q.size());
         assertEquals(1, q.get(0));
         assertEquals(2, q.get(1));
