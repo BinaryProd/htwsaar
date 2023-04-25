@@ -159,9 +159,8 @@ public class PalindromAuswertung {
      *         and recursive algorithms.
      */
     public PalindromResult checkPalindrome(String input) throws PalindromException {
-        String cleanInput = input.strip();
+        String cleanInput = input.strip().replaceAll("[^a-zA-Z]", "").toLowerCase();
         PalindromException.stringTest(cleanInput);
-        cleanInput = cleanInput.toLowerCase().replace(" ", "");
 
         long startTimeIterativ = System.nanoTime();
         boolean istPalindromIterativ = palIter.istPalindrom(cleanInput);
