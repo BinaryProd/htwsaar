@@ -28,13 +28,13 @@ public class PersonTest {
      */
     @Test
     public void test_Constructor_Mit_Fehler() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             Person person = new Person("Ele", "");
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             Person person = new Person("", "Phant");
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             Person person = new Person("", "");
         });
     }
@@ -56,7 +56,7 @@ public class PersonTest {
     @Test
     public void test_setName_Mit_Fehler() {
         Person person = new Person("Ele", "Phant");
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             person.setName("");
         });
     }
@@ -64,7 +64,7 @@ public class PersonTest {
     @Test
     public void test_setVorname_Mit_Fehler() {
         Person person = new Person("Ele", "Phant");
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             person.setVorname("");
         });
     }

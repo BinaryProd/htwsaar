@@ -134,7 +134,7 @@ public class PersonQueue extends PrimaryQueue {
 
     public void print() {
         StringBuilder sb = new StringBuilder();
-        Iterator iter = new Iterator(); 
+        Iterator iter = new PersonQueue.Iterator(); 
 
         sb.append(iter.next() + "\n");
         while ( iter.hasNext()) {
@@ -144,7 +144,7 @@ public class PersonQueue extends PrimaryQueue {
     }
 
     public String smallest() {
-        Iterator iter = new Iterator(); 
+        Iterator iter = new PersonQueue.Iterator(); 
         String min = iter.next().getVorname();
 
         while ( iter.hasNext()) {

@@ -32,7 +32,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddLast_With_Null_Object() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addLast(null);
         });
     }
@@ -40,7 +40,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddLast_With_Full_Queue() {
         PrimaryQueue q = new PrimaryQueue(3);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addLast(1);
             q.addLast(2);
             q.addLast(3);
@@ -63,7 +63,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddFirst_With_Null_Object() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addFirst(null);
         });
     }
@@ -71,7 +71,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddFirst_With_Full_Queue() {
         PrimaryQueue q = new PrimaryQueue(3);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addFirst(1);
             q.addFirst(2);
             q.addFirst(3);
@@ -96,7 +96,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddAtIndex_With_Null_Object() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addAtIndex(null, 0);
         });
     }
@@ -104,7 +104,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddAtIndex_With_Full_Queue() {
         PrimaryQueue q = new PrimaryQueue(3);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addAtIndex(1, 0);
             q.addAtIndex(2, 1);
             q.addAtIndex(3, 2);
@@ -115,10 +115,10 @@ public class PrimaryQueueTest {
     @Test
     public void test_AddAtIndex_With_Invalid_Index() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addAtIndex("jon", -1);
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.addAtIndex("ja", 11);
         });
     }
@@ -139,7 +139,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_Remove_First_With_Empty_Queue() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.removeFirst();
         });
     }
@@ -159,7 +159,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_RemoveLast_With_Empty_Queue() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.removeLast();
         });
     }
@@ -179,7 +179,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_RemoveAtIndex_With_Empty_Queue() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.removeAtIndex(0);
         });
     }
@@ -230,7 +230,7 @@ public class PrimaryQueueTest {
     @Test
     public void test_Clear_With_Empty_Queue() {
         PrimaryQueue q = new PrimaryQueue(10);
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(QueueException.class, () -> {
             q.clear();
         });
     }

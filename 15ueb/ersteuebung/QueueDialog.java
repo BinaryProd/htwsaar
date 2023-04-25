@@ -18,6 +18,7 @@ public class QueueDialog {
     private Queue queue;
     private int userInput;
     private Scanner scanner = EingabeUtils.scanOpen();
+    private static final String FEHLER_PERSON_QUEUE = "Die Queue ist keine PersonQueue";
 
     private static final int STRING_QUEUE_ANLEGEN_INT = 1;
     private static final int PERSON_QUEUE_ANLEGEN_INT = 2;
@@ -83,6 +84,10 @@ public class QueueDialog {
                 queueErstellenMenuAusgabe();
                 userInput = eingabeLesen();
                 queueErstellenEingabeBearbeitung(userInput);
+            } catch(QueueException e) {
+                System.out.println(e);
+            } catch(PersonQueueException e) {
+                System.out.println(e);
             } catch(IllegalArgumentException e) {
                 System.out.println(e);
             } catch(InputMismatchException e) {
@@ -376,7 +381,8 @@ public class QueueDialog {
             PersonQueue personQueue = (PersonQueue) queue;
             personQueue.print();
         } else {
-            System.out.println("Die Queue ist keine PersonQueue");
+            //System.out.println("Die Queue ist keine PersonQueue");
+            throw new PersonQueueException(FEHLER_PERSON_QUEUE);
         }
     }
 
@@ -385,7 +391,8 @@ public class QueueDialog {
             PersonQueue personQueue = (PersonQueue) queue;
             System.out.println(personQueue.smallest());
         } else {
-            System.out.println("Die Queue ist keine PersonQueue");
+            //System.out.println("Die Queue ist keine PersonQueue");
+            throw new PersonQueueException(FEHLER_PERSON_QUEUE);
         }
     }
 
