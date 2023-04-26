@@ -1,9 +1,9 @@
-public class ArrayFunction<T> {
+public class ArrayFunctionWithGenerics<T> {
     
     private T[] array;    
     private int size;    
     
-    public ArrayFunction(int capacity) {    
+    public ArrayFunctionWithGenerics(int capacity) {    
         array = (T[]) new Object[capacity];    
         size = 0;    
     }    

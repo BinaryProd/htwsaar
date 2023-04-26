@@ -1,13 +1,13 @@
 public class ArrayFunction {
-    
+
     private Object[] array;    
     private int size;    
-    
+
     public ArrayFunction(int capacity) {    
         array = new Object[capacity];    
         size = 0;    
     }    
-    
+
     public void addFirst(Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -19,7 +19,7 @@ public class ArrayFunction {
         array[0] = value;    
         size++;    
     }    
-    
+
     public void removeFirst() {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
@@ -31,7 +31,7 @@ public class ArrayFunction {
         array[size - 1] = null;    
         size--;    
     }    
-    
+
     public void addEnd(Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -40,7 +40,7 @@ public class ArrayFunction {
         array[size] = value;    
         size++;    
     }    
-    
+
     public void removeEnd() {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
@@ -49,7 +49,7 @@ public class ArrayFunction {
         array[size - 1] = null;    
         size--;    
     }    
-    
+
     public void addAtIndex(int index, Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -65,22 +65,22 @@ public class ArrayFunction {
         array[index] = value;    
         size++;    
     }    
-    
+
     public void removeAtIndex(int index) {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
-            return;                                                                                                                                                                                                                                         
+            return;
         }                                                                                                                                                                                                                                                   
-        if (index < 0 || index >= size) {                                                                                                                                                                                                                   
-            System.err.println("Error: Invalid index.");                                                                                                                                                                                                    
-            return;                                                                                                                                                                                                                                         
-        }                                                                                                                                                                                                                                                   
-        for (int i = index; i < size - 1; i++) {                                                                                                                                                                                                            
-            array[i] = array[i + 1];                                                                                                                                                                                                                        
-        }                                                                                                                                                                                                                                                   
-        array[size - 1] = null;                                                                                                                                                                                                                                
-        size--;                                                                                                                                                                                                                                             
-    }                                                                                                                                                                                                                                                       
+        if (index < 0 || index >= size) {
+            System.err.println("Error: Invalid index.");
+            return;
+        }         
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        array[size - 1] = null;
+        size--;
+    }
 
     public int getSize() {
         return size;
@@ -91,9 +91,8 @@ public class ArrayFunction {
             System.err.println("Error: Invalid index.");
             return -1;  // or any other default value
         }
-        return array[index];
+        return (int)array[index];
     }
-
 
     public Object[] getArray() {                                                                                                                                                                                                         
         Object[] copyArray = new Object[size];
