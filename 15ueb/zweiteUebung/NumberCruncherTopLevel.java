@@ -6,11 +6,11 @@ public class NumberCruncherTopLevel {
     }
 
     public void crunch(String[] operations) {    
-        Sum sum = new Sum();
-        Substract substract = new Substract();
-        Swirl swirl = new Swirl();
-        Divide divide = new Divide();
-        Average average = new Average();
+        CrunchOperation sum = new Sum();
+        CrunchOperation substract = new Substract();
+        CrunchOperation swirl = new Swirl();
+        CrunchOperation divide = new Divide();
+        CrunchOperation average = new Average();
 
         for ( String operation: operations) {    
             switch(operation) {    
