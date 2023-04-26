@@ -8,7 +8,11 @@ public class Iterator {
     }
 
     public boolean hasNext() {
-        return currentIndex++ < arrayLength();
+        return currentIndex < arrayLength;
+    }
+
+    public void updateIndex() {
+        this.currentIndex++;
     }
 
     public int getCurrentIndex() {
@@ -24,6 +28,6 @@ public class Iterator {
     }
 
     public void getArrayLength(int new_value) {
-        this.arrayLength = new_value
+        this.arrayLength = new_value;
     }
 }
