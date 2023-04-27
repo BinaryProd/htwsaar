@@ -4,41 +4,36 @@ public class NumberCruncherAnonym {
     private float[] numbers;
     private Iterator iterator;
 
-    private NumberCruncher sum;
-    private NumberCruncher swirl;
-    private NumberCruncher divide;
-    private NumberCruncher subtract;
-    private NumberCruncher average;
+    private CrunchOperation sum;
+    private CrunchOperation swirl;
+    private CrunchOperation divide;
+    private CrunchOperation subtract;
+    private CrunchOperation average;
 
 
     public NumberCruncherAnonym(float[] numbers) {
         this.numbers = numbers;
-        this.iterator = new Iterator(numbers.length);
+        this.iterator = new Iterator(numbers.length); // ou -1 ?
         anonymousClass();
-    }
-
-    // soit mettre dans propre fichier ou alors voir pour utiliser celui de top level
-    public interface NumberCruncher {
-        public abstract void crunch();
     }
 
     public void crunch(String[] operations) {
         for ( String operation: operations) {
             switch(operation) {
                 case "sum":
-                    this.sum.crunch();
+                    this.sum.crunch(this.numbers);
                     break;
                 case "swirl":
-                    this.swirl.crunch();
+                    this.swirl.crunch(this.numbers);
                     break;
                 case "divide":
-                    this.divide.crunch();
+                    this.divide.crunch(this.numbers);
                     break;
                 case "subtract":
-                    this.subtract.crunch();
+                    this.subtract.crunch(this.numbers);
                     break;
                 case "average":
-                    this.average.crunch();
+                    this.average.crunch(this.numbers);
                     break;
             }
         }
@@ -46,8 +41,8 @@ public class NumberCruncherAnonym {
 
     public void anonymousClass() {
 
-        this.sum = new NumberCruncher() {
-            public void crunch() {
+        this.sum = new CrunchOperation() {
+            public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
                 while (iterator.hasNext()) {
                     int currentIndex = iterator.getCurrentIndex();
@@ -57,8 +52,8 @@ public class NumberCruncherAnonym {
             }
         };
 
-        this.swirl = new NumberCruncher() {
-            public void crunch() {
+        this.swirl = new CrunchOperation() {
+            public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
                 Random random = new Random();
                 while (iterator.hasNext()) {
@@ -72,8 +67,8 @@ public class NumberCruncherAnonym {
             }
         };
 
-        this.divide= new NumberCruncher() {
-            public void crunch() {
+        this.divide= new CrunchOperation() {
+            public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
                 ArrayFunction temp = new ArrayFunction(numbers.length);
                 ArrayFunction indexes = new ArrayFunction(numbers.length);
@@ -106,8 +101,8 @@ public class NumberCruncherAnonym {
             }
         };
 
-        this.subtract = new NumberCruncher() {
-            public void crunch() {
+        this.subtract = new CrunchOperation() {
+            public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
                 while (iterator.hasNext()) {
                     int currentIndex = iterator.getCurrentIndex();
@@ -117,8 +112,8 @@ public class NumberCruncherAnonym {
             }
         };
 
-        this.average = new NumberCruncher() {
-            public void crunch() {
+        this.average = new CrunchOperation() {
+            public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
                 float avg = 0;
                 float biggestNumber = 0;
@@ -135,6 +130,7 @@ public class NumberCruncherAnonym {
                 numbers[maxIndex] = avg / numbers.length;
             }
         };
+
     }
 
     public float[] getNumbers() {

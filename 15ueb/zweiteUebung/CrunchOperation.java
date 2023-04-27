@@ -1,3 +1,3 @@
 public interface CrunchOperation { 
- public void crunch( float values[] );
+    public void crunch( float values[] );
 }
