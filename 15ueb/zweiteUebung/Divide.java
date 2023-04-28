@@ -29,7 +29,8 @@ public class Divide implements CrunchOperation {
         }    
         int j = 0;    
         for(int i = numbers.length; i > numbers.length/2; i--) { // attention if numbers.length is odd    
-            numbers[indexes.get(i)] = temp.get(i) / temp.get(j);    
+            //numbers[indexes.get(i)] = temp.get(i) / temp.get(j);    
+            numbers[i] = temp.get(i) / temp.get(j);    
             j++;    
         }    
     }

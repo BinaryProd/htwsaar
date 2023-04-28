@@ -27,7 +27,7 @@ public class Iterator {
         this.currentIndex = new_value;
     }
 
-    public void getArrayLength(int new_value) {
+    public void setArrayLength(int new_value) {
         this.arrayLength = new_value;
     }
 }

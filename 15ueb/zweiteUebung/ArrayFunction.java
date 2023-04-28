@@ -86,13 +86,21 @@ public class ArrayFunction {
         return size;
     }
 
-    public int get(int index) {
+    public float get(int index) {
+        if (index < 0 || index >= size) {
+            System.err.println("Error: Invalid index.");
+            return -1;  // or any other default value
+        }
+        return (float)array[index];
+    }
+    
+    public int getValue(int index) {
         if (index < 0 || index >= size) {
             System.err.println("Error: Invalid index.");
             return -1;  // or any other default value
         }
         return (int)array[index];
-    }
+    } 
 
     public Object[] getArray() {                                                                                                                                                                                                         
         Object[] copyArray = new Object[size];
