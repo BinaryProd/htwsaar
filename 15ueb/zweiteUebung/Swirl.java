@@ -4,9 +4,10 @@ public class Swirl implements CrunchOperation {
     private Iterator iterator;
 
     public void crunch(float numbers[]) {
-        iterator = new Iterator(numbers.length);
+        iterator = new Iterator(numbers.length -1);
         iterator.setCurrentIndex(0);
         Random random = new Random();
+        
         while (iterator.hasNext()) {
             int j = random.nextInt(numbers.length);
             int k = random.nextInt(numbers.length);

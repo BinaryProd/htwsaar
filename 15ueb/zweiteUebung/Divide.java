@@ -3,35 +3,43 @@ public class Divide implements CrunchOperation {
 
     public void crunch(float numbers[]) {
         iterator = new Iterator(numbers.length);
-        iterator.setCurrentIndex(0);    
-        ArrayFunction temp = new ArrayFunction(numbers.length);    
-        ArrayFunction indexes = new ArrayFunction(numbers.length);    
-        while (iterator.hasNext()) {    
+        iterator.setCurrentIndex(0);
 
-            int currentIndex = iterator.getCurrentIndex();    
-            boolean added = false;    
+        ArrayFunction temp = new ArrayFunction(numbers.length);
+        ArrayFunction indexes = new ArrayFunction(numbers.length);
 
-            for (int j = 0; j < temp.getSize(); j++) {    
-                if (numbers[currentIndex] < temp.get(j)) {    
-                    temp.addAtIndex(j, numbers[currentIndex]);    
-                    indexes.addAtIndex(j, currentIndex);    
-                    added = true;    
-                    break;    
-                }    
-            }    
+        while (iterator.hasNext()) {
+            int currentIndex = iterator.getCurrentIndex();
+            boolean added = false;
 
-            if (!added) {    
-                temp.addEnd(numbers[currentIndex]);    
-                indexes.addEnd(currentIndex);    
-            }    
+            for (int j = 0; j < temp.getSize(); j++) {
+                if (numbers[currentIndex] < temp.get(j)) {
+                    temp.addAtIndex(j, numbers[currentIndex]);
+                    indexes.addAtIndex(j, currentIndex);
+                    added = true;
+                    break;
+                }
+            }
 
-            iterator.updateIndex();    
-        }    
-        int j = 0;    
-        for(int i = numbers.length; i > numbers.length/2; i--) { // attention if numbers.length is odd    
-            //numbers[indexes.get(i)] = temp.get(i) / temp.get(j);    
-            numbers[i] = temp.get(i) / temp.get(j);    
-            j++;    
-        }    
+            if (!added) {
+                temp.addEnd(numbers[currentIndex]);
+                indexes.addEnd(currentIndex);
+            }
+
+            iterator.updateIndex();
+        }
+
+        int j = 0;
+        if ( numbers.length % 2 == 0) {
+            for(int i = numbers.length - 1 ; i >= numbers.length/2; i--) {
+                numbers[indexes.getValue(i)] = temp.get(i) / temp.get(j);
+                j++;
+            }
+        } else {
+            for(int i = numbers.length - 1 ; i >= (numbers.length/2 + 1); i--) {
+                numbers[indexes.getValue(i)] = temp.get(i) / temp.get(j);
+                j++;
+            }
+        }
     }
 }

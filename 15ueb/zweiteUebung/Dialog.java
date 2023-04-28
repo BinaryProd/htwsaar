@@ -331,7 +331,7 @@ public class Dialog {
             }
             stringArray[i] = userInput;
         }
-        System.out.println(Arrays.toString(stringArray));        
+        System.out.println("Diese Operationen werden ausgeführt:" + Arrays.toString(stringArray));
         if ( numberAnonym != null ) {
             numberAnonym.crunch(stringArray);
         } else {
