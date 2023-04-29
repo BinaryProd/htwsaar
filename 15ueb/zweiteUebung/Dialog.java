@@ -341,9 +341,9 @@ public class Dialog {
 
     public void print() {
         if ( numberAnonym != null ) {
-            System.out.println(Arrays.toString(numberAnonym.getNumbers()));
+            System.out.println(ArrayUtils.toString(numberAnonym.getNumbers()));
         } else {
-            System.out.println(Arrays.toString(numberTopLevel.getNumbers()));
+            System.out.println(ArrayUtils.toString(numberTopLevel.getNumbers()));
         }
     }
 

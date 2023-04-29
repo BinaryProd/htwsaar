@@ -1,4 +1,4 @@
-public class Substract implements CrunchOperation {
+public class Subtract implements CrunchOperation {
     private Iterator iterator;
 
     public void crunch(float numbers[]) {

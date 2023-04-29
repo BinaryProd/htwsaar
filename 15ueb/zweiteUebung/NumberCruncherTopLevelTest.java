@@ -52,9 +52,9 @@ public class NumberCruncherTopLevelTest {
     }
 
     @Test
-    public void testSubstract(){
-        CrunchOperation substract = new Substract();
-        substract.crunch(testArray);
+    public void testSubtract(){
+        CrunchOperation subtract = new Subtract();
+        subtract.crunch(testArray);
         float[] expected = {-27.74f, -126.31f, -221.66f, -272.78f, -212.06f, -133.85f, -48.08f, -41.76f, 27.78f, 76.42f, 172.33f, 88.61f, 80.82f, -11.31f, 69.76f, 60.05f, 117.82f, 181.96f, 149.61f, 238.9f};
         assertArrayEquals(expected, nc.getNumbers(), 0.01f);
     }
