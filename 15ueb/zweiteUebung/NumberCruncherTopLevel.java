@@ -7,7 +7,7 @@ public class NumberCruncherTopLevel {
 
     public void crunch(String[] operations) {    
         CrunchOperation sum = new Sum();
-        CrunchOperation subtract = new Subtract();
+        CrunchOperation substract = new Substract();
         CrunchOperation swirl = new Swirl();
         CrunchOperation divide = new Divide();
         CrunchOperation average = new Average();
@@ -23,8 +23,8 @@ public class NumberCruncherTopLevel {
                 case "divide":    
                     divide.crunch(numbers);
                     break;    
-                case "subtract":    
-                    subtract.crunch(numbers);
+                case "substract":    
+                    substract.crunch(numbers);
                     break;    
                 case "average":    
                     average.crunch(numbers);

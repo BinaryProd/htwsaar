@@ -7,7 +7,7 @@ public class Sum implements CrunchOperation {
 
         while (iterator.hasNext()) {    
             int currentIndex = iterator.getCurrentIndex();    
-            numbers[currentIndex+1] += numbers[currentIndex];    
+            numbers[currentIndex+1] = numbers[currentIndex] + numbers[currentIndex+1];
 
             iterator.updateIndex();    
         }    

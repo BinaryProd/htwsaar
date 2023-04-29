@@ -1,4 +1,4 @@
-public class Subtract implements CrunchOperation {
+public class Substract implements CrunchOperation {
     private Iterator iterator;
 
     public void crunch(float numbers[]) {
@@ -7,7 +7,7 @@ public class Subtract implements CrunchOperation {
 
         while (iterator.hasNext()) {    
             int currentIndex = iterator.getCurrentIndex();    
-            numbers[currentIndex+1] -= numbers[currentIndex];    
+            numbers[currentIndex+1] = numbers[currentIndex] - numbers[currentIndex+1];
 
             iterator.updateIndex();    
         }    
