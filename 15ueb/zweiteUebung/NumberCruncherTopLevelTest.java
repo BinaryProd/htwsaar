@@ -1,4 +1,4 @@
-/**    
+    /**    
  * <h1> NumberCruncherTopLevelTest</h1>    
  *     
  * @author Victor Plage and David Glaser    
@@ -59,12 +59,11 @@ public class NumberCruncherTopLevelTest {
         assertArrayEquals(expected, nc.getNumbers(), 0.01f);
     }
 
-    /*
     @Test
     public void testAverage() {
         CrunchOperation average = new Average();
         average.crunch(testArray);
-
+        float[] expected = {-27.74f, -14.21f, 95.35f, 51.12f, -60.72f, -78.21f, -85.77f, -6.32f, -69.54f, -48.64f, -95.91f, 83.72f, 7.79f, 92.13f, -81.07f, 9.71f, -57.77f, -64.14f, 32.35f, -89.29f}; 
+        assertArrayEquals(expected, nc.getNumbers(), 0.01f);
     }
-    */
 }
