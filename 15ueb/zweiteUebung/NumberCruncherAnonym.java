@@ -149,6 +149,7 @@ public class NumberCruncherAnonym {
                     }
                     iterator.updateIndex();
                 }
+                iterator.setArrayLength(numbers.length -1 );
 
                 numbers[maxIndex] = sum / numbers.length; 
             }
