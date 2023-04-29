@@ -2,7 +2,7 @@ public class Average implements CrunchOperation {
     private Iterator iterator;
 
     public void crunch(float numbers[]) {    
-        iterator = new Iterator(numbers.length -1);
+        iterator = new Iterator(numbers.length);
         iterator.setCurrentIndex(0);    
         
         float sum = 0;

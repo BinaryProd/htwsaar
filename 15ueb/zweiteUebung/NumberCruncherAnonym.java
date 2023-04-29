@@ -13,7 +13,7 @@ public class NumberCruncherAnonym {
 
     public NumberCruncherAnonym(float[] numbers) {
         this.numbers = numbers;
-        this.iterator = new Iterator(numbers.length -1 );
+        this.iterator = new Iterator(numbers.length -1);
         anonymousClass();
     }
 
@@ -47,7 +47,7 @@ public class NumberCruncherAnonym {
 
                 while (iterator.hasNext()) {
                     int currentIndex = iterator.getCurrentIndex();
-                    numbers[currentIndex+1] += numbers[currentIndex];
+                    numbers[currentIndex+1] = numbers[currentIndex] + numbers[currentIndex+1];
 
                     iterator.updateIndex();
                 }
@@ -75,7 +75,7 @@ public class NumberCruncherAnonym {
         this.divide= new CrunchOperation() {
             public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
-                iterator.setArrayLength(iterator.getArrayLength() + 1);
+                iterator.setArrayLength(numbers.length);
 
                 ArrayFunction temp = new ArrayFunction(numbers.length);
                 ArrayFunction indexes = new ArrayFunction(numbers.length);
@@ -120,38 +120,39 @@ public class NumberCruncherAnonym {
 
         this.subtract = new CrunchOperation() {
             public void crunch(float numbers[]) {
-                iterator.setCurrentIndex(0);
+                iterator.setCurrentIndex(0);    
 
-                while (iterator.hasNext()) {
-                    int currentIndex = iterator.getCurrentIndex();
-                    numbers[currentIndex+1] -= numbers[currentIndex];
+                while (iterator.hasNext()) {    
+                    int currentIndex = iterator.getCurrentIndex();    
+                    numbers[currentIndex+1] = numbers[currentIndex] - numbers[currentIndex+1];
 
-                    iterator.updateIndex();
-                }
+                    iterator.updateIndex();    
+                }    
             }
         };
 
         this.average = new CrunchOperation() {
-            public void crunch(float numbers[]) {
-                iterator.setCurrentIndex(0);
+            public void crunch(float numbers[]) {    
+                iterator.setCurrentIndex(0);    
+                iterator.setArrayLength(numbers.length);
 
-                float avg = 0;
-                float biggestNumber = 0;
-                int maxIndex = 0;
+                float sum = 0;
+                float biggestNumber = Float.NEGATIVE_INFINITY;
+                int maxIndex = -1;
 
                 while (iterator.hasNext()) {
                     int i = iterator.getCurrentIndex();
-                    avg += numbers[i];
+                    sum += numbers[i];
                     if (numbers[i] > biggestNumber) {
                         biggestNumber = numbers[i];
                         maxIndex = i;
                     }
                     iterator.updateIndex();
                 }
-                numbers[maxIndex] = avg / numbers.length;
+
+                numbers[maxIndex] = sum / numbers.length; 
             }
         };
-
     }
 
     public float[] getNumbers() {
