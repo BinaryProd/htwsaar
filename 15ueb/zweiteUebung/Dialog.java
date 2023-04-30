@@ -84,6 +84,8 @@ public class Dialog {
                 ErstellenMenuAusgabe();
                 userInput = eingabeLesen();
                 ErstellenEingabeBearbeitung(userInput);
+            } catch(NumberCruncherException e) {
+                System.out.println(e);
             } catch(IllegalArgumentException e) {
                 System.out.println(e);
             } catch(InputMismatchException e) {
@@ -141,6 +143,8 @@ public class Dialog {
                 MenuAusgabe();
                 userInput = eingabeLesen();
                 EingabeBearbeitung(userInput);
+            } catch(NumberCruncherException e) {
+                System.out.println(e);
             } catch(IllegalArgumentException e) {
                 System.out.println(e);
             } catch(InputMismatchException e) {
@@ -271,7 +275,7 @@ public class Dialog {
             float[] floatArray = new float[arrayLength];
 
             for (int i = 0; i < arrayLength; i++) {
-                floatArray[i] = (float) Math.random() * 100;
+                floatArray[i] = (float) Math.random() * (max - min) + min;
             }
 
             return floatArray;
