@@ -243,11 +243,14 @@ public class Dialog {
             System.out.println("Wie viele float möchten Sie in Ihrem Array haben ?");
 
             int arrayLength = EingabeUtils.scanInt(scanner);
+            NumberCruncherException.checkforPositiveNonZero(arrayLength);
             float[] floatArray = new float[arrayLength];
 
             for (int i = 0; i < arrayLength; i++) {
                 System.out.println("Bitte geben Sie den " + (i + 1) + ". float ein");
-                floatArray[i] = EingabeUtils.scanFloat(scanner);
+                float userInputFloat = EingabeUtils.scanFloat(scanner);
+                NumberCruncherException.checkFloat(userInputFloat);
+                floatArray[i] = userInputFloat;
             }
 
             return floatArray;
@@ -256,6 +259,15 @@ public class Dialog {
             System.out.println("Wie viele float möchten Sie in Ihrem Array haben ?");
 
             int arrayLength = EingabeUtils.scanInt(scanner);
+            NumberCruncherException.checkforPositiveNonZero(arrayLength);
+
+            System.out.println("Bitte geben Sie den maximalen float ein");
+            float max = EingabeUtils.scanFloat(scanner);
+            NumberCruncherException.checkFloat(max);
+            System.out.println("Bitte geben Sie den minimalen float ein");
+            float min = EingabeUtils.scanFloat(scanner);
+            NumberCruncherException.checkFloat(min);
+
             float[] floatArray = new float[arrayLength];
 
             for (int i = 0; i < arrayLength; i++) {

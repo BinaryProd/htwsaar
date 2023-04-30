@@ -47,7 +47,9 @@ public class NumberCruncherAnonym {
 
                 while (iterator.hasNext()) {
                     int currentIndex = iterator.getCurrentIndex();
-                    numbers[currentIndex+1] = numbers[currentIndex] + numbers[currentIndex+1];
+                    float result = numbers[currentIndex] + numbers[currentIndex + 1];
+                    NumberCruncherException.checkFloat(result);
+                    numbers[currentIndex+1] = result;
 
                     iterator.updateIndex();
                 }
@@ -124,7 +126,9 @@ public class NumberCruncherAnonym {
 
                 while (iterator.hasNext()) {    
                     int currentIndex = iterator.getCurrentIndex();    
-                    numbers[currentIndex+1] = numbers[currentIndex] - numbers[currentIndex+1];
+                    float result = numbers[currentIndex] - numbers[currentIndex+1];
+                    NumberCruncherException.checkFloat(result);
+                    numbers[currentIndex+1] = result;
 
                     iterator.updateIndex();    
                 }    
