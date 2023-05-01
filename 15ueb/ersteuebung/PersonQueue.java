@@ -121,17 +121,30 @@ public class PersonQueue extends PrimaryQueue {
             currentIndex = 0;
         }
 
+        /**
+         * Returns if this iterator has more elements.
+         *
+         * @return true if the iteration has more elements
+         */
         @Override
         public boolean hasNext() {
             return currentIndex < size();
         }
 
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         */
         @Override
         public Person next() {
             return get(currentIndex++);
         }
     }
 
+    /**
+     * Prints the elements of the PersonQueue object.
+     */
     public void print() {
         StringBuilder sb = new StringBuilder();
         Iterator iter = new PersonQueue.Iterator(); 
@@ -143,6 +156,10 @@ public class PersonQueue extends PrimaryQueue {
         System.out.println(sb.toString());
     }
 
+    /**
+     * Returns the smallest value in the PersonQueue object.
+     * @return The smallest value in the PersonQueue object.
+     */
     public String smallest() {
         Iterator iter = new PersonQueue.Iterator(); 
         String min = iter.next().getVorname();
