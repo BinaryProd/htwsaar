@@ -5,18 +5,6 @@
  * @version 1.0.
  * @since 2023-04-11
  */
-/**
- * The QueueDialog class is a class that allows the user, 
- * to interact with a bla  and its bla
- * through a command line interface.
- * It includes functionality to create and remove bla, 
- * blu and blo , change blo of bla, 
- * and retrieve information about the bli and its bla. 
- * 
- * @author Victor Plage and David Glaser
- * @version 1.1.1
- * @since 2023-01-12
- */
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
