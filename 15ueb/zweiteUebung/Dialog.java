@@ -1,4 +1,11 @@
 /**
+ * <h1> Dialog </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
+/**
  * The QueueDialog class is a class that allows the user, 
  * to interact with a bla  and its bla
  * through a command line interface.
@@ -54,7 +61,7 @@ public class Dialog {
     private Scanner scanner = EingabeUtils.scanOpen();
 
     /**
-     * The main function starts a new QueueDialog object.
+     * The main function starts a new Dialog object.
      */
     public static void main( String[] args) {
         new Dialog().start();
@@ -70,8 +77,7 @@ public class Dialog {
     }
 
     /**
-     * The start method is the main loop of the program. It initializes the queue to null and prompts the user for input to interact with the Queue and its Artikel. 
-     * The method also includes exception handling for illegal argument, input mismatch, and general exceptions.
+     * The start method is the main loop of the program.
      */
     public void start() {
 
@@ -101,7 +107,7 @@ public class Dialog {
     }
 
     /**
-     * This method is used to print the different choices for interacting with the Queue and its Artikel.
+     * This method is used to print the different choices
      * It uses a StringBuilder to append the different menu options and their corresponding int and string values and prints them to the console.
      */
     public void ErstellenMenuAusgabe() {
@@ -159,6 +165,9 @@ public class Dialog {
     }
 
 
+    /**
+     * This methode is used to output the different choices
+     */
     public void MenuAusgabe(){
         StringBuilder sb = new StringBuilder();    
 
@@ -217,7 +226,7 @@ public class Dialog {
 
 
     /**
-     * This method is used to create a new StringQueue object and assign it to the queue variable.
+     * This method is used to create a new NumberCruncherAnonym object and assign it to the numberAnonym variable.
      */
     public void AnonymAnlegen() {
         float[] floatArray = createFloatArray();
@@ -226,7 +235,7 @@ public class Dialog {
     }
 
     /**
-     * This method is used to create a new PersonQueue object and assign it to the queue variable.
+     * This method is used to create a new NumberCruncherTopLevel object and assign it to the numberTopLevel variable.
      */
     public void TopLevelAnlegen() {
         float[] floatArray = createFloatArray();
@@ -234,6 +243,10 @@ public class Dialog {
         System.out.println("Die PersonQueue wurde angelegt");
     }
 
+    /**
+     * This method is used to create a float array.
+     * @return The float array
+     */
     public float[] createFloatArray() {
         System.out.println("Möchten Sie ein Array von float manuell oder automatisch erstellen ? (m/a)");
         String userInput = EingabeUtils.scanString(scanner);
@@ -282,6 +295,10 @@ public class Dialog {
         }
     }
 
+
+    /**
+     * This method is used to sum the float array.
+     */
     public void sum() {
         String[] stringArray = new String[1];
         stringArray[0] = SUM;
@@ -292,6 +309,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to swirl the float array.
+     */
     public void swirl() {
         String[] stringArray = new String[1];
         stringArray[0] = SWIRL;
@@ -302,6 +322,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to divide the float array.
+     */
     public void divide() {
         String[] stringArray = new String[1];
         stringArray[0] = DIVIDE;
@@ -312,6 +335,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to subtract the float array.
+     */
     public void subtract() {
         String[] stringArray = new String[1];
         stringArray[0] = SUBTRACT;
@@ -322,6 +348,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to return the average of the float array.
+     */
     public void average() {
         String[] stringArray = new String[1];
         stringArray[0] = AVERAGE;
@@ -332,6 +361,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to do multiple things at once.
+     */
     public void multipleThings() {
         System.out.println("Wie viele Operationen möchten Sie auf einmal ausführen ?");
         int numberOfThings = EingabeUtils.scanInt(scanner);
@@ -355,6 +387,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to print 
+     */
     public void print() {
         if ( numberAnonym != null ) {
             System.out.println(ArrayUtils.toString(numberAnonym.getNumbers()));

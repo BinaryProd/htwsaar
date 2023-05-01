@@ -1,3 +1,10 @@
+/**
+ * <h1> NumberCruncherAnonym </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 import java.util.Random;
 
 public class NumberCruncherAnonym {
@@ -11,12 +18,20 @@ public class NumberCruncherAnonym {
     private CrunchOperation average;
 
 
+    /**
+     * Konstruktor der Klasse NumberCruncherAnonym
+     * @param numbers Array mit float-Werten
+     */
     public NumberCruncherAnonym(float[] numbers) {
         this.numbers = numbers;
         this.iterator = new Iterator(numbers.length -1);
         anonymousClass();
     }
 
+    /**
+     * Führt die Operationen aus, die in dem String-Array operations übergeben werden.
+     * @param operations String-Array mit den Operationen, die ausgeführt werden sollen.
+     */
     public void crunch(String[] operations) {
         for ( String operation: operations) {
             switch(operation) {
@@ -41,6 +56,10 @@ public class NumberCruncherAnonym {
 
     public void anonymousClass() {
 
+        /**
+         * Summiert die Elemente des Arrays paarweise von links nach rechts auf und 
+         * speichert den neuen Wert in dem jeweils rechten Datenfeld
+         */
         this.sum = new CrunchOperation() {
             public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
@@ -56,6 +75,10 @@ public class NumberCruncherAnonym {
             }
         };
 
+        /**
+         * Führt n zufällige Vertauschungen der Datenfelder durch; n ist durch 
+         * die Länge des float-Arrays gegeben.
+         */
         this.swirl = new CrunchOperation() {
             public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
@@ -74,6 +97,12 @@ public class NumberCruncherAnonym {
             }
         };
 
+        /**
+         * Teilt die n/2 größten Werte im Array durch die n/2 Kleinsten und speichert den
+         * neuen Wert im Datenfeld des jeweils größeren Wertes. 
+         * D.h. der größte Wert wird durch den Kleinsten geteilt. 
+         * Der Zweitgrößte durch den Zweitkleinsten usw.
+         */
         this.divide= new CrunchOperation() {
             public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);
@@ -120,6 +149,10 @@ public class NumberCruncherAnonym {
             }
         };
 
+        /**
+         * Subtract die Elemente des Arrays paarweise von links nach rechts auf und 
+         * speichert den neuen Wert in dem jeweils rechten Datenfeld
+         */
         this.subtract = new CrunchOperation() {
             public void crunch(float numbers[]) {
                 iterator.setCurrentIndex(0);    
@@ -135,6 +168,10 @@ public class NumberCruncherAnonym {
             }
         };
 
+        /**
+         * Bestimmt den Durchschnitt aller Werte im Array und speichert den 
+         * Durchschnittswert im Datenfeld mit dem größten Wert.
+         */
         this.average = new CrunchOperation() {
             public void crunch(float numbers[]) {    
                 iterator.setCurrentIndex(0);    
@@ -160,6 +197,10 @@ public class NumberCruncherAnonym {
         };
     }
 
+    /**
+     * getter für das Array mit den float-Werten
+     * @return Array mit float-Werten
+     */
     public float[] getNumbers() {
         return this.numbers;
     }

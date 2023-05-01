@@ -1,6 +1,19 @@
+/**
+ * <h1> Divide </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 public class Divide implements CrunchOperation {
     private Iterator iterator;
 
+    /**
+     * Teilt die n/2 größten Werte im Array durch die n/2 Kleinsten und speichert den
+     * neuen Wert im Datenfeld des jeweils größeren Wertes. 
+     * D.h. der größte Wert wird durch den Kleinsten geteilt. 
+     * Der Zweitgrößte durch den Zweitkleinsten usw.
+     */
     public void crunch(float numbers[]) {
         iterator = new Iterator(numbers.length);
         iterator.setCurrentIndex(0);

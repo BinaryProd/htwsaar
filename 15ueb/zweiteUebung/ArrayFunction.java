@@ -1,13 +1,28 @@
+/**
+ * <h1> ArrayFunction </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 public class ArrayFunction {
 
     private Object[] array;    
     private int size;    
 
+    /**
+     * Constructor for ArrayFunction
+     * @param capacity the capacity of the array
+     */
     public ArrayFunction(int capacity) {    
         array = new Object[capacity];    
         size = 0;    
     }    
 
+    /**
+     * Adds a value to the beginning of the array
+     * @param value the value to be added
+     */
     public void addFirst(Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -20,6 +35,9 @@ public class ArrayFunction {
         size++;    
     }    
 
+    /**
+     * Removes the first element of the array
+     */
     public void removeFirst() {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
@@ -32,6 +50,10 @@ public class ArrayFunction {
         size--;    
     }    
 
+    /**
+     * Adds a value to the end of the array
+     * @param value the value to be added
+     */
     public void addEnd(Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -41,6 +63,9 @@ public class ArrayFunction {
         size++;    
     }    
 
+    /**
+     * Removes the last element of the array
+     */
     public void removeEnd() {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
@@ -50,6 +75,11 @@ public class ArrayFunction {
         size--;    
     }    
 
+    /**
+     * Adds a value to the array at the specified index
+     * @param index the index to add the value
+     * @param value the value to be added
+     */
     public void addAtIndex(int index, Object value) {    
         if (size == array.length) {    
             System.err.println("Error: Array is full.");    
@@ -66,6 +96,10 @@ public class ArrayFunction {
         size++;    
     }    
 
+    /**
+     * Removes the value at the specified index
+     * @param index the index to remove the value
+     */
     public void removeAtIndex(int index) {    
         if (size == 0) {    
             System.err.println("Error: Array is empty.");    
@@ -82,10 +116,19 @@ public class ArrayFunction {
         size--;
     }
 
+    /**
+     * Gets the size of the array
+     * @return the size of the array
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Gets the value at the specified index
+     * @param index the index to get the value
+     * @return the value at the specified index
+     */
     public float get(int index) {
         if (index < 0 || index >= size) {
             System.err.println("Error: Invalid index.");
@@ -94,6 +137,11 @@ public class ArrayFunction {
         return (float)array[index];
     }
     
+    /**
+     * Gets the value at the specified index
+     * @param index the index to get the value
+     * @return the value at the specified index
+     */
     public int getValue(int index) {
         if (index < 0 || index >= size) {
             System.err.println("Error: Invalid index.");

@@ -1,10 +1,25 @@
+/**
+ * <h1> NumberCruncherTopLevel </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 public class NumberCruncherTopLevel {
     private float[] numbers;
 
+    /**
+     * Konstruktor der Klasse NumberCruncherTopLevel
+     * @param numbers Array mit float-Werten
+     */
     public NumberCruncherTopLevel(float[] numbers) {
         this.numbers = numbers;
     }
 
+    /**
+     * Führt die Operationen aus, die in dem String-Array operations übergeben werden.
+     * @param operations String-Array mit den Operationen, die ausgeführt werden sollen.
+     */
     public void crunch(String[] operations) {    
         CrunchOperation sum = new Sum();
         CrunchOperation subtract = new Subtract();
@@ -33,6 +48,10 @@ public class NumberCruncherTopLevel {
         }    
     }
 
+    /**
+     * getter für das Array mit den float-Werten
+     * @return Array mit float-Werten
+     */
     public float[] getNumbers() {
         return numbers;
     }

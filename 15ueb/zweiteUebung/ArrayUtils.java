@@ -43,6 +43,12 @@ public class ArrayUtils {
         } 
     }
 
+    /**
+     * Outputs the array as a string
+     *
+     * @param array the array to be outputted
+     * @return the string representation of the array
+     */
     public static String toString(float[] array) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
