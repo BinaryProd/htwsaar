@@ -15,7 +15,7 @@ public class ArrayUtils {
      * @return the resized array
      */
     public static <T> T[] resizeArray(T[] array) {
-        T[] newArray = Arrays.copyOf(array, array.length + 1);
+        T[] newArray = Arrays.copyOf(array, array.length * 2);
         return newArray;
     }
 
