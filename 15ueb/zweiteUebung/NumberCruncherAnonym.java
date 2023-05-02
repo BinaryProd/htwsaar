@@ -118,11 +118,7 @@ public class NumberCruncherAnonym {
                         temp.addEnd(numbers[i]);
                         indexes.addEnd(i);
                     }
-
-                    iterator.updateIndex();
                 }
-
-                iterator.setArrayLength(numbers.length -1 );
 
                 int j = 0;
                 if ( numbers.length % 2 == 0) {

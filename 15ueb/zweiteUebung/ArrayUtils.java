@@ -19,11 +19,6 @@ public class ArrayUtils {
         return newArray;
     }
 
-    public static Object[] _resizeArray(Object[] array) {
-        Object[] newArray = Arrays.copyOf(array, array.length + 1);
-        return newArray;
-    }
-
     /**
      * Check if at the index a valid object
      * 
@@ -34,12 +29,6 @@ public class ArrayUtils {
     public static <T> void indexIsValid(T[] array, int index) throws ArrayUtilsException {
         if ( array[index] == null ) {
             throw new ArrayUtilsException("Index ist nicht valide");
-        } 
-    }
-
-    public static void _indexIsValid(Object[] array, int index) throws IllegalArgumentException {
-        if ( array[index] == null ) {
-            throw new IllegalArgumentException("Index ist nicht valide");
         } 
     }
 
