@@ -6,6 +6,11 @@ public class Wein extends AlkoholischesGetraenk {
         this.weingut = "";
     }
 
+    public Wein(float alkoholgehalt, String weingut) {
+        super(alkoholgehalt);
+        this.weingut = weingut;
+    }
+
     public Wein(String name, double preis, float alkoholgehalt, String weingut) {
         super(name, preis, alkoholgehalt);
         this.weingut = weingut;
@@ -17,6 +22,11 @@ public class Wein extends AlkoholischesGetraenk {
 
     public void setWeingut(String weingut) {
         this.weingut = weingut;
+    }
+
+    @Override
+    public String getTyp() {
+        return "Wein";
     }
 
     @Override

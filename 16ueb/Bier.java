@@ -6,6 +6,11 @@ public class Bier extends AlkoholischesGetraenk {
         this.brauerei = "";
     }
 
+    public Bier(float alkoholgehalt, String brauerei) {
+        super(alkoholgehalt);
+        this.brauerei = brauerei;
+    }
+
     public Bier(String name, double preis, float alkoholgehalt, String brauerei) {
         super(name, preis, alkoholgehalt);
         this.brauerei = brauerei;
@@ -17,6 +22,11 @@ public class Bier extends AlkoholischesGetraenk {
 
     public void setBrauerei(String brauerei) {
         this.brauerei = brauerei;
+    }
+
+    @Override
+    public String getTyp() {
+        return "Bier";
     }
 
     @Override

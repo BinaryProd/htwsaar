@@ -6,6 +6,11 @@ public class Wasser extends AlkoholfreiesGetraenk {
         this.quelle = "";
     }
 
+    public Wasser(String hersteller, String quelle) {
+        super(hersteller);
+        this.quelle = quelle;
+    }
+
     public Wasser(String name, double preis, String hersteller, String quelle) {
         super(name, preis, hersteller);
         this.quelle = quelle;
@@ -17,6 +22,11 @@ public class Wasser extends AlkoholfreiesGetraenk {
 
     public void setQuelle(String quelle) {
         this.quelle = quelle;
+    }
+
+    @Override
+    public String getTyp() {
+        return "Wasser";
     }
 
     @Override

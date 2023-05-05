@@ -28,6 +28,8 @@ public abstract class Getraenk {
         this.preis = preis;
     }
 
+    public abstract String getTyp();
+
     @Override
     public String toString() {
         return "Getraenk: " + name + "preis:" + preis;

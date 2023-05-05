@@ -6,6 +6,11 @@ public abstract class AlkoholfreiesGetraenk extends Getraenk {
         this.hersteller = "";
     }
 
+    public AlkoholfreiesGetraenk(String hersteller) {
+        super();
+        this.hersteller = hersteller;
+    }
+
     public AlkoholfreiesGetraenk(String name, double preis, String hersteller) {
         super(name, preis);
         this.hersteller = hersteller;
@@ -17,6 +22,11 @@ public abstract class AlkoholfreiesGetraenk extends Getraenk {
 
     public void setHersteller(String hersteller) {
         this.hersteller = hersteller;
+    }
+
+    @Override
+    public String getTyp() {
+        return "AlkoholfreiesGetraenk";
     }
 
     @Override

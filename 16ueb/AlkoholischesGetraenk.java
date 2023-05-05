@@ -6,6 +6,11 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
         this.alkoholgehalt = 0.0f;
     }
 
+    public AlkoholischesGetraenk(float alkoholgehalt) {
+        super();
+        this.alkoholgehalt = alkoholgehalt;
+    }
+
     public AlkoholischesGetraenk(String name, double preis, float alkoholgehalt) {
         super(name, preis);
         this.alkoholgehalt = alkoholgehalt;
@@ -17,6 +22,11 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
 
     public void setAlkoholgehalt(float alkoholgehalt) {
         this.alkoholgehalt = alkoholgehalt;
+    }
+
+    @Override
+    public String getTyp() {
+        return "AlkoholischesGetraenk";
     }
 
     @Override

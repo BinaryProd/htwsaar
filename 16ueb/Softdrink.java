@@ -6,6 +6,11 @@ public class Softdrink extends AlkoholfreiesGetraenk {
         this.zuckergehalt = 0.0f;
     }
 
+    public Softdrink(String hersteller, float zuckergehalt) {
+        super(hersteller);
+        this.zuckergehalt = zuckergehalt;
+    }
+
     public Softdrink(String name, double preis, String hersteller, float zuckergehalt) {
         super(name, preis, hersteller);
         this.zuckergehalt = zuckergehalt;
@@ -17,6 +22,11 @@ public class Softdrink extends AlkoholfreiesGetraenk {
 
     public void setZuckergehalt(float zuckergehalt) {
         this.zuckergehalt = zuckergehalt;
+    }
+
+    @Override
+    public String getTyp() {
+        return "Softdrink";
     }
 
     @Override
