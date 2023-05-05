@@ -1,6 +1,10 @@
 public class Wein extends AlkoholischesGetraenk {
     private String weingut;
 
+    public Wein() {
+        super();
+    }
+
     public Wein(float alkoholgehalt, String weingut) {
         super(alkoholgehalt);
         this.weingut = weingut;

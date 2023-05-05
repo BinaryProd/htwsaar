@@ -1,5 +1,9 @@
 public class RotWein extends Wein {
 
+    public RotWein() {
+        super();
+    }
+
     public RotWein(float alkoholgehalt, String weingut) {
         super(alkoholgehalt, weingut);
     }

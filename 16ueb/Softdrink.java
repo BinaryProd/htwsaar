@@ -1,6 +1,10 @@
 public class Softdrink extends AlkoholfreiesGetraenk {
     private float zuckergehalt;
 
+    public Softdrink() {
+        super();
+    }
+
     public Softdrink(String herteller,float zuckergehalt) {
         super(herteller);
         this.zuckergehalt = zuckergehalt;

@@ -1,6 +1,10 @@
 public class Bier extends AlkoholischesGetraenk {
     private String brauerei;
 
+    public Bier() {
+        super();
+    }
+
     public Bier(float alkoholgehalt, String brauerei) {
         super(alkoholgehalt);
         this.brauerei = brauerei;

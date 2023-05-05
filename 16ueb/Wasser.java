@@ -1,6 +1,10 @@
 public class Wasser extends AlkohlfreiesGetraenk {
     private String quelle;
 
+    public Wasser() {
+        super();
+    }
+
     public Wasser(String hersteller, String quelle) {
         super(hersteller);
         this.quelle = quelle;

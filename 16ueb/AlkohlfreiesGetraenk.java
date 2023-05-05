@@ -1,6 +1,10 @@
 public abstract class AlkohlfreiesGetraenk extends Getraenk {
     private String hersteller;
 
+    public AlkohlfreiesGetraenk() {
+        super();
+    }
+
     public AlkohlfreiesGetraenk(String hersteller) {
         super();
         this.hersteller = hersteller;
