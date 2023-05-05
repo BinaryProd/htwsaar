@@ -1,4 +1,4 @@
-public class Wasser extends AlkohlfreiesGetraenk {
+public class Wasser extends AlkoholfreiesGetraenk {
     private String quelle;
 
     public Wasser() {

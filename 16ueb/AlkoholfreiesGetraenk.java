@@ -1,11 +1,11 @@
-public abstract class AlkohlfreiesGetraenk extends Getraenk {
+public abstract class AlkoholfreiesGetraenk extends Getraenk {
     private String hersteller;
 
-    public AlkohlfreiesGetraenk() {
+    public AlkoholfreiesGetraenk() {
         super();
     }
 
-    public AlkohlfreiesGetraenk(String hersteller) {
+    public AlkoholfreiesGetraenk(String hersteller) {
         super();
         this.hersteller = hersteller;
     }
@@ -25,8 +25,8 @@ public abstract class AlkohlfreiesGetraenk extends Getraenk {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof AlkohlfreiesGetraenk) {
-            AlkohlfreiesGetraenk other = (AlkohlfreiesGetraenk) obj;
+        if (obj instanceof AlkoholfreiesGetraenk) {
+            AlkoholfreiesGetraenk other = (AlkoholfreiesGetraenk) obj;
             return super.equals(obj) && hersteller.equals(other.hersteller);
         }
         return false;
