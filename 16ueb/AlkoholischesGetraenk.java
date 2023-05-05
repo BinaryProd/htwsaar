@@ -3,10 +3,11 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
 
     public AlkoholischesGetraenk() {
         super();
+        this.alkoholgehalt = 0.0f;
     }
 
-    public AlkoholischesGetraenk(float alkoholgehalt) {
-        super();
+    public AlkoholischesGetraenk(String name, double preis, float alkoholgehalt) {
+        super(name, preis);
         this.alkoholgehalt = alkoholgehalt;
     }
 

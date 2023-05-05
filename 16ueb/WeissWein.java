@@ -4,8 +4,8 @@ public class WeissWein extends Wein {
         super();
     }
 
-    public WeissWein(float alkoholgehalt, String weingut) {
-        super(alkoholgehalt, weingut);
+    public WeissWein(String name, double preis, float alkoholgehalt, String weingut) {
+        super(name, preis, alkoholgehalt, weingut);
     }
 
     @Override

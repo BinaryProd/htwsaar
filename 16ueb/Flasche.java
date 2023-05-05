@@ -44,4 +44,19 @@ public class Flasche < T extends Getraenk > {
         }
         return "Flasche ist leer";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Flasche) {
+            Flasche other = (Flasche) obj;
+            return this.inhalt.equals(other.inhalt) 
+                && this.istGefuellt == other.istGefuellt;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.inhalt.hashCode() + Boolean.hashCode(this.istGefuellt);
+    }
 }

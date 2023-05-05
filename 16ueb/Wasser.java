@@ -3,10 +3,11 @@ public class Wasser extends AlkoholfreiesGetraenk {
 
     public Wasser() {
         super();
+        this.quelle = "";
     }
 
-    public Wasser(String hersteller, String quelle) {
-        super(hersteller);
+    public Wasser(String name, double preis, String hersteller, String quelle) {
+        super(name, preis, hersteller);
         this.quelle = quelle;
     }
 

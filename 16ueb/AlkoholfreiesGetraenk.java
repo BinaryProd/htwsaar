@@ -3,10 +3,11 @@ public abstract class AlkoholfreiesGetraenk extends Getraenk {
 
     public AlkoholfreiesGetraenk() {
         super();
+        this.hersteller = "";
     }
 
-    public AlkoholfreiesGetraenk(String hersteller) {
-        super();
+    public AlkoholfreiesGetraenk(String name, double preis, String hersteller) {
+        super(name, preis);
         this.hersteller = hersteller;
     }
 
