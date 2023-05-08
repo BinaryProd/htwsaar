@@ -25,7 +25,7 @@ public class Rotwein extends Wein {
         if (!super.equals(obj)) {
             return false;
         }
-        if (obj instanceof Weisswein) {
+        if (obj instanceof Rotwein) {
             return true;
         }
         return false;
