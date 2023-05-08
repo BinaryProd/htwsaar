@@ -29,8 +29,8 @@ public class WasserTest {
 
     @Test
     public void testKonstructorOhneName() {
-        assertEquals("Hersteller", wasserOhneNameKonstruktor.getHersteller());
-        assertEquals("Quelle", wasserOhneNameKonstruktor.getQuelle());
+        assertEquals("Adelholzener AlpenQuelle GmbH", wasserOhneNameKonstruktor.getHersteller());
+        assertEquals("Adelholzener AlpenQuelle", wasserOhneNameKonstruktor.getQuelle());
     }
 
     @Test
@@ -42,9 +42,9 @@ public class WasserTest {
 
     @Test
     public void testEquals() {
-        assertEquals(wasserGanzerKonstruktor, wasserGanzerKonstruktor);
-        assertEquals(wasserGanzerKonstruktor, wasserGanzerKonstruktorSame);
-        assertNotEquals(wasserGanzerKonstruktor, wasserGanzerKonstruktorDifferent);
+        assertTrue(wasserGanzerKonstruktor.equals(wasserGanzerKonstruktor));
+        assertTrue(wasserGanzerKonstruktor.equals(wasserGanzerKonstruktorSame));
+        assertFalse(wasserGanzerKonstruktor.equals(wasserGanzerKonstruktorDifferent));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class WasserTest {
 
     @Test
     public void testToString() {
-        assertEquals("Getraek: Gerolsteiner, Hersteller: Gerolsteiner Brunnen GmbH & Co. KG, Quelle: Gerolsteiner Quelle", wasserGanzerKonstruktor.toString());
+        assertEquals("Getraenk: Gerolsteiner, Hersteller: Gerolsteiner Brunnen GmbH & Co. KG, Quelle: Gerolsteiner Quelle, Wasser", wasserGanzerKonstruktor.toString());
     }
 
 }
