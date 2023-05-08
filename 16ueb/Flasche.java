@@ -1,3 +1,10 @@
+/**
+ * <h1> Flasche </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 public class Flasche < T extends Getraenk > {
     private T inhalt;
     private boolean istGefuellt;

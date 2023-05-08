@@ -1,3 +1,10 @@
+/**
+ * <h1> Getraenkeautomat </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 import java.util.ArrayList;
 
 public class Getraenkeautomat < T extends Getraenk> {

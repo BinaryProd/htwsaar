@@ -65,8 +65,8 @@ public class Dialog {
     private Getraenkeautomat<Softdrink> softdrinkGetraenkeautomat;
     private Getraenkeautomat<Bier> bierGetraenkeautomat;
     private Getraenkeautomat<Wein> weinGetraenkeautomat;
-    private Getraenkeautomat<RotWein> rotweinGetraenkeautomat;
-    private Getraenkeautomat<WeissWein> weissweinGetraenkeautomat;
+    private Getraenkeautomat<Rotwein> rotweinGetraenkeautomat;
+    private Getraenkeautomat<Weisswein> weissweinGetraenkeautomat;
 
     private String[] menuAusgabeArray = {
         GETRAENKEAUTOMAT_STRING, 
@@ -225,10 +225,10 @@ public class Dialog {
                         getraenkeautomatArray[userInput] = new Getraenkeautomat<Wein>(capacity);
                         break;
                     case ROTWEIN_GETRAENKEAUTOMAT_INT:
-                        getraenkeautomatArray[userInput] = new Getraenkeautomat<RotWein>(capacity);
+                        getraenkeautomatArray[userInput] = new Getraenkeautomat<Rotwein>(capacity);
                         break;
                     case WEISSWEIN_GETRAENKEAUTOMAT_INT:
-                        getraenkeautomatArray[userInput] = new Getraenkeautomat<WeissWein>(capacity);
+                        getraenkeautomatArray[userInput] = new Getraenkeautomat<Weisswein>(capacity);
                         break;
                     default:
                         System.out.println(userInput + " ist keine gueltige Nummer !");
@@ -352,13 +352,13 @@ public class Dialog {
                 flasche[0] = flascheWein;
                 break;
             case ROTWEIN_INT:
-                RotWein rotwein = rotweinEinlegen();
-                Flasche<RotWein> flascheRotwein = new Flasche<RotWein>(rotwein);
+                Rotwein rotwein = rotweinEinlegen();
+                Flasche<Rotwein> flascheRotwein = new Flasche<Rotwein>(rotwein);
                 flasche[0] = flascheRotwein;
                 break;
             case WEISSWEIN_INT:
-                WeissWein weisswein = weissweinEinlegen();
-                Flasche<WeissWein> flascheWeisswein = new Flasche<WeissWein>(weisswein);
+                Weisswein weisswein = weissweinEinlegen();
+                Flasche<Weisswein> flascheWeisswein = new Flasche<Weisswein>(weisswein);
                 flasche[0] = flascheWeisswein;
                 break;
             default:
@@ -453,10 +453,10 @@ public class Dialog {
     }
 
     /**
-     * This method is used to create a RotWein bottle.
-     * @return RotWein
+     * This method is used to create a Rotwein bottle.
+     * @return Rotwein
      */
-    public RotWein rotweinEinlegen() {
+    public Rotwein rotweinEinlegen() {
         System.out.println("Bitte geben Sie den Weingut des Rotweins ein: ");
         String weingut = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Rotweins ein: ");
@@ -464,17 +464,17 @@ public class Dialog {
 
         String name = name();
         if (!name.equals("")) {
-            return new RotWein(name, Alkoholgehalt, weingut);
+            return new Rotwein(name, Alkoholgehalt, weingut);
         }
 
-        return new RotWein(Alkoholgehalt, weingut);
+        return new Rotwein(Alkoholgehalt, weingut);
     }
 
     /**
-     * This method is used to create a WeissWein bottle.
-     * @return WeissWein
+     * This method is used to create a Weisswein bottle.
+     * @return Weisswein
      */
-    public WeissWein weissweinEinlegen() {
+    public Weisswein weissweinEinlegen() {
         System.out.println("Bitte geben Sie den Weingut des Weissweins ein: ");
         String weingut = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Weissweins ein: ");
@@ -482,9 +482,9 @@ public class Dialog {
 
         String name = name();
         if (!name.equals("")) {
-            return new WeissWein(name, Alkoholgehalt, weingut);
+            return new Weisswein(name, Alkoholgehalt, weingut);
         }
-        return new WeissWein(Alkoholgehalt, weingut);
+        return new Weisswein(Alkoholgehalt, weingut);
     }
 
     /**
