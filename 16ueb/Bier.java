@@ -1,9 +1,11 @@
+import java.util.Objects;
+
 public class Bier extends AlkoholischesGetraenk {
     private String brauerei;
 
     public Bier() {
         super();
-        this.brauerei = "";
+        this.brauerei = "Brauerei";
     }
 
     public Bier(float alkoholgehalt, String brauerei) {
@@ -11,8 +13,8 @@ public class Bier extends AlkoholischesGetraenk {
         this.brauerei = brauerei;
     }
 
-    public Bier(String name, double preis, float alkoholgehalt, String brauerei) {
-        super(name, preis, alkoholgehalt);
+    public Bier(String name, float alkoholgehalt, String brauerei) {
+        super(name, alkoholgehalt);
         this.brauerei = brauerei;
     }
 
@@ -25,26 +27,27 @@ public class Bier extends AlkoholischesGetraenk {
     }
 
     @Override
-    public String getTyp() {
-        return "Bier";
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + " Brauerei: " + brauerei;
+        return super.toString() + ", Brauerei: " + brauerei;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Bier) {
-            Bier other = (Bier) obj;
-            return super.equals(obj) && brauerei.equals(other.brauerei);
+        if (this == obj) { 
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if(obj instanceof Bier) {
+            Bier bier = (Bier) obj;
+            return Objects.equals(this.brauerei, bier.brauerei);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + brauerei.hashCode();
+        return Objects.hash(super.hashCode(), brauerei);
     }
 }

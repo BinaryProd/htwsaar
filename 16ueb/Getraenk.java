@@ -1,52 +1,46 @@
+import java.util.Objects;
+
 public abstract class Getraenk {
     private String name;
-    private double preis;
 
     public Getraenk() {
-        this.name = "";
-        this.preis = 0.0;
+        this.name = "Name";
     }
 
-    public Getraenk(String name, double preis) {
+    public Getraenk(String name) {
         this.name = name;
-        this.preis = preis;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public double getPreis() {
-        return this.preis;
+    public void setName(String newName) {
+        this.name = newName;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPreis(double preis) {
-        this.preis = preis;
-    }
-
-    public abstract String getTyp();
 
     @Override
     public String toString() {
-        return "Getraenk: " + name + "preis:" + preis;
+        return "Getraenk: " + name;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this.equals(obj)){
+            return true;
+        }
+        if (obj == null){
+            return false;
+        }
         if (obj instanceof Getraenk) {
-            Getraenk getraenk = (Getraenk) obj;
-            return this.name.equals(getraenk.name) 
-                && this.preis == getraenk.preis;
+            Getraenk other = (Getraenk) obj;
+            return Objects.equals(this.name, other.name);
         }
         return false;
     }
 
-     @Override
+    @Override
     public int hashCode() {
-        return this.name.hashCode() + Double.hashCode(this.preis);
-    }
+        return Objects.hash(name);// Objects.hash() because it handles null values
+    } 
 }

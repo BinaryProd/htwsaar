@@ -1,9 +1,11 @@
+import java.util.Objects;
+
 public abstract class AlkoholfreiesGetraenk extends Getraenk {
     private String hersteller;
 
     public AlkoholfreiesGetraenk() {
         super();
-        this.hersteller = "";
+        this.hersteller = "Hersteller";
     }
 
     public AlkoholfreiesGetraenk(String hersteller) {
@@ -11,8 +13,8 @@ public abstract class AlkoholfreiesGetraenk extends Getraenk {
         this.hersteller = hersteller;
     }
 
-    public AlkoholfreiesGetraenk(String name, double preis, String hersteller) {
-        super(name, preis);
+    public AlkoholfreiesGetraenk(String name, String hersteller) {
+        super(name);
         this.hersteller = hersteller;
     }
 
@@ -25,26 +27,27 @@ public abstract class AlkoholfreiesGetraenk extends Getraenk {
     }
 
     @Override
-    public String getTyp() {
-        return "AlkoholfreiesGetraenk";
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + " Hersteller: " + hersteller;
+        return super.toString() + ", Hersteller: " + hersteller;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) { // ruft Getraenk.equals() auf
+            return false;
+        }
         if (obj instanceof AlkoholfreiesGetraenk) {
             AlkoholfreiesGetraenk other = (AlkoholfreiesGetraenk) obj;
-            return super.equals(obj) && hersteller.equals(other.hersteller);
+            return Objects.equals(this.hersteller, other.hersteller);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + hersteller.hashCode();
+        return Objects.hash(super.hashCode(), hersteller);
     }
 }

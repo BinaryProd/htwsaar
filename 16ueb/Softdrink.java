@@ -1,9 +1,10 @@
+import java.util.Objects;
+
 public class Softdrink extends AlkoholfreiesGetraenk {
     private float zuckergehalt;
 
     public Softdrink() {
         super();
-        this.zuckergehalt = 0.0f;
     }
 
     public Softdrink(String hersteller, float zuckergehalt) {
@@ -11,8 +12,8 @@ public class Softdrink extends AlkoholfreiesGetraenk {
         this.zuckergehalt = zuckergehalt;
     }
 
-    public Softdrink(String name, double preis, String hersteller, float zuckergehalt) {
-        super(name, preis, hersteller);
+    public Softdrink(String name, String hersteller, float zuckergehalt) {
+        super(name, hersteller);
         this.zuckergehalt = zuckergehalt;
     }
     
@@ -25,26 +26,27 @@ public class Softdrink extends AlkoholfreiesGetraenk {
     }
 
     @Override
-    public String getTyp() {
-        return "Softdrink";
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + " Zuckergehalt: " + zuckergehalt;
+        return super.toString() + ", Zuckergehalt: " + zuckergehalt + ", Softdrink";
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) { 
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
         if (obj instanceof Softdrink) {
-            Softdrink other = (Softdrink) obj;
-            return super.equals(obj) && zuckergehalt == other.zuckergehalt;
+            Softdrink softdrink = (Softdrink) obj;
+            return Objects.equals(zuckergehalt, softdrink.zuckergehalt);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + Float.hashCode(zuckergehalt);
+        return Objects.hash(super.hashCode(), zuckergehalt);
     }
 }

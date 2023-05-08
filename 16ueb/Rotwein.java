@@ -8,25 +8,25 @@ public class Rotwein extends Wein {
         super(alkoholgehalt, weingut);
     }
 
-    public Rotwein(String name, double preis, float alkoholgehalt, String weingut) {
-        super(name, preis, alkoholgehalt, weingut);
-    }
-
-    @Override
-    public String getTyp() {
-        return "Rotwein";
+    public Rotwein(String name, float alkoholgehalt, String weingut) {
+        super(name, alkoholgehalt, weingut);
     }
 
     @Override
     public String toString() {
-        return super.toString() + " Rotwein";
+        return super.toString() + ", Rotwein";
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Rotwein) {
-            Rotwein other = (Rotwein) obj;
-            return super.equals(obj);
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (obj instanceof Weisswein) {
+            return true;
         }
         return false;
     }

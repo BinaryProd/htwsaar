@@ -1,9 +1,11 @@
+import java.util.Objects;
+
 public class Wasser extends AlkoholfreiesGetraenk {
     private String quelle;
 
     public Wasser() {
         super();
-        this.quelle = "";
+        this.quelle = "Quelle";
     }
 
     public Wasser(String hersteller, String quelle) {
@@ -11,8 +13,8 @@ public class Wasser extends AlkoholfreiesGetraenk {
         this.quelle = quelle;
     }
 
-    public Wasser(String name, double preis, String hersteller, String quelle) {
-        super(name, preis, hersteller);
+    public Wasser(String name, String hersteller, String quelle) {
+        super(name, hersteller);
         this.quelle = quelle;
     }
 
@@ -25,26 +27,27 @@ public class Wasser extends AlkoholfreiesGetraenk {
     }
 
     @Override
-    public String getTyp() {
-        return "Wasser";
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + " Quelle: " + quelle;
+        return super.toString() + ", Quelle: " + quelle + ", Wasser";
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
         if (obj instanceof Wasser) {
-            Wasser other = (Wasser) obj;
-            return super.equals(obj) && quelle.equals(other.quelle);
+            Wasser wasser = (Wasser) obj;
+            return Objects.equals(this.quelle, wasser.quelle);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + quelle.hashCode();
+        return Objects.hash(super.hashCode(), this.quelle);
     }
 }

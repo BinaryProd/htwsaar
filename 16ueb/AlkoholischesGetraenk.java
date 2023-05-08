@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public abstract class AlkoholischesGetraenk extends Getraenk {
     private float alkoholgehalt;
 
@@ -11,8 +13,8 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
         this.alkoholgehalt = alkoholgehalt;
     }
 
-    public AlkoholischesGetraenk(String name, double preis, float alkoholgehalt) {
-        super(name, preis);
+    public AlkoholischesGetraenk(String name, float alkoholgehalt) {
+        super(name);
         this.alkoholgehalt = alkoholgehalt;
     }
 
@@ -25,26 +27,27 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
     }
 
     @Override
-    public String getTyp() {
-        return "AlkoholischesGetraenk";
-    }
-
-    @Override
     public String toString() {
-        return super.toString() + " Alkoholgehalt: " + alkoholgehalt;
+        return super.toString() + ", Alkoholgehalt: " + alkoholgehalt;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this.equals(obj)) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
         if (obj instanceof AlkoholischesGetraenk) {
             AlkoholischesGetraenk other = (AlkoholischesGetraenk) obj;
-            return super.equals(obj) && alkoholgehalt == other.alkoholgehalt;
+            return Objects.equals(this.alkoholgehalt, other.alkoholgehalt);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + Float.hashCode(alkoholgehalt);
+        return Objects.hash(super.hashCode(), alkoholgehalt);
     }
 }

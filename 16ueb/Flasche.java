@@ -15,6 +15,7 @@ public class Flasche < T extends Getraenk > {
     public void fuellen(T inhalt) throws FlascheException {
         if (!istGefuellt) {
             this.inhalt = inhalt;
+            this.istGefuellt = true;
         } else {
             throw new FlascheException("Flasche ist bereits gefuellt");
         }

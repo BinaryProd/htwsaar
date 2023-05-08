@@ -40,17 +40,20 @@ public class Getraenkeautomat < T extends Getraenk> {
         return this.flaschenlager.size();
     }
 
+    public boolean istEmpty() {
+        return this.flaschenlager.size() == 0;
+    }
+
     @Override
     public String toString() {
+        if (this.flaschenlager.size() == 0) {
+            return "Getraenkeautomat ist leer";
+        }
         StringBuilder sb = new StringBuilder();
-        sb.append("Getraenkeautomat: \n");
-        sb.append("Kapazitaet: " + this.kapazitaet + "\n");
+        sb.append("\nKapazitaet: " + this.kapazitaet + "\n");
         sb.append("Anzahl Flaschen: " + this.getAnzahlFlaschen() + "\n");
         sb.append("Flaschen: \n");
         sb.append(ArrayUtils.toStringPretty(this.flaschenlager.toArray()));
-        //for (Flasche<T> flasche : this.flaschenlager) {
-        //    sb.append(flasche.toString() + "\n");
-        //}
         return sb.toString();
     }
 }
