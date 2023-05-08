@@ -9,16 +9,28 @@ public class Flasche < T extends Getraenk > {
     private T inhalt;
     private boolean istGefuellt;
 
+    /**
+     * constructor
+     */
     public Flasche() {
         this.inhalt = null;
         this.istGefuellt = false;
     }
 
+    /**
+     * constructor
+     * @param inhalt
+     */
     public Flasche(T inhalt) {
         this.inhalt = inhalt;
         this.istGefuellt = true;
     }
 
+    /**
+     * fuellen
+     * @param inhalt
+     * @throws FlascheException
+     */
     public void fuellen(T inhalt) throws FlascheException {
         if (!istGefuellt) {
             this.inhalt = inhalt;
@@ -28,6 +40,10 @@ public class Flasche < T extends Getraenk > {
         }
     }
 
+    /**
+     * leeren
+     * @throws FlascheException
+     */
     public void leeren() throws FlascheException {
         if (istGefuellt) {
             this.inhalt = null;
@@ -37,14 +53,26 @@ public class Flasche < T extends Getraenk > {
         }
     }
 
+    /**
+     * getInhalt
+     * @return T
+     */
     public T getInhalt() {
         return inhalt;
     }
 
+    /**
+     * istGefuellt
+     * @return boolean
+     */
     public boolean istGefuellt() {
         return istGefuellt;
     }
 
+    /**
+     * toString
+     * @return String
+     */
     @Override
     public String toString() {
         if (istGefuellt) {
@@ -53,6 +81,11 @@ public class Flasche < T extends Getraenk > {
         return "Flasche ist leer";
     }
 
+    /**
+     * equals
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Flasche) {
@@ -63,6 +96,10 @@ public class Flasche < T extends Getraenk > {
         return false;
     }
 
+    /**
+     * hashCode
+     * @return int
+     */
     @Override
     public int hashCode() {
         return this.inhalt.hashCode() + Boolean.hashCode(this.istGefuellt);
