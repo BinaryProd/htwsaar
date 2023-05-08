@@ -188,6 +188,10 @@ public class Dialog {
     } 
 
 
+    /**
+     * This method is used to handle the user input.
+     * @param userInput
+     */
     public void EingabeBearbeitung(int userInput) {
         if (userInput >= 0 && userInput < getraenkeautomatArray.length) {
             if (getraenkeautomatArray[userInput] == null) {
@@ -256,26 +260,11 @@ public class Dialog {
         }
     }
 
+    /**
+     * This method is used to add a bottle to the vending machine.
+     */
     public void FlascheEinlegen() {
-
-        List<Integer> list1 = new ArrayList<Integer>();
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        for ( int i = 0; i < getraenkeautomatArray.length; i++) {
-            if (getraenkeautomatArray[i] != null) {
-                String output = menuAusgabeArray[i].substring(1, menuAusgabeArray[i].toString().length() - 8);
-                sb.append(i).append(output).append("\n");
-                list1.add(i);
-            }
-        }
-        sb.append(">>> ");
-        System.out.print(sb.toString());
-
-        int userInput = eingabeLesen();
-        while (!list1.contains(userInput)) {
-            System.out.println("Bitte geben Sie eine gueltige Nummer ein: ");
-            userInput = eingabeLesen();
-        }
+        Integer userInput = getraenkeautomatNotNullAsugeben();
 
         List<Integer> list = new ArrayList<Integer>();
         
@@ -390,62 +379,171 @@ public class Dialog {
 
     }
 
+    /**
+     * This method is used to create a Wasser bottle.
+     * @return Wasser
+     */
     public Wasser wasserEinlegen() {
         System.out.println("Bitte geben Sie den Hersteller des Wassers ein: ");
         String hersteller = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie die Quelle des Wassers ein: ");
         String quelle = EingabeUtils.scanString(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new Wasser(name, hersteller, quelle);
+        }
+
         return new Wasser(hersteller, quelle);
         
     }
 
+    /**
+     * This method is used to create a Softdrink bottle.
+     * @return Softdrink
+     */
     public Softdrink softdrinkEinlegen() {
         System.out.println("Bitte geben Sie den Hersteller des Softdrink ein: ");
         String hersteller = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Zuckergehalt des Softdrink ein: ");
         float Zuckergehalt = EingabeUtils.scanFloat(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new Softdrink(name, hersteller, Zuckergehalt);
+        }
+
         return new Softdrink(hersteller, Zuckergehalt);
     }
 
+    /**
+     * This method is used to create a Bier bottle.
+     * @return Bier
+     */
     public Bier bierEinlegen() {
         System.out.println("Bitte geben Sie die Brauerei des Biers ein: ");
         String brauerei = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Biers ein: ");
         float Alkoholgehalt = EingabeUtils.scanFloat(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new Bier(name, Alkoholgehalt, brauerei);
+        }
+
         return new Bier(Alkoholgehalt, brauerei);
     }
 
+    /**
+     * This method is used to create a Wein bottle.
+     * @return Wein
+     */
     public Wein weinEinlegen() {
         System.out.println("Bitte geben Sie den Weingut des Weins ein: ");
         String weingut = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Weins ein: ");
         float Alkoholgehalt = EingabeUtils.scanFloat(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new Wein(name, Alkoholgehalt, weingut);
+        }
+
         return new Wein(Alkoholgehalt, weingut);
     }
 
+    /**
+     * This method is used to create a RotWein bottle.
+     * @return RotWein
+     */
     public RotWein rotweinEinlegen() {
         System.out.println("Bitte geben Sie den Weingut des Rotweins ein: ");
         String weingut = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Rotweins ein: ");
         float Alkoholgehalt = EingabeUtils.scanFloat(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new RotWein(name, Alkoholgehalt, weingut);
+        }
+
         return new RotWein(Alkoholgehalt, weingut);
     }
 
+    /**
+     * This method is used to create a WeissWein bottle.
+     * @return WeissWein
+     */
     public WeissWein weissweinEinlegen() {
         System.out.println("Bitte geben Sie den Weingut des Weissweins ein: ");
         String weingut = EingabeUtils.scanString(scanner);
         System.out.println("Bitte geben Sie den Alkoholgehalt des Weissweins ein: ");
         float Alkoholgehalt = EingabeUtils.scanFloat(scanner);
 
+        String name = name();
+        if (!name.equals("")) {
+            return new WeissWein(name, Alkoholgehalt, weingut);
+        }
         return new WeissWein(Alkoholgehalt, weingut);
     }
 
+    /**
+     * This method is used to create a name for a bottle.
+     * @return String
+     */
+    public String name() {
+        System.out.println("Moechten Sie einen Namen fuer den Softdrink eingeben? (y/n)");
+        String userInput = EingabeUtils.scanString(scanner);
+        String name = "";
+        if (userInput.equals("y")) {
+            System.out.println("Bitte geben Sie den Namen des Softdrink ein: ");
+            name = EingabeUtils.scanString(scanner);
+        } 
+
+        return name;
+    }
+
+    /**
+     * This method is used to output and remove a bottle from the vending machine.
+     */
     public void FlascheAusgeben() {
+        Integer userInput = getraenkeautomatNotNullAsugeben();
+        
+        try {
+            System.out.println(getraenkeautomatArray[userInput].flascheAusgeben());
+            if (getraenkeautomatArray[userInput].istEmpty()) {
+                getraenkeautomatArray[userInput] = null;
+            }
+        } catch (FlascheException e) {
+            System.out.println(e.getMessage());
+        } catch (GetraenkeautomatException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("something");
+        }
+    }
+
+    /**
+     * This method is used to output a bottle from the vending machine.
+     */
+    public void GetraenkeAusgeben() {
+        Integer userInput = getraenkeautomatNotNullAsugeben();
+
+        try {
+            System.out.println(getraenkeautomatArray[userInput]);
+        } catch (FlascheException e) {
+            System.out.println(e.getMessage());
+        } catch (GetraenkeautomatException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("something");
+        }
+    }
+
+    /**
+     * This method is used to output the menu.
+     */
+    public Integer getraenkeautomatNotNullAsugeben() {
         List<Integer> list = new ArrayList<Integer>();
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
@@ -465,52 +563,6 @@ public class Dialog {
             System.out.println("Bitte geben Sie eine gueltige Nummer ein: ");
             userInput = eingabeLesen();
         }
-
-        try {
-            System.out.println(getraenkeautomatArray[userInput].flascheAusgeben());
-            if (getraenkeautomatArray[userInput].istEmpty()) {
-                getraenkeautomatArray[userInput] = null;
-            }
-        } catch (FlascheException e) {
-            System.out.println(e.getMessage());
-        } catch (GetraenkeautomatException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("something");
-        }
+        return userInput;
     }
-
-    public void GetraenkeAusgeben() {
-
-        List<Integer> liste = new ArrayList<Integer>();
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        sb.append("Bitte geben Sie die Nummer des Getraenks ein: \n");
-        for (int i = 0; i < getraenkeautomatArray.length; i++) {
-            if (getraenkeautomatArray[i] != null) {
-                String output = menuAusgabeArray[i].substring(1, menuAusgabeArray[i].toString().length() - 8);
-                sb.append(i).append(output).append("\n");
-                liste.add(i);
-            }
-        }
-        sb.append(">>> ");
-        System.out.println(sb.toString());
-
-        int userInput = eingabeLesen();
-        while (!liste.contains(userInput)) {
-            System.out.println("Bitte geben Sie eine gueltige Nummer ein: ");
-            userInput = eingabeLesen();
-        }
-
-        try {
-            System.out.println(getraenkeautomatArray[userInput]);
-        } catch (FlascheException e) {
-            System.out.println(e.getMessage());
-        } catch (GetraenkeautomatException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("something");
-        }
-    }
-
 }
