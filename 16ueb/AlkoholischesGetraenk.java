@@ -33,7 +33,7 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
 
     @Override
     public boolean equals(Object obj) {
-        if (this.equals(obj)) {
+        if (this == obj) {
             return true;
         }
         if (!super.equals(obj)) {
