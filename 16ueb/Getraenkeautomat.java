@@ -7,8 +7,8 @@
  */
 import java.util.ArrayList;
 
-public class Getraenkeautomat < T extends Getraenk> {
-    private ArrayList<Flasche<T>> flaschenlager;
+public class Getraenkeautomat <T extends Getraenk> {
+    private ArrayList<Flasche<? extends T>> flaschenlager;
     private int kapazitaet;
 
     public Getraenkeautomat(int kapazitaet) throws GetraenkeautomatException {
@@ -17,10 +17,10 @@ public class Getraenkeautomat < T extends Getraenk> {
         }
 
         this.kapazitaet = kapazitaet;
-        this.flaschenlager = new ArrayList<Flasche<T>>();
+        this.flaschenlager = new ArrayList<Flasche<? extends T>>();
     }
 
-    public void flascheEinlegen(Flasche<T> flasche) throws GetraenkeautomatException {
+    public void flascheEinlegen(Flasche<? extends T> flasche) throws GetraenkeautomatException {
         if (this.flaschenlager.size() >= this.kapazitaet) {
             throw new GetraenkeautomatException("Kapazitaet ist voll");
         }
