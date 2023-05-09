@@ -31,7 +31,7 @@ public class Getraenkeautomat <T extends Getraenk> {
         this.flaschenlager.add(flasche);
     }
 
-    public Flasche<T> flascheAusgeben() throws GetraenkeautomatException {
+    public Flasche<? extends T> flascheAusgeben() throws GetraenkeautomatException {
         if (this.flaschenlager.size() == 0) {
             throw new GetraenkeautomatException("Keine Flaschen mehr vorhanden");
         }

@@ -67,7 +67,7 @@ public class Bier extends AlkoholischesGetraenk {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Brauerei: " + brauerei;
+        return super.toString() + ", Brauerei: " + brauerei + ", Bier";
     }
 
     /**
