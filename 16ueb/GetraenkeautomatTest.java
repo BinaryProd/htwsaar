@@ -88,8 +88,9 @@ public class GetraenkeautomatTest {
     public void testFlascheEinlegenWasserAutomatMitFalscherFlasche() {
         wasserAutomat.flascheEinlegen(AdelholzenerFlasche);
         assertEquals(1, wasserAutomat.getAnzahlFlaschen());
-        assertThrows(GetraenkeautomatException.class, () -> wasserAutomat.flascheEinlegen(RieslingFlasche));
-        assertThrows(GetraenkeautomatException.class, () -> wasserAutomat.flascheEinlegen(MerlotFlasche));
+        // assertThrows(GetraenkeautomatException.class, () -> wasserAutomat.flascheEinlegen(RieslingFlasche));
+        // assertThrows(GetraenkeautomatException.class, () -> wasserAutomat.flascheEinlegen(MerlotFlasche));
+        // Der Kompiler wirft eine Fehlermeldung incompatible types, da die Flaschen nicht vom Typ Wasser sind.
     }
 
     public void testFlascheEinlegenAutomatMitLeererFlasche() {
