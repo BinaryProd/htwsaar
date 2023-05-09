@@ -10,3 +10,12 @@ repos:
         stages: [commit]    
         files: '\.java$'    
         args: ['-c', './Utils/compile.sh']
+      - id: junit-java    
+        name: Junit Java    
+        entry: sh    
+        language: system    
+        always_run: true    
+        pass_filenames: false    
+        stages: [commit]    
+        files: '\.java$'    
+        args: ['-c', './Utils/junit.sh']
