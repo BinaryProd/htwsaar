@@ -62,7 +62,7 @@ public class BierTest {
 
     @Test
     public void testToString() {
-        assertEquals("Getraenk: Krombacher Pils, Alkoholgehalt: 12.0, Brauerei: Krombacher", bierGanzerKonstruktor.toString());
+        assertEquals("Getraenk: Krombacher Pils, Alkoholgehalt: 12.0%, Brauerei: Krombacher, Bier", bierGanzerKonstruktor.toString());
     }
 
 }

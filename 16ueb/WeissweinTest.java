@@ -62,7 +62,7 @@ public class WeissweinTest {
 
     @Test
     public void testToString() {
-        assertEquals("Getraenk: Riesling Kabinett, Alkoholgehalt: 11.5, Weingut: Schloss Johannisberg, Weisswein", weissweinGanzerKonstruktor.toString());
+        assertEquals("Getraenk: Riesling Kabinett, Alkoholgehalt: 11.5%, Weingut: Schloss Johannisberg, Weisswein", weissweinGanzerKonstruktor.toString());
     }
 
 }

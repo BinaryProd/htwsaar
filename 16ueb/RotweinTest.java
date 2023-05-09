@@ -62,7 +62,7 @@ public class RotweinTest {
 
     @Test
     public void testToString() {
-        assertEquals("Getraenk: Chateauneuf-du-Pape, Alkoholgehalt: 14.5, Weingut: Domaine du Vieux Telegraphe, Rotwein", rotweinGanzerKonstruktor.toString());
+        assertEquals("Getraenk: Chateauneuf-du-Pape, Alkoholgehalt: 14.5%, Weingut: Domaine du Vieux Telegraphe, Rotwein", rotweinGanzerKonstruktor.toString());
     }
 
 }
