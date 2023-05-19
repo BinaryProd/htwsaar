@@ -35,7 +35,7 @@ public class Function {
         return result;
     };
 
-    private static class  StaticNestedFactoriel implements MyFunction {
+    private static class StaticNestedFactoriel implements MyFunction {
         @Override
         public int apply(int x) {
             int result = 1;
@@ -44,6 +44,11 @@ public class Function {
             }
             return result;
         };
+    }
+
+    public int useStaticNestedFactoriel(int x) {
+        StaticNestedFactoriel staticNestedFactoriel = new StaticNestedFactoriel();
+        return staticNestedFactoriel.apply(x);
     }
 
     public void anonymFunction() {
@@ -62,6 +67,10 @@ public class Function {
                 return x % 2 == 1;
             }
         };
+    }
+
+    public MyFunction getAnonymFactoriel() {
+        return anonymFactoriel;
     }
 
     public MyFunction lambdaQuadratic = x -> (int)Math.pow(x, x+1);
