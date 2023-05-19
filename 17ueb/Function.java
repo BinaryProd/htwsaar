@@ -25,7 +25,7 @@ public class Function {
         }
     }
 
-    public MyFunction lambdaSquare = x -> (int)Math.pow(x, 2);
+    public MyFunction lambdaSquare = x -> (int)x*x;
 
     public MyFunction lambdaFactoriel = x -> {
         int result = 1;
@@ -35,13 +35,16 @@ public class Function {
         return result;
     };
 
-    public static MyFunction StaticFactoriel = x -> {
-        int result = 1;
-        for (int i = 1; i <= x; i++ ) {
-            result *= i;
-        }
-        return result;
-    };
+    private static class  StaticNestedFactoriel implements MyFunction {
+        @Override
+        public int apply(int x) {
+            int result = 1;
+            for (int i = 1; i <= x; i++ ) {
+                result *= i;
+            }
+            return result;
+        };
+    }
 
     public void anonymFunction() {
         this.anonymFactoriel = new MyFunction() {
