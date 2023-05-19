@@ -56,7 +56,7 @@ public class FunctionTest {
         int result1 = function.lambdaEvenSquare.apply(4);
         int result2 = function.lambdaEvenSquare.apply(5);
         Assertions.assertEquals(16, result1);
-        Assertions.assertEquals(5, result2);
+        Assertions.assertEquals(-1, result2);
     }
 
     @Test

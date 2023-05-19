@@ -99,7 +99,7 @@ public class Function {
 
     public IntPredicate even = x -> x % 2 == 0;
 
-    public MyFunction lambdaEvenSquare = x -> even.test(x) ? lambdaSquare.apply(x) : null;
+    public MyFunction lambdaEvenSquare = x -> even.test(x) ? lambdaSquare.apply(x) : -1;
 
     public MyFunction lambdaOddFactoriel = x -> (odd.test(lambdaFactoriel.apply(x))) ? lambdaFactoriel.apply(x) : 0;
 
