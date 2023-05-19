@@ -89,4 +89,18 @@ public class Function {
     };
 
     public IntPredicate even = x -> x % 2 == 0;
+
+    public MyFunction lambdaEvenSquare = x -> {
+        if (even.test(x)) {
+            return lambdaSquare.apply(x);
+        }
+        return x;
+    };
+
+    public MyFunction lambdaOddFactoriel = x -> {
+        if(odd.test(lambdaFactoriel.apply(x))) {
+            return lambdaFactoriel.apply(x);
+        }
+        return 0;
+    };
 }
