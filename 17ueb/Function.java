@@ -1,8 +1,11 @@
+import java.util.function.IntPredicate;
+
 public class Function {
-    private MyFunction AnonymFactoriel;
+    private MyFunction anonymFactoriel;
+    private IntPredicate odd;
 
     public Function() {
-        anonymfactoriel();
+        anonymFunction();
     }
 
     public void applyAndPrint(int i, int j, MyFunction myfunction) throws FunctionException {
@@ -40,14 +43,20 @@ public class Function {
         return result;
     };
 
-    public void anonymfactoriel() {
-        this.AnonymFactoriel = new MyFunction() {
+    public void anonymFunction() {
+        this.anonymFactoriel = new MyFunction() {
             public int apply(int x) {
                 int result = 1;
                 for (int i = 1; i <= x; i++ ) {
                     result *= i;
                 }
                 return result;
+            }
+        };
+
+        this.odd = new IntPredicate() {
+            public boolean test(int x) {
+                return x % 2 == 1;
             }
         };
     }
@@ -75,4 +84,6 @@ public class Function {
 
         return number;
     };
+
+    public IntPredicate even = x -> x % 2 == 0;
 }
