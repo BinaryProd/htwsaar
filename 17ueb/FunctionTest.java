@@ -67,4 +67,3 @@ public class FunctionTest {
         Assertions.assertEquals(1, result2);
     }
 }
-
