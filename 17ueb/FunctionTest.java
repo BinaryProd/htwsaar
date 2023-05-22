@@ -73,4 +73,63 @@ public class FunctionTest {
         Assertions.assertEquals(0, result1);
         Assertions.assertEquals(1, result2);
     }
+    
+    @Test
+    public void testApplyAndPrint_withValidInput_shouldPrintResults() {
+        int i = 1;
+        int j = 5;
+        StringBuilder output = new StringBuilder();
+
+        function.applyAndPrint(i, j, x -> {
+            output.append(x).append(": ").append(x * 2).append("\n");
+            return x * 2;
+        });
+
+        String expectedOutput = "1: 2\n2: 4\n3: 6\n4: 8\n5: 10\n";
+        Assertions.assertEquals(expectedOutput, output.toString());
+    }
+
+    @Test
+    public void testApplyAndPrint_withValidInputThatShouldBeSwaped_shouldNotThrowException() {
+        int i = 1;
+        int j = 5;
+        StringBuilder output = new StringBuilder();
+
+        function.applyAndPrint(i, j, x -> {
+            output.append(x).append(": ").append(x * 2).append("\n");
+            return x * 2;
+        });
+
+        String expectedOutput = "1: 2\n2: 4\n3: 6\n4: 8\n5: 10\n";
+        Assertions.assertEquals(expectedOutput, output.toString());
+    }
+
+    @Test
+    public void testApplyAndPrint_withOneInvalidInput_shouldThrowException() {
+        int i = -1;
+        int j = 1;
+        StringBuilder output = new StringBuilder();
+
+        Assertions.assertThrows(FunctionException.class, () -> {
+            function.applyAndPrint(i, j, x -> {
+                output.append(x).append(": ").append(x * 2).append("\n");
+                return x * 2;
+            });
+        });
+    }
+
+
+    @Test
+    public void testApplyAndPrint_withTwoInvalidInput_shouldThrowException() {
+        int i = -1;
+        int j = -1;
+        StringBuilder output = new StringBuilder();
+
+        Assertions.assertThrows(FunctionException.class, () -> {
+            function.applyAndPrint(i, j, x -> {
+                output.append(x).append(": ").append(x * 2).append("\n");
+                return x * 2;
+            });
+        });
+    }
 }
