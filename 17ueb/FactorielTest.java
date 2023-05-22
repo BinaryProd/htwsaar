@@ -1,3 +1,10 @@
+/**
+ * <h1> FactorielTest </h1>
+ * 
+ * @author Victor Plage and David Glaser
+ * @version 1.0.
+ * @since 2023-04-11
+ */
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
