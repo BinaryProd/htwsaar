@@ -10,6 +10,9 @@
  * @since 2022-11-04
  */
 
+import java.util.Arrays;
+import java.util.function.BiPredicate;
+
 public final class Lager {
     private Artikel[] lager;
     private static final int STANDARD_GROESSE = 10;
@@ -19,6 +22,34 @@ public final class Lager {
     private static final int BESTAND_WIDTH = 11;
     private static final int GESAMT_WIDTH = 16;
     private static final int GESAMTWERT_WIDTH = 11;
+
+
+    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> predicate) {
+        return getSorted(this.lager, predicate);
+    }
+
+    public Artikel[] getSorted(Artikel[] artikel, BiPredicate<Artikel, Artikel> predicate) {
+        int artikelLength = artikel.length;
+        boolean swapped; 
+        Artikel swap;
+
+        do {
+            swapped = false;
+            for (int i = 0; i < artikelLength - 1; i++) {
+                if (predicate.test(artikel[i], artikel[i + 1])) {
+                    swap = artikel[i];
+                    artikel[i] = artikel[i + 1];
+                    artikel[i + 1] = swap;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+
+        return artikel;
+    }
+
+
+
 
     /**
      * Constructor that creates a Lager object with a given maximum number of articles that can be stored in the array.
@@ -200,6 +231,7 @@ public final class Lager {
         return size - count;
     }
 
+
     /**
      * This method sort the Null in the array to the end 
      */
@@ -270,4 +302,5 @@ public final class Lager {
         output.append(String.format("%"+ GESAMTWERT_WIDTH +"s %-" + lastLineWidth + "s %-"+ GESAMT_WIDTH +".2f", "Gesamtwert:", " ", sum )).append("\n");
         return output.toString();
     }
+
 }
