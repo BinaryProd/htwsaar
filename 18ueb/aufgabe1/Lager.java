@@ -10,8 +10,8 @@
  * @since 2022-11-04
  */
 
-import java.util.Arrays;
 import java.util.function.BiPredicate;
+import java.util.function.Consumer;
 
 public final class Lager {
     private Artikel[] lager;
@@ -25,28 +25,31 @@ public final class Lager {
 
 
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> predicate) {
-        return getSorted(this.lager, predicate);
-    }
-
-    public Artikel[] getSorted(Artikel[] artikel, BiPredicate<Artikel, Artikel> predicate) {
-        int artikelLength = artikel.length;
+        int artikelLength = this.lager.length;
         boolean swapped; 
         Artikel swap;
 
         do {
             swapped = false;
             for (int i = 0; i < artikelLength - 1; i++) {
-                if (predicate.test(artikel[i], artikel[i + 1])) {
-                    swap = artikel[i];
-                    artikel[i] = artikel[i + 1];
-                    artikel[i + 1] = swap;
+                if (predicate.test(this.lager[i], this.lager[i + 1])) {
+                    swap = this.lager[i];
+                    this.lager[i] = this.lager[i + 1];
+                    this.lager[i + 1] = swap;
                     swapped = true;
                 }
             }
         } while (swapped);
 
-        return artikel;
+        return this.lager;
     }
+
+    public void applyToArticles(Consumer<Artikel> consumer) {
+        for (int i = 0; i < this.lager.length; i++) {
+            consumer.accept(this.lager[i]);
+        }
+    }
+
 
 
 
