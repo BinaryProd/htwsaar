@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public final class Lager {
     private Artikel[] lager;
@@ -28,43 +27,51 @@ public final class Lager {
     private static final int GESAMTWERT_WIDTH = 11;
 
 
-    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> predicate) {
-        int artikelLength = this.lager.length;
+    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> condition, Artikel[] artikel) {
+        int artikelLength = artikel.length;
         boolean swapped; 
         Artikel swap;
 
         do {
             swapped = false;
             for (int i = 0; i < artikelLength - 1; i++) {
-                if (predicate.test(this.lager[i], this.lager[i + 1])) {
-                    swap = this.lager[i];
-                    this.lager[i] = this.lager[i + 1];
-                    this.lager[i + 1] = swap;
+                if (condition.test(artikel[i], artikel[i + 1])) {
+                    swap = artikel[i];
+                    artikel[i] = artikel[i + 1];
+                    artikel[i + 1] = swap;
                     swapped = true;
                 }
             }
         } while (swapped);
 
-        return this.lager;
+        return artikel;
     }
 
-    public void applyToArticles(Consumer<Artikel> consumer) {
-        for (int i = 0; i < this.lager.length; i++) {
-            consumer.accept(this.lager[i]);
+    public void applyToArticles(Consumer<Artikel> operation, Artikel[] artikel) {
+        for (int i = 0; i < artikel.length; i++) {
+            operation.accept(artikel[i]);
         }
     }
 
-    public Artikel[] filter(Predicate<Artikel> predicate) {
+    public Artikel[] filter(Predicate<Artikel> condition) {
         ArrayList<Artikel> filtertArtikel =  new ArrayList<>();
         for (int i = 0; i < this.lager.length; i++) {
-            if (predicate.test(this.lager[i])) {
+            if (condition.test(this.lager[i])) {
                 filtertArtikel.add(this.lager[i]);
             }
         }
         return filtertArtikel.toArray(new Artikel[filtertArtikel.size()]);
     }
 
+    public void applyToSomeArticles(Predicate<Artikel> condition, Consumer<Artikel> operation) {
+        Artikel[] filtertArtikels = filter(condition);
+        applyToArticles(operation, filtertArtikels);
+    }
 
+    public Artikel[] getArticles(Predicate<Artikel> condition, BiPredicate<Artikel,Artikel> operation) {
+        Artikel[] filtertArtikels = filter(condition);
+        return getSorted(operation, filtertArtikels);
+    }
 
 
     /**
