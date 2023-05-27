@@ -131,6 +131,6 @@ public class Ueb18Fassade {
 	}
 
         public <T extends Comparable<T>> boolean compare(T value1, T value2) {
-            return value1.compareTo(value2) <= 0;
+            return value1.compareTo(value2) == 0;
         }
 }

@@ -12,6 +12,10 @@
 
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Lager {
     private Artikel[] lager;
@@ -50,6 +54,15 @@ public final class Lager {
         }
     }
 
+    public Artikel[] filter(Predicate<Artikel> predicate) {
+        ArrayList<Artikel> filtertArtikel =  new ArrayList<>();
+        for (int i = 0; i < this.lager.length; i++) {
+            if (predicate.test(this.lager[i])) {
+                filtertArtikel.add(this.lager[i]);
+            }
+        }
+        return filtertArtikel.toArray(new Artikel[filtertArtikel.size()]);
+    }
 
 
 
