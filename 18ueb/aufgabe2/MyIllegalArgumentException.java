@@ -5,12 +5,13 @@
  * @version 1.0.
  * @since 2023-04-11
  */
-public class FunctionException extends RuntimeException {
+public class MyIllegalArgumentException extends RuntimeException {
+
 
     /**
      * Constructor of the class FunctionException
      */
-    public FunctionException() {
+    public MyIllegalArgumentException() {
         super();
     }
 
@@ -18,7 +19,7 @@ public class FunctionException extends RuntimeException {
      * Constructor of the class FunctionException
      * @param message String
      */
-    public FunctionException(String message) {
+    public MyIllegalArgumentException(String message) {
         super(message);
     }
 

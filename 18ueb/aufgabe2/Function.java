@@ -19,16 +19,15 @@ public class Function {
     }
 
     /**
-     * Function that applies a function to all numbers between i and j and prints the result
+     * Function that applies a function to all numbers between i and j and prints the functionOutput
      * @param i int
      * @param j int
      * @param myfunction MyFunction
-     * @throws FunctionException if i or j are not natural numbers
+     * @throws MyIllegalArgumentException if i or j are not natural numbers
      */
-    public void applyAndPrint(int i, int j, MyFunction myfunction) throws FunctionException {
-        if ( i < 1 || j < 1 ) {
-            throw new FunctionException("j und i sollen natuerliche Zahlen sein"); 
-        }
+    public void applyAndPrint(int i, int j, MyFunction myfunction) throws MyIllegalArgumentException {
+
+        Check.checkNaturalNumber(i, j);
 
         if ( i > j ) {
             int swap = i;
@@ -37,8 +36,8 @@ public class Function {
         }
 
         for ( int c = i; c <= j; c++) {
-            int result = myfunction.apply(c);
-            System.out.println(c + ": " + result);
+            int functionOutput = myfunction.apply(c);
+            System.out.println(c + ": " + functionOutput);
         }
     }
 
@@ -63,11 +62,7 @@ public class Function {
      * @return int
      */
     private MyFunction lambdaFactoriel = x -> {
-        int result = 1;
-        for (int i = 1; i <= x; i++ ) {
-            result *= i;
-        }
-        return result;
+        return StaticFactorial.factorial(x);
     };
 
     /**
@@ -89,11 +84,7 @@ public class Function {
          */
         @Override
         public int apply(int x) {
-            int result = 1;
-            for (int i = 1; i <= x; i++ ) {
-                result *= i;
-            }
-            return result;
+            return StaticFactorial.factorial(x);
         };
     }
 
@@ -118,11 +109,7 @@ public class Function {
          */
         this.anonymFactoriel = new MyFunction() {
             public int apply(int x) {
-                int result = 1;
-                for (int i = 1; i <= x; i++ ) {
-                    result *= i;
-                }
-                return result;
+                return StaticFactorial.factorial(x);
             }
         };
 
@@ -152,7 +139,7 @@ public class Function {
      * @return int
      */
     private MyFunction lambdaQuadratic = x -> (int)Math.pow(x, x+1);
-        
+
     /**
      * Getter for lambdaQuadratic
      * @return MyFunction
@@ -171,18 +158,18 @@ public class Function {
             return 0;
         }
 
-        int fib1 = 1;
-        int fib2 = 0;
+        int previousFibonacci = 1;
+        int currentFibonacci = 0;
         int number = 0;
 
         if (x == 1) {
-            return fib1;
+            return previousFibonacci;
         }
 
         for (int i = 2; i <= x; i++) {
-            number = fib1 + fib2;
-            fib2 = fib1;
-            fib1 = number;
+            number = previousFibonacci + currentFibonacci;
+            currentFibonacci = previousFibonacci;
+            previousFibonacci = number;
         }
 
         return number;
@@ -224,7 +211,7 @@ public class Function {
      * @return int
      */
     private MyFunction lambdaOddFactoriel = x -> (odd.test(lambdaFactoriel.apply(x))) ? lambdaFactoriel.apply(x) : 0;
-    
+
 
     /**
      * Getter for lambdaOddFactoriel

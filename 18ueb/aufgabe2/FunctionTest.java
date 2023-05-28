@@ -110,7 +110,7 @@ public class FunctionTest {
         int j = 1;
         StringBuilder output = new StringBuilder();
 
-        Assertions.assertThrows(FunctionException.class, () -> {
+        Assertions.assertThrows(MyIllegalArgumentException.class, () -> {
             function.applyAndPrint(i, j, x -> {
                 output.append(x).append(": ").append(x * 2).append("\n");
                 return x * 2;
@@ -125,7 +125,7 @@ public class FunctionTest {
         int j = -1;
         StringBuilder output = new StringBuilder();
 
-        Assertions.assertThrows(FunctionException.class, () -> {
+        Assertions.assertThrows(MyIllegalArgumentException.class, () -> {
             function.applyAndPrint(i, j, x -> {
                 output.append(x).append(": ").append(x * 2).append("\n");
                 return x * 2;
