@@ -10,6 +10,7 @@
  */
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class Ueb18Fassade {
 	/**
@@ -76,7 +77,8 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
 	public void aufgabe_h_i(Lager lager) {
-		//lager.applyToSomeArticles(a -> a instanceof CD, a -> a.aenderePreis(10));
+            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(10);
+            lager.applyToSomeArticles(a -> a instanceof CD, consumer);
 	}
 
 	/**
@@ -86,6 +88,8 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
 	public void aufgabe_h_ii(Lager lager) {
+            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-5);
+            lager.applyToSomeArticles(a -> a.getBestand() <= 2, consumer);
 	}
 
 	/**
@@ -96,6 +100,8 @@ public class Ueb18Fassade {
 	 * @param gesuchterAutor Der Autor, dessen Buecher guenstiger werden sollen.
 	 */
 	public void aufgabe_h_iii(Lager lager, String gesuchterAutor) {
+            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-5);
+            lager.applyToSomeArticles(a -> a instanceof Buch && ((Buch)a).getAutor().equals(gesuchterAutor), consumer);
 	}
 
 	/**
@@ -104,31 +110,36 @@ public class Ueb18Fassade {
 	 * Der Preis aller CDs wird um 10 % erhoeht und der Preis aller Artikel, von denen der Bestand hoechstes zwei ist, wird um 5 % reduziert.
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
-	public void aufgabe_h_iv(Lager lager) {
-	}
+        public void aufgabe_h_iv(Lager lager) {
+            Consumer<Artikel> consumer1 = artikel -> artikel.aenderePreis(artikel instanceof CD ? 10 : 0);
+            Consumer<Artikel> consumer2 = artikel -> artikel.aenderePreis(artikel.getBestand() <= 2 ? -5 : 0);
+            lager.applyToArticles(consumer1.andThen(consumer2));
+        }
 
-	/**
-	 * Loest die Aufgabe (h) v.
-	 * <br />
-	 * @param lager Das Lager mit den Artikeln. 
-	 * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren. 
-	 */
-	public Artikel[] aufgabe_h_v(Lager lager) {
-		return null;
-	}
+        /**
+         * Loest die Aufgabe (h) v.
+         * <br />
+         * @param lager Das Lager mit den Artikeln. 
+         * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren. 
+         */
+        public Artikel[] aufgabe_h_v(Lager lager) {
+            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
+            return lager.getSorted(SortAutor);
+        }
 
-	/**
-	 * Loest die Aufgabe (h) vi.
-	 * <br />
-	 * @param lager Das Lager, dessen Artikel gefiltert werden sollen.
-	 * @param gesuchterAutor Der Autor, nach dem gefiltert werden soll.
-	 * @param minPreis Der kleinste Preis, den die zu filternden Buecher haben sollen.
-	 * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
-	 * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
-	 */
-	public Artikel[] aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
-		return null;
-	}
+        /**
+         * Loest die Aufgabe (h) vi.
+         * <br />
+         * @param lager Das Lager, dessen Artikel gefiltert werden sollen.
+         * @param gesuchterAutor Der Autor, nach dem gefiltert werden soll.
+         * @param minPreis Der kleinste Preis, den die zu filternden Buecher haben sollen.
+         * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
+         * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
+         */
+        public Artikel[] aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
+            Predicate<Artikel> p = a -> (a instanceof Buch) && ((Buch) a).getAutor().equals(gesuchterAutor);
+            return lager.filterAll(p, a -> a.getPreis() >= minPreis && a.getPreis() <= maxPreis);
+        }
 
         public <T extends Comparable<T>> boolean compare(T value1, T value2) {
             return value1.compareTo(value2) == 0;
