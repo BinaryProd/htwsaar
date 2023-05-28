@@ -27,6 +27,10 @@ public final class Lager {
     private static final int GESAMTWERT_WIDTH = 11;
 
 
+    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> condition) {
+        return getSorted(condition, this.lager);
+    }
+
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> condition, Artikel[] artikel) {
         int artikelLength = artikel.length;
         boolean swapped; 
@@ -47,6 +51,10 @@ public final class Lager {
         return artikel;
     }
 
+    public void applyToArticles(Consumer<Artikel> operation) {
+        applyToArticles(operation, this.lager);
+    }
+
     public void applyToArticles(Consumer<Artikel> operation, Artikel[] artikel) {
         for (int i = 0; i < artikel.length; i++) {
             operation.accept(artikel[i]);
@@ -54,24 +62,37 @@ public final class Lager {
     }
 
     public Artikel[] filter(Predicate<Artikel> condition) {
+        return filter(condition, this.lager);
+    }
+    public Artikel[] filter(Predicate<Artikel> condition, Artikel[] artikel) {
         ArrayList<Artikel> filtertArtikel =  new ArrayList<>();
-        for (int i = 0; i < this.lager.length; i++) {
-            if (condition.test(this.lager[i])) {
-                filtertArtikel.add(this.lager[i]);
+        for (int i = 0; i < artikel.length; i++) {
+            if (condition.test(artikel[i])) {
+                filtertArtikel.add(artikel[i]);
             }
         }
         return filtertArtikel.toArray(new Artikel[filtertArtikel.size()]);
     }
 
     public void applyToSomeArticles(Predicate<Artikel> condition, Consumer<Artikel> operation) {
-        Artikel[] filtertArtikels = filter(condition);
+        Artikel[] filtertArtikels = filter(condition, this.lager);
         applyToArticles(operation, filtertArtikels);
     }
 
     public Artikel[] getArticles(Predicate<Artikel> condition, BiPredicate<Artikel,Artikel> operation) {
-        Artikel[] filtertArtikels = filter(condition);
+        Artikel[] filtertArtikels = filter(condition, this.lager);
         return getSorted(operation, filtertArtikels);
     }
+
+    public Artikel[] filterAll(Predicate<Artikel> ... conditions) {
+        Artikel[] filtertArtikels = this.lager;
+        for (Predicate<Artikel> condition : conditions) {
+            filtertArtikels = filter(condition, filtertArtikels);
+        }
+        return filtertArtikels;
+    }
+
+
 
 
     /**
