@@ -8,7 +8,10 @@
 import java.util.function.IntPredicate;
 
 public class Function {
+    private MyFunction anonymSquare;
     private MyFunction anonymFactoriel;
+    private MyFunction anonymQuadratic;
+    private MyFunction anonymFibonacci;
     private IntPredicate odd;
 
     /**
@@ -55,6 +58,15 @@ public class Function {
     public MyFunction getlambdaSquare() {
         return lambdaSquare;
     }
+
+    /**
+     * Getter for anonymSquare
+     * @return MyFunction
+     */
+    public MyFunction getAnonymSquare() {
+        return anonymSquare;
+    }
+    
 
     /**
      * Lambda function that calculates the factorial of a number
@@ -114,6 +126,40 @@ public class Function {
         };
 
         /**
+         * Anonymous class that calculates the square of a number
+         * @param x int
+         * @return int
+         */
+        this.anonymSquare = new MyFunction() {
+            public int apply(int x) {
+                return x*x;
+            }
+        };
+
+        /**
+         * Anonymous class that calculates the quadratic of a number
+         * @param x int
+         * @return int
+         */
+        this.anonymQuadratic = new MyFunction() {
+            public int apply(int x) {
+                Check.checkPositiveNumber(x);
+                return (int)Math.pow(x, x+1);
+            }
+        };
+        
+        /**
+         * Anonymous class that calculates the fibonacci of a number
+         * @param x int
+         * @return int
+         */
+        this.anonymFibonacci = new MyFunction() {
+            public int apply(int x) {
+                return StaticFibonacci.fibonacci(x);
+            }
+        };
+
+        /**
          * Anonymous class that checks if a number is odd
          * @param x int
          * @return boolean
@@ -138,7 +184,10 @@ public class Function {
      * @param x int
      * @return int
      */
-    private MyFunction lambdaQuadratic = x -> (int)Math.pow(x, x+1);
+    private MyFunction lambdaQuadratic = x -> {
+        Check.checkPositiveNumber(x);
+        return (int)Math.pow(x, x+1);
+    };
 
     /**
      * Getter for lambdaQuadratic
@@ -149,31 +198,19 @@ public class Function {
     }
 
     /**
+     * Getter for anonymQuadratic
+     * @return MyFunction
+     */
+    public MyFunction getAnonymQuadratic() {
+        return anonymQuadratic;
+    }
+
+    /**
      * lambda function that calculates the fibonacci of a number
      * @param x int
      * @return int
      */
-    private MyFunction lambdaFibonacci = x -> { 
-        if (x == 0) {
-            return 0;
-        }
-
-        int previousFibonacci = 1;
-        int currentFibonacci = 0;
-        int number = 0;
-
-        if (x == 1) {
-            return previousFibonacci;
-        }
-
-        for (int i = 2; i <= x; i++) {
-            number = previousFibonacci + currentFibonacci;
-            currentFibonacci = previousFibonacci;
-            previousFibonacci = number;
-        }
-
-        return number;
-    };
+    private MyFunction lambdaFibonacci = x -> StaticFibonacci.fibonacci(x);
 
     /**
      * Getter for lambdaFibonacci
@@ -181,6 +218,14 @@ public class Function {
      */
     public MyFunction getlambdaFibonacci() {
         return lambdaFibonacci;
+    }
+
+    /**
+     * Getter for the anonymous function for the fibonacci
+     * @return MyFunction
+     */
+    public MyFunction getAnonymFibonacci() {
+        return anonymFibonacci;
     }
 
     /**
