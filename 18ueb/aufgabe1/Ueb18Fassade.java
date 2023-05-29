@@ -59,7 +59,12 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln, deren Preise geaendert werden sollen.
 	 */
 	public void aufgabe_c_ii(Lager lager) {
-            lager.applyToArticles(artikel -> artikel.aenderePreis(-10));
+            lager.applyToArticles(artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(-10);
+                }
+            });
+             
 	}
 
 	/**
@@ -70,7 +75,7 @@ public class Ueb18Fassade {
 	 */	
 	public void aufgabe_c_iii(Lager lager) {
             lager.applyToArticles(artikel -> {
-                if (!isNull(artikel.getArt())) {
+                if (!isNull(artikel)) {
                     artikel.setArt(artikel.getArt() + " (Sonderangebot)");
                 };
             });
@@ -84,9 +89,13 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln, deren Preise und Bezeichnungen geaendert werden sollen.
 	 */
 	public void aufgabe_c_iv(Lager lager) {
-            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-10);
+            Consumer<Artikel> consumer = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(-10);
+                };
+            };
             Consumer<Artikel> consumer2 = artikel -> { 
-                if (!isNull(artikel.getArt())) {
+                if (!isNull(artikel)) {
                     artikel.setArt(artikel.getArt() + " (Sonderangebot)");
                 };
             };
@@ -100,7 +109,11 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
 	public void aufgabe_h_i(Lager lager) {
-            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(10);
+            Consumer<Artikel> consumer = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(10);
+                };
+            };
             lager.applyToSomeArticles(a -> a instanceof CD, consumer);
 	}
 
@@ -111,8 +124,18 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
 	public void aufgabe_h_ii(Lager lager) {
-            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-5);
-            lager.applyToSomeArticles(a -> a.getBestand() <= 2, consumer);
+            Consumer<Artikel> consumer = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(-5);
+                };
+            };
+            Predicate<Artikel> predicate = artikel -> {
+                if (!isNull(artikel)) {
+                    return artikel.getBestand() < 3;
+                }
+                return false;
+            };
+            lager.applyToSomeArticles(predicate, consumer);
 	}
 
 	/**
@@ -123,7 +146,11 @@ public class Ueb18Fassade {
 	 * @param gesuchterAutor Der Autor, dessen Buecher guenstiger werden sollen.
 	 */
 	public void aufgabe_h_iii(Lager lager, String gesuchterAutor) {
-            Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-5);
+            Consumer<Artikel> consumer = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(-5);
+                };
+            };
             lager.applyToSomeArticles(a -> a instanceof Buch && ((Buch)a).getAutor().equals(gesuchterAutor), consumer);
 	}
 
@@ -134,8 +161,16 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
 	 */
         public void aufgabe_h_iv(Lager lager) {
-            Consumer<Artikel> consumer1 = artikel -> artikel.aenderePreis(artikel instanceof CD ? 10 : 0);
-            Consumer<Artikel> consumer2 = artikel -> artikel.aenderePreis(artikel.getBestand() <= 2 ? -5 : 0);
+            Consumer<Artikel> consumer1 = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(artikel instanceof CD ? 10 : 0);
+                };
+            };
+            Consumer<Artikel> consumer2 = artikel -> {
+                if (!isNull(artikel)) {
+                    artikel.aenderePreis(artikel.getBestand() < 3 ? -5 : 0);
+                }
+            };
             lager.applyToArticles(consumer1.andThen(consumer2));
         }
 
@@ -150,7 +185,11 @@ public class Ueb18Fassade {
                 if (isNull(artikel1, artikel2)) {
                     return false;
                 }
+                if (!(artikel1 instanceof Buch) || !(artikel2 instanceof Buch)) {
+                    return false;
+                }
                 return compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
+
             };
 
             return lager.getSorted(SortAutor);
