@@ -192,46 +192,47 @@ public class Ueb18Fassade {
                         buchArray[i] = artikel;
                     }
                 } catch (Exception e) {
-                    // Handle the exception (e.g., log an error message)
                 }
             }
 
-            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> { 
+            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> {
                 if (isNull(artikel1, artikel2)) {
                     return false;
                 }
-                return compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
+                Buch autor1 = (Buch) artikel1;
+                Buch autor2 = (Buch) artikel2;
 
+                return autor1.getAutor().compareTo(autor2.getAutor()) < 1;
             };
 
             return lager.getSorted(SortAutor, buchArray);
         }
 
 
-    /**
-     * Loest die Aufgabe (h) vi.
-     * <br />
-     * @param lager Das Lager, dessen Artikel gefiltert werden sollen.
-     * @param gesuchterAutor Der Autor, nach dem gefiltert werden soll.
-     * @param minPreis Der kleinste Preis, den die zu filternden Buecher haben sollen.
-     * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
-     * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
-     */
-    public Artikel[] aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
-        Predicate<Artikel> p = a -> (a instanceof Buch) && ((Buch) a).getAutor().equals(gesuchterAutor);
-        return lager.filterAll(p, a -> a.getPreis() >= minPreis && a.getPreis() <= maxPreis);
-    }
-
-    public <T extends Comparable<T>> boolean compare(T value1, T value2) {
-        return value1.compareTo(value2) == 0;
-    }
-
-    private boolean isNull(Object... object1) {
-        for (Object object : object1) {
-            if (object == null) {
-                return true;
-            }
+        /**
+         * Loest die Aufgabe (h) vi.
+         * <br />
+         * @param lager Das Lager, dessen Artikel gefiltert werden sollen.
+         * @param gesuchterAutor Der Autor, nach dem gefiltert werden soll.
+         * @param minPreis Der kleinste Preis, den die zu filternden Buecher haben sollen.
+         * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
+         * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
+         */
+        public Artikel[] aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
+            Predicate<Artikel> p = a -> (a instanceof Buch) && ((Buch) a).getAutor().equals(gesuchterAutor);
+            return lager.filterAll(p, a -> a.getPreis() >= minPreis && a.getPreis() <= maxPreis);
         }
-        return false;
-    }
+
+        public <T extends Comparable<T>> boolean compare(T value1, T value2) {
+            return value1.compareTo(value2) == 0;
+        }
+
+        private boolean isNull(Object... object1) {
+            for (Object object : object1) {
+                if (object == null) {
+                    return true;
+                }
+            }
+            return false;
+        }
 }
