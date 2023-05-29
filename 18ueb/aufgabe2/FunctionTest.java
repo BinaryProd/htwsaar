@@ -18,8 +18,20 @@ public class FunctionTest {
     }
 
     @Test
+    public void testLambdaSquare_WithNegativeNumber_shouldReturn_25() {
+        int result = function.getlambdaSquare().apply(-5);
+        Assertions.assertEquals(25, result);
+    }
+
+    @Test
     public void testAnonymSquare_shouldReturn_25() {
         int result = function.getAnonymSquare().apply(5);
+        Assertions.assertEquals(25, result);
+    }
+
+    @Test
+    public void testAnonymSquare_WithNegativeNumber_shouldReturn_25() {
+        int result = function.getAnonymSquare().apply(-5);
         Assertions.assertEquals(25, result);
     }
 
