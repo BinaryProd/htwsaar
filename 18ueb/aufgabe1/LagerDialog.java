@@ -13,6 +13,7 @@
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class LagerDialog {
     //private fields for Artikel, Lager, and Scanner objects
@@ -35,7 +36,17 @@ public class LagerDialog {
     private static final int GET_SIZE_OF_LAGER_INT = 12;
     private static final int GET_FREE_SPACE_IN_LAGER_INT = 13;
     private static final int GET_BESTAND_LISTE_INT = 14;
-    private static final int LAGER_EXIT_INT = 15;
+    private static final int SORT_ARTIKEL_INT = 15;
+    private static final int PREIS_UM_10_REDUCIEREN_INT = 16;
+    private static final int ADD_SUFFIX_TO_ARTIKELNAME_INT = 17;
+    private static final int PREIS_10_REDUCIEREN_ADD_SUFFIX_INT = 18;
+    private static final int PREIS_CD_10_ERHOEHEN_INT = 19;
+    private static final int BESTAND_MAX_2_5_REDUCIEREN_INT = 20;
+    private static final int BUCH_AUTHOR_5_REDUCIEREN_INT = 21;
+    private static final int CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN = 22;
+    private static final int SORT_BUCH_AUTHOR_INT = 23;
+    private static final int SORT_BUCH_CONDITION_INT = 24;
+    private static final int LAGER_EXIT_INT = 25;
 
     private static final String LAGER_CONSTRUCTOR_STRING = " : Ein neues Lager erstellen";
     private static final String LAGER_CONSTRUCTOR_DEFAULT_STRING = " : Ein neues Lager mit der vorgegebenen Maximalgroesse 10 erstellen";
@@ -51,6 +62,16 @@ public class LagerDialog {
     private static final String GET_SIZE_OF_LAGER_STRING = " : Größe des Lagers";
     private static final String GET_FREE_SPACE_IN_LAGER_STRING = " : Freier Platz im Lager";
     private static final String GET_BESTAND_LISTE_STRING = " : Bestandsliste ausgeben";
+    private static final String SORT_ARTIKEL_STRING = " : Artikel sortieren";
+    private static final String PREIS_UM_10_REDUCIEREN_STRING = " : Alle Preise um 10% reduzieren";
+    private static final String ADD_SUFFIX_TO_ARTIKELNAME_STRING = " : Allen Artikelnamen ein Suffix hinzufügen";
+    private static final String PREIS_10_REDUCIEREN_ADD_SUFFIX_STRING = " : Allen Artikelnamen ein Suffix hinzufügen und alle Preise um 10% reduzieren";
+    private static final String PREIS_CD_10_ERHOEHEN_STRING = " : Den Preis aller CDs um 10% erhöhen";
+    private static final String BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Bestand aller Artikel mit Bestand größer 2 um 5 reduzieren";
+    private static final String BUCH_AUTHOR_5_REDUCIEREN_STRING = " : Den Preis aller Bücher mit Autor um 5 reduzieren";
+    private static final String CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Preis aller CDs um 10% erhöhen und den Bestand aller Artikel mit Bestand größer 2 um 5 reduzieren";
+    private static final String SORT_BUCH_AUTHOR_STRING = " : Bücher nach Autor sortieren";
+    private static final String SORT_BUCH_CONDITION_STRING = " : Bücher nach eigene Kondition sortieren";
     private static final String LAGER_EXIT_STRING = " : Das Programm beenden";
 
     private static final int SET_ARTIKEL_WITH_BESTAND_INT = 1;
@@ -124,6 +145,16 @@ public class LagerDialog {
             .append(GET_SIZE_OF_LAGER_INT).append(GET_SIZE_OF_LAGER_STRING).append("\n")
             .append(GET_FREE_SPACE_IN_LAGER_INT).append(GET_FREE_SPACE_IN_LAGER_STRING).append("\n")
             .append(GET_BESTAND_LISTE_INT).append(GET_BESTAND_LISTE_STRING).append("\n")
+            .append(SORT_ARTIKEL_INT).append(SORT_ARTIKEL_STRING).append("\n")
+            .append(PREIS_UM_10_REDUCIEREN_INT).append(PREIS_UM_10_REDUCIEREN_STRING).append("\n")
+            .append(ADD_SUFFIX_TO_ARTIKELNAME_INT).append(ADD_SUFFIX_TO_ARTIKELNAME_STRING).append("\n")
+            .append(PREIS_10_REDUCIEREN_ADD_SUFFIX_INT).append(PREIS_10_REDUCIEREN_ADD_SUFFIX_STRING).append("\n")
+            .append(PREIS_CD_10_ERHOEHEN_INT).append(PREIS_CD_10_ERHOEHEN_STRING).append("\n")
+            .append(BESTAND_MAX_2_5_REDUCIEREN_INT).append(BESTAND_MAX_2_5_REDUCIEREN_STRING).append("\n")
+            .append(BUCH_AUTHOR_5_REDUCIEREN_INT).append(BUCH_AUTHOR_5_REDUCIEREN_STRING).append("\n")
+            .append(CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN).append(CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN_STRING).append("\n")
+            .append(SORT_BUCH_AUTHOR_INT).append(SORT_BUCH_AUTHOR_STRING).append("\n")
+            .append(SORT_BUCH_CONDITION_INT).append(SORT_BUCH_CONDITION_STRING).append("\n")
             .append(LAGER_EXIT_INT).append(LAGER_EXIT_STRING).append("\n")
             .append(">>> ");
 
@@ -187,6 +218,36 @@ public class LagerDialog {
                 break;
             case GET_BESTAND_LISTE_INT:
                 getBestandListe();
+                break;
+            case SORT_ARTIKEL_INT:
+                sortArtikel();
+                break;
+            case PREIS_UM_10_REDUCIEREN_INT:
+                preisUm10Reducieren();
+                break;
+            case ADD_SUFFIX_TO_ARTIKELNAME_INT:
+                addSuffixToArtikelname();
+                break;
+            case PREIS_10_REDUCIEREN_ADD_SUFFIX_INT:
+                preis10ReducierenAddSuffix();
+                break;
+            case PREIS_CD_10_ERHOEHEN_INT:
+                preisCd10Erhoehen();
+                break;
+            case BESTAND_MAX_2_5_REDUCIEREN_INT:
+                bestandMax2_5Reducieren();
+                break;
+            case BUCH_AUTHOR_5_REDUCIEREN_INT:
+                buchAuthor5Reducieren();
+                break;
+            case CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN:
+                cd10ErhoehenBestandMax2_5Reducieren();
+                break;
+            case SORT_BUCH_AUTHOR_INT:
+                sortBuchAuthor();
+                break;
+            case SORT_BUCH_CONDITION_INT:
+                sortBuchCondition();
                 break;
             case LAGER_EXIT_INT:
                 System.out.println("Das Programm wird beendet");
@@ -622,6 +683,176 @@ public class LagerDialog {
             System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
         } else {
             System.out.println(lager.ausgebenBestandsListe());
+        }
+    }
+
+    /**
+     * This method is used to get the list of items in the warehouse sorted by their price.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void sortArtikel() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            Artikel[] sorted = sort.aufgabe_c_i(lager);
+            for (Artikel artikel : sorted) {
+                if (artikel != null) {
+                    System.out.println(artikel);
+                }
+            }
+        }
+    }
+
+    /**
+     * This method is used to change the price of all Artikel in the lager by a 10.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void preisUm10Reducieren() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_c_ii(lager);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to a suffix to the description of all Artikel.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void addSuffixToArtikelname() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_c_iii(lager);
+            getBestandListe();
+        }
+    }
+    
+    /**
+     * This method is used to add suffix to Artikel + change preis by 10.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void preis10ReducierenAddSuffix() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_c_iv(lager);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to change the price of CD by 10.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void preisCd10Erhoehen() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_h_i(lager);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to change the price by 5 if totol is less 3.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void bestandMax2_5Reducieren() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_h_ii(lager);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to change the price by 5 for a Author.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void buchAuthor5Reducieren() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+
+            System.out.println("Geben Sie den Autor ein: ");
+            System.out.println(">>> ");
+            String input = EingabeUtils.scanString(scanner);
+
+            sort.aufgabe_h_iii(lager, input);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to change the price by 10 for a CD and change the price by 5 if totol is less 3.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void cd10ErhoehenBestandMax2_5Reducieren() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            sort.aufgabe_h_iv(lager);
+            getBestandListe();
+        }
+    }
+
+    /**
+     * This method is used to sort the Artikel by Buch and Author.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void sortBuchAuthor() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            Ueb18Fassade sort = new Ueb18Fassade();
+            Artikel[] sorted = sort.aufgabe_h_v(lager);
+            for (Artikel artikel : sorted) {
+                if (artikel != null) {
+                    System.out.println(artikel);
+                }
+            }
+        }
+    }
+
+    /**
+     * This method is used to output by Autour and Preis.
+     * If there is no Lager, it will print a message indicating that.
+     */
+    public final void sortBuchCondition() {
+        if (lager == null) {
+            System.out.println("Es gibt noch kein Lager. erstellen Sie erstmal eins.");
+        } else {
+            System.out.println("Geben Sie den Autor ein: ");
+            System.out.println(">>> ");
+            String input = EingabeUtils.scanString(scanner);
+
+
+            System.out.println("Geben Sie den minimun Preis ein:");
+            System.out.println(">>> ");
+            double minPreis = EingabeUtils.scanDouble(scanner);
+
+            System.out.println("Geben Sie den maximun Preis ein:");
+            System.out.println(">>> ");
+            double maxPreis = EingabeUtils.scanDouble(scanner);
+
+            Ueb18Fassade sort = new Ueb18Fassade();
+            Artikel[] result = sort.aufgabe_h_vi(lager, input, minPreis, maxPreis);
+            for (Artikel artikel : result) {
+                if (artikel != null) {
+                    System.out.println(artikel);
+                }
+            }
         }
     }
 }

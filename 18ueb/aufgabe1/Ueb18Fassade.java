@@ -26,11 +26,26 @@ public class Ueb18Fassade {
 	 * @return Die sortierte Artikelliste.
 	 */
 	public Artikel[] aufgabe_c_i(Lager lager) {
-            BiPredicate<Artikel, Artikel> SortUnterkategorie = (artikel1, artikel2) -> compare(artikel1.getArt(), artikel2.getArt());
+            BiPredicate<Artikel, Artikel> SortUnterkategorie = (artikel1, artikel2) -> {
+                if (isNull(artikel1, artikel2)) {
+                    return false;
+                }
+                return compare(artikel1.getArt(), artikel2.getArt());
+            };
 
-            BiPredicate<Artikel, Artikel> SortBestand = (artikel1, artikel2) -> compare(artikel1.getBestand(), artikel2.getBestand());
+            BiPredicate<Artikel, Artikel> SortBestand = (artikel1, artikel2) -> {
+                if (isNull(artikel1, artikel2)) {
+                    return false;
+                }
+                return compare(artikel1.getBestand(), artikel2.getBestand());
+            };
 
-            BiPredicate<Artikel, Artikel> SortPreis = (artikel1, artikel2) -> compare(artikel1.getPreis(), artikel2.getPreis());
+            BiPredicate<Artikel, Artikel> SortPreis = (artikel1, artikel2) -> {
+                if (isNull(artikel1, artikel2)) {
+                    return false;
+                }
+                return compare(artikel1.getPreis(), artikel2.getPreis());
+            };
 
             BiPredicate<Artikel, Artikel> Sort = (artikel1, artikel2) -> SortUnterkategorie.test(artikel1, artikel2) ? true : SortBestand.test(artikel1, artikel2) ? true : SortPreis.test(artikel1, artikel2) ? true : false;
 
@@ -54,7 +69,11 @@ public class Ueb18Fassade {
 	 * @param lager Das Lager mit den Artikeln, deren Bezeichnungen geaendert werden sollen.
 	 */	
 	public void aufgabe_c_iii(Lager lager) {
-            lager.applyToArticles(artikel -> artikel.setArt(artikel.getArt() + " (Sonderangebot)"));
+            lager.applyToArticles(artikel -> {
+                if (!isNull(artikel.getArt())) {
+                    artikel.setArt(artikel.getArt() + " (Sonderangebot)");
+                };
+            });
 	}
 
 	/**
@@ -66,7 +85,11 @@ public class Ueb18Fassade {
 	 */
 	public void aufgabe_c_iv(Lager lager) {
             Consumer<Artikel> consumer = artikel -> artikel.aenderePreis(-10);
-            Consumer<Artikel> consumer2 = artikel -> artikel.setArt(artikel.getArt() + " (Sonderangebot)");
+            Consumer<Artikel> consumer2 = artikel -> { 
+                if (!isNull(artikel.getArt())) {
+                    artikel.setArt(artikel.getArt() + " (Sonderangebot)");
+                };
+            };
             lager.applyToArticles(consumer.andThen(consumer2));
 	}
 
@@ -123,7 +146,13 @@ public class Ueb18Fassade {
          * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren. 
          */
         public Artikel[] aufgabe_h_v(Lager lager) {
-            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
+            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> { 
+                if (isNull(artikel1, artikel2)) {
+                    return false;
+                }
+                return compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
+            };
+
             return lager.getSorted(SortAutor);
         }
 
@@ -143,5 +172,14 @@ public class Ueb18Fassade {
 
         public <T extends Comparable<T>> boolean compare(T value1, T value2) {
             return value1.compareTo(value2) == 0;
+        }
+
+        private boolean isNull(Object... object1) {
+            for (Object object : object1) {
+                if (object == null) {
+                    return true;
+                }
+            }
+            return false;
         }
 }
