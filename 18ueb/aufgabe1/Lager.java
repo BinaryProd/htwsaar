@@ -26,27 +26,30 @@ public final class Lager {
     private static final int GESAMT_WIDTH = 16;
     private static final int GESAMTWERT_WIDTH = 11;
 
-
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> condition) {
         return getSorted(condition, this.lager);
     }
 
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> condition, Artikel[] artikel) {
         int artikelLength = artikel.length;
-        boolean swapped; 
+        boolean swapped;
         Artikel swap;
 
-        do {
+        for (int i = 0; i < artikelLength - 1; i++) {
             swapped = false;
-            for (int i = 0; i < artikelLength - 1; i++) {
-                if (condition.test(artikel[i], artikel[i + 1])) {
-                    swap = artikel[i];
-                    artikel[i] = artikel[i + 1];
-                    artikel[i + 1] = swap;
+            for (int j = 0; j < artikelLength - 1 - i; j++) {
+                if (condition.test(artikel[j], artikel[j + 1])) {
+                    swap = artikel[j];
+                    artikel[j] = artikel[j + 1];
+                    artikel[j + 1] = swap;
                     swapped = true;
                 }
             }
-        } while (swapped);
+
+            if (!swapped) {
+                break; // Early termination if no swaps were made
+            }
+        }
 
         return artikel;
     }
@@ -327,18 +330,18 @@ public final class Lager {
         CheckUtils.checkIfLagerIsEmpty(lager);    
         double sum = 0;    
         StringBuilder output = new StringBuilder();    
-           
+
         int lineWidth = ART_NR_WIDTH + BESCHREIBUNG_WIDTH + PREIS_WIDTH + BESTAND_WIDTH + GESAMT_WIDTH + 4;
         int lastLineWidth = BESCHREIBUNG_WIDTH + PREIS_WIDTH + BESTAND_WIDTH - 4;
         String line = new String(new char[lineWidth]).replace("\0", "-");    
         output.append(String.format("%-"+ ART_NR_WIDTH +"s %-"+ BESCHREIBUNG_WIDTH +"s %-"+ PREIS_WIDTH +"s %-"
-                                        + BESTAND_WIDTH +"s %-"+ GESAMT_WIDTH +"s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt")).append("\n");
+                    + BESTAND_WIDTH +"s %-"+ GESAMT_WIDTH +"s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt")).append("\n");
         output.append(line).append("\n");    
         for (int i = 0; i < lager.length; i++) {    
             if (lager[i] != null) {    
                 output.append(String.format("%-"+ ART_NR_WIDTH +"d %-"+ BESCHREIBUNG_WIDTH +"s %-"+ PREIS_WIDTH 
-                                                +".2f %-"+ BESTAND_WIDTH +"d %-"+ GESAMT_WIDTH +".2f", lager[i].getArtikelNr(), 
-                                                lager[i].getBeschreibung(), lager[i].getPreis(), lager[i].getBestand(), lager[i].gesamtPreis())).append("\n");
+                            +".2f %-"+ BESTAND_WIDTH +"d %-"+ GESAMT_WIDTH +".2f", lager[i].getArtikelNr(), 
+                            lager[i].getBeschreibung(), lager[i].getPreis(), lager[i].getBestand(), lager[i].gesamtPreis())).append("\n");
                 sum += lager[i].gesamtPreis();    
             }    
         }    
