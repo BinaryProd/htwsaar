@@ -181,18 +181,28 @@ public class Ueb18Fassade {
          * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren. 
          */
         public Artikel[] aufgabe_h_v(Lager lager) {
+            Artikel[] buchArray = new Artikel[lager.getLagerGroesse()];
+
+            for (int i = 0; i < lager.getLagerGroesse(); i++) {
+                try {
+                    Artikel artikel = lager.getArtikel(i);
+                    if (artikel instanceof Buch) {
+                        buchArray[i] = artikel;
+                    }
+                } catch (Exception e) {
+                    // Handle the exception (e.g., log an error message)
+                }
+            }
+
             BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> { 
                 if (isNull(artikel1, artikel2)) {
-                    return false;
-                }
-                if (!(artikel1 instanceof Buch) || !(artikel2 instanceof Buch)) {
                     return false;
                 }
                 return compare(((Buch)artikel1).getAutor(), ((Buch)artikel2).getAutor());
 
             };
 
-            return lager.getSorted(SortAutor);
+            return lager.getSorted(SortAutor, buchArray);
         }
 
         /**
