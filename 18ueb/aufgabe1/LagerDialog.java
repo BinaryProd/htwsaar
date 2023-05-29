@@ -67,9 +67,9 @@ public class LagerDialog {
     private static final String ADD_SUFFIX_TO_ARTIKELNAME_STRING = " : Allen Artikelnamen ein Suffix hinzufügen";
     private static final String PREIS_10_REDUCIEREN_ADD_SUFFIX_STRING = " : Allen Artikelnamen ein Suffix hinzufügen und alle Preise um 10% reduzieren";
     private static final String PREIS_CD_10_ERHOEHEN_STRING = " : Den Preis aller CDs um 10% erhöhen";
-    private static final String BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Bestand aller Artikel mit Bestand größer 2 um 5 reduzieren";
-    private static final String BUCH_AUTHOR_5_REDUCIEREN_STRING = " : Den Preis aller Bücher mit Autor um 5 reduzieren";
-    private static final String CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Preis aller CDs um 10% erhöhen und den Bestand aller Artikel mit Bestand größer 2 um 5 reduzieren";
+    private static final String BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Bestand aller Artikel mit Bestand weniger 3 um 5% reduzieren";
+    private static final String BUCH_AUTHOR_5_REDUCIEREN_STRING = " : Den Preis aller Bücher mit Autor um 5% reduzieren";
+    private static final String CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN_STRING = " : Den Preis aller CDs um 10% erhöhen und den Bestand aller Artikel mit Bestand weniger als 3 um 5% reduzieren";
     private static final String SORT_BUCH_AUTHOR_STRING = " : Bücher nach Autor sortieren";
     private static final String SORT_BUCH_CONDITION_STRING = " : Bücher nach eigene Kondition sortieren";
     private static final String LAGER_EXIT_STRING = " : Das Programm beenden";
