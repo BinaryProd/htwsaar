@@ -22,32 +22,34 @@ public class LagerDialog {
     private static Scanner scanner = EingabeUtils.scanOpen();
 
     //private fields for various menu options and their corresponding int and String values
-    private static final int LAGER_CONSTRUCTOR_INT = 1;
-    private static final int LAGER_CONSTRUCTOR_DEFAULT_INT = 2;
-    private static final int CREATE_ARTIKEL_INT = 3;
-    private static final int REMOVE_ARTIKEL_INT = 4;
-    private static final int BOOK_RECEIPT_INT = 5;
-    private static final int BOOK_RELEASE_INT = 6;
-    private static final int CHANGE_PRICE_OF_ONE_ARTIKEL_INT = 7;
-    private static final int CHANGE_PRICE_OF_ALL_ARTIKEL_INT = 8;
-    private static final int GET_ARTIKEL_INT = 9;
-    private static final int GET_INFORMATION_OF_LAGER_INT = 10;
-    private static final int GET_NUMBER_OF_ARTIKEL_INT = 11;
-    private static final int GET_SIZE_OF_LAGER_INT = 12;
-    private static final int GET_FREE_SPACE_IN_LAGER_INT = 13;
-    private static final int GET_BESTAND_LISTE_INT = 14;
-    private static final int SORT_ARTIKEL_INT = 15;
-    private static final int PREIS_UM_10_REDUCIEREN_INT = 16;
-    private static final int ADD_SUFFIX_TO_ARTIKELNAME_INT = 17;
-    private static final int PREIS_10_REDUCIEREN_ADD_SUFFIX_INT = 18;
-    private static final int PREIS_CD_10_ERHOEHEN_INT = 19;
-    private static final int BESTAND_MAX_2_5_REDUCIEREN_INT = 20;
-    private static final int BUCH_AUTHOR_5_REDUCIEREN_INT = 21;
-    private static final int CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN = 22;
-    private static final int SORT_BUCH_AUTHOR_INT = 23;
-    private static final int SORT_BUCH_CONDITION_INT = 24;
-    private static final int LAGER_EXIT_INT = 25;
+    private static final int LAGER_MIT_ARTIKEL_ANLEGEN_INT = 1;
+    private static final int LAGER_CONSTRUCTOR_INT = 2;
+    private static final int LAGER_CONSTRUCTOR_DEFAULT_INT = 3;
+    private static final int CREATE_ARTIKEL_INT = 4;
+    private static final int REMOVE_ARTIKEL_INT = 5;
+    private static final int BOOK_RECEIPT_INT = 6;
+    private static final int BOOK_RELEASE_INT = 7;
+    private static final int CHANGE_PRICE_OF_ONE_ARTIKEL_INT = 8;
+    private static final int CHANGE_PRICE_OF_ALL_ARTIKEL_INT = 9;
+    private static final int GET_ARTIKEL_INT = 10;
+    private static final int GET_INFORMATION_OF_LAGER_INT = 11;
+    private static final int GET_NUMBER_OF_ARTIKEL_INT = 12;
+    private static final int GET_SIZE_OF_LAGER_INT = 13;
+    private static final int GET_FREE_SPACE_IN_LAGER_INT = 14;
+    private static final int GET_BESTAND_LISTE_INT = 15;
+    private static final int SORT_ARTIKEL_INT = 16;
+    private static final int PREIS_UM_10_REDUCIEREN_INT = 17;
+    private static final int ADD_SUFFIX_TO_ARTIKELNAME_INT = 18;
+    private static final int PREIS_10_REDUCIEREN_ADD_SUFFIX_INT = 19;
+    private static final int PREIS_CD_10_ERHOEHEN_INT = 20;
+    private static final int BESTAND_MAX_2_5_REDUCIEREN_INT = 21;
+    private static final int BUCH_AUTHOR_5_REDUCIEREN_INT = 22;
+    private static final int CD_10_ERHOEHEN_BESTAND_MAX_2_5_REDUCIEREN = 23;
+    private static final int SORT_BUCH_AUTHOR_INT = 24;
+    private static final int SORT_BUCH_CONDITION_INT = 25;
+    private static final int LAGER_EXIT_INT = 26;
 
+    private static final String LAGER_MIT_ARTIKEL_ANLEGEN_STRING = " : Lager mit Artikel anlegen";
     private static final String LAGER_CONSTRUCTOR_STRING = " : Ein neues Lager erstellen";
     private static final String LAGER_CONSTRUCTOR_DEFAULT_STRING = " : Ein neues Lager mit der vorgegebenen Maximalgroesse 10 erstellen";
     private static final String CREATE_ARTIKEL_STRING = " : Artikel erstellen";
@@ -131,6 +133,7 @@ public class LagerDialog {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n")
+            .append(LAGER_MIT_ARTIKEL_ANLEGEN_INT).append(LAGER_MIT_ARTIKEL_ANLEGEN_STRING).append("\n")
             .append(LAGER_CONSTRUCTOR_INT).append(LAGER_CONSTRUCTOR_STRING).append("\n")
             .append(LAGER_CONSTRUCTOR_DEFAULT_INT).append(LAGER_CONSTRUCTOR_DEFAULT_STRING).append("\n")
             .append(CREATE_ARTIKEL_INT).append(CREATE_ARTIKEL_STRING).append("\n")
@@ -177,6 +180,9 @@ public class LagerDialog {
      */
     public void lagerEingabeBearbeitung(int userInput) {
         switch (userInput) {
+            case LAGER_MIT_ARTIKEL_ANLEGEN_INT:
+                lagerMitArtikelAnlegen();
+                break;
             case LAGER_CONSTRUCTOR_INT:
                 lagerConstructor();
                 break;
@@ -306,13 +312,55 @@ public class LagerDialog {
         }
     }
 
+    //Method to create a new Lager object with 3 CD objects, 3 Buch objects and 3 Video objects, 3 Artikel objects with bestand and 3 Artikel objects without bestand
+    //Buch ArtikelNr, Bestand (random number), Preis, Titel, Author, Verlag
+    //Video ArtikelNr, Bestand (random number), Preis, Titel, Spieldauer, Jahr (zwischen 1900 und 2022 muss also ein Video sein das zwischen 1900 und 2022 erschienen ist)
+    // Artikel ArtikelNr, Art, Bestand (random number), Preis
+    public void lagerMitArtikelAnlegen() {
+        if (lager != null) {
+            System.out.println("Es gibt bereits ein Lager. Bitte erst löschen");
+        } else {
+            lager = new Lager(15);
+            CD firstCD = new CD(1000, 5, 12.99, "Revolver", "The Beatles", 14);
+            lager.legeAnArtikel(firstCD);
+            CD secondCD = new CD(1001, 20, 9.99, "The Dark Side of the Moon", "Pink Floyd", 10);
+            lager.legeAnArtikel(secondCD);
+            CD thirdCD = new CD(1002, 50, 9.99, "Back in Black", "AC/DC", 11);
+            lager.legeAnArtikel(thirdCD);
+            Buch firstBuch = new Buch(2000, 2, 19.99, "Der Herr der Ringe", "J.R.R. Tolkien", "Klett-Cotta");
+            lager.legeAnArtikel(firstBuch);
+            Buch secondBuch = new Buch(2001, 30, 9.99, "Der kleine Prinz", "Antoine de Saint-Exupéry", "Klett-Cotta");
+            lager.legeAnArtikel(secondBuch);
+            Buch thirdBuch = new Buch(2002, 60, 9.99, "Der Alchimist", "Paulo Coelho", "Diogenes");
+            lager.legeAnArtikel(thirdBuch);
+            Video firstVideo = new Video(3000, 1, 19.99, "Der Herr der Ringe", 558, 2001);
+            lager.legeAnArtikel(firstVideo);
+            Video secondVideo = new Video(3001, 43, 9.99, "Der kleine Prinz", 88, 2015);
+            lager.legeAnArtikel(secondVideo);
+            Video thirdVideo = new Video(3002, 23, 9.99, "Der Alchimist", 100, 2014);
+            lager.legeAnArtikel(thirdVideo);
+            Artikel firstArtikel = new Artikel(4000, "Erdbeere", 25, 1.99);
+            lager.legeAnArtikel(firstArtikel);
+            Artikel secondArtikel = new Artikel(4001, "Apfel", 12, 0.99);
+            lager.legeAnArtikel(secondArtikel);
+            Artikel thirdArtikel = new Artikel(4002, "Nutella", 65, 2.99);
+            lager.legeAnArtikel(thirdArtikel);
+            Artikel fourthArtikel = new Artikel(4003, "Brot", 1.99);
+            lager.legeAnArtikel(fourthArtikel);
+            Artikel fifthArtikel = new Artikel(4004, "Milch", 0.99);
+            lager.legeAnArtikel(fifthArtikel);
+            Artikel sixthArtikel = new Artikel(4005, "Käse", 2.99);
+            lager.legeAnArtikel(sixthArtikel);
+        }
+    }
+
     /**
      * This method is used to create a new Lager.
      * It ask the user for the size of the Lager
      */
     public void lagerConstructor() {
         if (lager != null) {
-            System.out.println("Es gibt schon ein Lager.");
+            System.out.println("Es gibt bereits ein Lager. Bitte erst löschen");
         } else {
             System.out.println("Geben Sie die Größe des Lagers ein:");
             System.out.print(">>> ");
@@ -327,7 +375,7 @@ public class LagerDialog {
      */
     public void lagerConstructorDefault() {
         if (lager != null) {
-            System.out.println("Es gibt schon ein Lager.");
+            System.out.println("Es gibt bereits ein Lager. Bitte erst löschen");
         } else {
             lager = new Lager();
         }
