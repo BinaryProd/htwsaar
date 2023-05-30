@@ -30,8 +30,6 @@ public class Function {
      */
     public void applyAndPrint(int i, int j, MyFunction myfunction) throws MyIllegalArgumentException {
 
-        Check.checkNaturalNumber(i, j);
-
         if ( i > j ) {
             int swap = i;
             i = j;

@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public final class Lager {
     private Artikel[] lager;
@@ -88,11 +89,13 @@ public final class Lager {
     }
 
     public Artikel[] filterAll(Predicate<Artikel> ... conditions) {
-        Artikel[] filtertArtikels = this.lager;
+        ArrayList<Artikel> filtertArtikel = new ArrayList<>(Arrays.asList(this.lager));
         for (Predicate<Artikel> condition : conditions) {
-            filtertArtikels = filter(condition, filtertArtikels);
+            Artikel[] artikelArray = filtertArtikel.toArray(new Artikel[filtertArtikel.size()]);
+            filtertArtikel = new ArrayList<>(Arrays.asList(filter(condition, artikelArray)));
         }
-        return filtertArtikels;
+
+        return filtertArtikel.toArray(new Artikel[filtertArtikel.size()]);
     }
 
 
