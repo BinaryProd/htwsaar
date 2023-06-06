@@ -39,7 +39,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public boolean contains(Object o) {
-        Check.checkIfObjectIsNull(o);
+        CheckUtils.checkIfObjectIsNull(o);
         if (head == null) {
             return false;
         }
@@ -69,7 +69,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public boolean add(E e) {
-        Check.checkIfObjectIsNull(e);
+        CheckUtils.checkIfObjectIsNull(e);
         Node newNode = new Node(e);
         if (head == null) {
             head = newNode;
@@ -84,8 +84,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public boolean remove(Object o) {
-        Check.checkIfListIsEmpty(size);
-        Check.checkIfObjectIsNull(o);
+        CheckUtils.checkIfListIsEmpty(size);
+        CheckUtils.checkIfObjectIsNull(o);
         Node current = head;
         for(int i = 0; i < size; i++) {
             if (current.value.equals(o)) {
@@ -128,8 +128,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public E get(int index) {
-        Check.checkIfListIsEmpty(size);
-        Check.checkIfIndexIsInRange(index, size);
+        CheckUtils.checkIfListIsEmpty(size);
+        CheckUtils.checkIfIndexIsInRange(index, size);
         Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -139,8 +139,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public E set(int index, E element) {
-        Check.checkIfIndexIsInRange(index, size);
-        Check.checkIfObjectIsNull(element);
+        CheckUtils.checkIfIndexIsInRange(index, size);
+        CheckUtils.checkIfObjectIsNull(element);
         Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -151,8 +151,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public void add(int index, E element) {
-        Check.checkIfIndexIsInRange(index, size);
-        Check.checkIfObjectIsNull(element);
+        CheckUtils.checkIfIndexIsInRange(index, size);
+        CheckUtils.checkIfObjectIsNull(element);
         if (index == size) {
             add(element);
         } else {
@@ -176,8 +176,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public E remove(int index) {
-        Check.checkIfListIsEmpty(size);
-        Check.checkIfIndexIsInRange(index, size);
+        CheckUtils.checkIfListIsEmpty(size);
+        CheckUtils.checkIfIndexIsInRange(index, size);
         Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -201,8 +201,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public int indexOf(Object o) {
-        Check.checkIfObjectIsNull(o);
-        Check.checkIfListIsEmpty(size);
+        CheckUtils.checkIfObjectIsNull(o);
+        CheckUtils.checkIfListIsEmpty(size);
         Node current = head;
         for (int i = 0; i < size; i++) {
             if (current.value.equals(o)) {
