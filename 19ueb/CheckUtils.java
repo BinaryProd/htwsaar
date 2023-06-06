@@ -1,4 +1,4 @@
-public class Check {
+public class CheckUtils {
     public static void checkIfIndexIsInRange(int index, int size) {
         if (index < 0 || index >= size) {
             throw new MyIndexOutOfBoundsException("Der Index muss zwischen 0 und " + (size - 1) + " liegen.");
