@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.ListIterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.lang.UnsupportedOperationException;
 
@@ -70,6 +69,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public boolean add(E e) {
+        Check.checkIfObjectIsNull(e);
         Node newNode = new Node(e);
         if (head == null) {
             head = newNode;
@@ -85,6 +85,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     public boolean remove(Object o) {
         Check.checkIfListIsEmpty(size);
+        Check.checkIfObjectIsNull(o);
         Node current = head;
         for(int i = 0; i < size; i++) {
             if (current.value.equals(o)) {
@@ -133,13 +134,13 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
+
         return current.value;
     }
 
     public E set(int index, E element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+        Check.checkIfIndexIsInRange(index, size);
+        Check.checkIfObjectIsNull(element);
         Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -150,9 +151,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public void add(int index, E element) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
-        }
+        Check.checkIfIndexIsInRange(index, size);
+        Check.checkIfObjectIsNull(element);
         if (index == size) {
             add(element);
         } else {
@@ -214,19 +214,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public List<E> subList(int fromIndex, int toIndex) {
-        Check.checkIfListIsEmpty(size);
-        Check.checkIfIndexIsInRange(fromIndex, toIndex, size);
-
-        DoppeltVerketteteListe<E> sublist = new DoppeltVerketteteListe<>();
-        Node current = head;
-        for (int i = 0; i < fromIndex; i++) {
-            current = current.next;
-        }
-        for (int i = fromIndex; i < toIndex; i++) {
-            sublist.add(current.value);
-            current = current.next;
-        }
-        return sublist;
+        throw new UnsupportedOperationException();
     }
 
     public int lastIndexOf(Object o) {
