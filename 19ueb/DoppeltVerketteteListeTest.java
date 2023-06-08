@@ -93,6 +93,15 @@ public class DoppeltVerketteteListeTest {
         Assertions.assertThrows(MyNoSuchElementException.class, () -> list.remove(0));
     }
 
+    @Test 
+    public void testToArray() {
+        Object[] array = new Object[list.size()];
+        array = list.toArray(array);
+        Assertions.assertEquals(10, array.length);
+        Assertions.assertEquals(0, array[0]);
+        Assertions.assertEquals(9, array[9]);
+    }
+
     @Test
     public void testAddAllTrue() {
         DoppeltVerketteteListe<Integer> list = new DoppeltVerketteteListe<>();
