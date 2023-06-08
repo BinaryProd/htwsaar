@@ -2,8 +2,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// toArray to test
-
 public class DoppeltVerketteteListeTest {
     private DoppeltVerketteteListe<Integer> list;
 

@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -55,7 +56,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
-            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);
+            a = Arrays.copyOf(a, size);
         }
         Node current = head;
         for (int i = 0; i < size; i++) {
