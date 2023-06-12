@@ -55,6 +55,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     public <T> T[] toArray(T[] a) {
+        CheckUtils.checkIfListIsEmpty(a.length);
+        CheckUtils.checkIfListIsEmpty(size);
         if (a.length < size) {
             a = Arrays.copyOf(a, size);
         }
