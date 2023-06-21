@@ -24,7 +24,7 @@ public class Consumer {
         int tmp = 0;
         int iterations = 0;
         while ( number > 0 ) {
-            qs.push(iterations, System.currentTimeMillis());
+            qs.push(iterations, System.nanoTime());
             tmp = number % 10;
             sum += tmp;
             number /= 10;
@@ -87,5 +87,10 @@ public class Consumer {
             }
         }
         return list;
+    }
+
+    @Override
+    public String toString() {
+        return queue.toString();
     }
 }

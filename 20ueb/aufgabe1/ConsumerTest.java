@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.Collection;
 import java.util.Queue;
@@ -23,14 +23,14 @@ class ConsumerTest {
 
         int actualSum = consumer.consume(number);
 
-        assertEquals(expectedSum, actualSum);
+        Assertions.assertEquals(expectedSum, actualSum);
 
         Queue<Quersumme> queue = consumer.queue;
-        assertEquals(1, queue.size());
+        Assertions.assertEquals(1, queue.size());
         Quersumme qs = queue.peek();
-        assertNotNull(qs);
-        assertEquals(number, qs.getNumber());
-        assertEquals(expectedSum, qs.getSum());
+        Assertions.assertNotNull(qs);
+        Assertions.assertEquals(number, qs.getNumber());
+        Assertions.assertEquals(expectedSum, qs.getSum());
     }
 
     @Test
@@ -44,7 +44,7 @@ class ConsumerTest {
         int expectedCount = 3;
         int actualCount = consumer.numberOfDifferentResults();
 
-        assertEquals(expectedCount, actualCount);
+        Assertions.assertEquals(expectedCount, actualCount);
     }
 
     @Test
@@ -59,7 +59,7 @@ class ConsumerTest {
         int expectedCount = 2;
         int actualCount = consumer.numberOfOccurrences(number);
 
-        assertEquals(expectedCount, actualCount);
+        Assertions.assertEquals(expectedCount, actualCount);
     }
 
     @Test
@@ -71,7 +71,7 @@ class ConsumerTest {
         Collection<Integer> expectedCollection = List.of(1, 2, 3);
         Collection<Integer> actualCollection = consumer.getCrossTotalsAscending();
 
-        assertEquals(expectedCollection, actualCollection);
+        Assertions.assertEquals(expectedCollection, actualCollection);
     }
 
     @Test
@@ -83,7 +83,7 @@ class ConsumerTest {
         Collection<Integer> expectedCollection = List.of(3, 2, 1);
         Collection<Integer> actualCollection = consumer.getCrossTotalsDescending();
 
-        assertEquals(expectedCollection, actualCollection);
+        Assertions.assertEquals(expectedCollection, actualCollection);
     }
 
     public Quersumme createQuersumme(int number, int sum) {

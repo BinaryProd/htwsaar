@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.Map;
 
@@ -22,8 +22,8 @@ class QuersummeTest {
         quersumme.push(number, time);
 
         Map<Integer, Long> cache = quersumme.cache;
-        assertTrue(cache.containsKey(number));
-        assertEquals(time, cache.get(number));
+        Assertions.assertTrue(cache.containsKey(number));
+        Assertions.assertEquals(time, cache.get(number));
     }
 
     @Test
@@ -31,7 +31,7 @@ class QuersummeTest {
         int number = -5;
         long time = 10L;
 
-        assertThrows(IllegalArgumentException.class, () -> quersumme.push(number, time));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> quersumme.push(number, time));
     }
 
     @Test
@@ -39,7 +39,7 @@ class QuersummeTest {
         int number = 5;
         long time = -10L;
 
-        assertThrows(IllegalArgumentException.class, () -> quersumme.push(number, time));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> quersumme.push(number, time));
     }
 
     @Test
@@ -48,7 +48,7 @@ class QuersummeTest {
 
         quersumme.setSum(sum);
 
-        assertEquals(sum, quersumme.getSum());
+        Assertions.assertEquals(sum, quersumme.getSum());
     }
 
     @Test
@@ -57,7 +57,7 @@ class QuersummeTest {
 
         quersumme.setNumber(number);
 
-        assertEquals(number, quersumme.getNumber());
+        Assertions.assertEquals(number, quersumme.getNumber());
     }
 }
 

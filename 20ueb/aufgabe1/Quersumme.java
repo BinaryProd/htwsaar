@@ -34,4 +34,8 @@ public class Quersumme {
         return this.number;
     }
 
+    @Override
+    public String toString() {
+        return "\nNumber: " + this.number + " Sum: " + this.sum + " Quersumme + Time: " + cache.toString();
+    }
 }
