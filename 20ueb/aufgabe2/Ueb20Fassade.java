@@ -184,21 +184,13 @@ public class Ueb20Fassade {
          * @param lager Das Lager mit den Artikeln. 
          * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren. 
          */
-        public Map<Integer,Artikel> aufgabe_h_v(Lager lager) {
-            Map<Integer,Artikel> buchMap = new LinkedHashMap<>(lager.getLagerGroesse());
+        public Map<Integer, Artikel> aufgabe_h_v(Lager lager) {
+            Map<Integer, Artikel> buchMap = new LinkedHashMap<>(lager.getLagerGroesse());
 
-            for (int i = 0; i < lager.getLagerGroesse(); i++) {
-                try {
-                    Artikel artikel = lager.getArtikel(i);
-                    if (artikel instanceof Buch) {
-                        System.out.println("Buch gefunden: " + artikel);
-                        buchMap.put(i, artikel);
-                    }
-                } catch (Exception e) {
-                }
-            }
+            Predicate<Artikel> predicate = artikel -> artikel instanceof Buch;
+            buchMap = lager.filter(predicate);
 
-            BiPredicate<Artikel, Artikel> SortAutor = (artikel1, artikel2) -> {
+            BiPredicate<Artikel, Artikel> sortAutor = (artikel1, artikel2) -> {
                 if (isNull(artikel1, artikel2)) {
                     return false;
                 }
@@ -208,7 +200,7 @@ public class Ueb20Fassade {
                 return autor1.getAutor().compareTo(autor2.getAutor()) < 1;
             };
 
-            return lager.getSorted(SortAutor, buchMap);
+            return lager.getSorted(sortAutor, buchMap);
         }
 
 
@@ -221,10 +213,18 @@ public class Ueb20Fassade {
          * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
          * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
          */
-        public Map<Integer,Artikel> aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
-            Predicate<Artikel> p = a -> (a instanceof Buch) && ((Buch) a).getAutor().equals(gesuchterAutor);
-            return lager.filterAll(p, a -> a.getPreis() >= minPreis && a.getPreis() <= maxPreis);
+        public Map<Integer, Artikel> aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
+            Predicate<Artikel> authorPredicate = artikel ->
+                artikel instanceof Buch && ((Buch) artikel).getAutor().equals(gesuchterAutor);
+
+            System.out.println("Author :" + gesuchterAutor);
+
+            Predicate<Artikel> pricePredicate = artikel ->
+                artikel.getPreis() >= minPreis && artikel.getPreis() <= maxPreis;
+
+            return lager.filterAll(authorPredicate, pricePredicate);
         }
+
 
         public <T extends Comparable<T>> boolean compare(T value1, T value2) {
             return value1.compareTo(value2) == 0;

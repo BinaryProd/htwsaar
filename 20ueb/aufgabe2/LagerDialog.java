@@ -797,9 +797,9 @@ public class LagerDialog {
 
             System.out.println("Geben Sie den Autor ein: ");
             System.out.println(">>> ");
-            String input = EingabeUtils.scanString(scanner);
+            String input = EingabeUtils.scanNextLine(scanner);
 
-            sort.aufgabe_h_iii(lager, input);
+            sort.aufgabe_h_iii(lager, input.trim().replaceAll("\\s+", " "));
             getBestandListe();
         }
     }
@@ -844,7 +844,7 @@ public class LagerDialog {
         } else {
             System.out.println("Geben Sie den Autor ein: ");
             System.out.println(">>> ");
-            String input = EingabeUtils.scanString(scanner);
+            String input = EingabeUtils.scanNextLine(scanner);
 
 
             System.out.println("Geben Sie den minimun Preis ein:");
@@ -856,7 +856,7 @@ public class LagerDialog {
             double maxPreis = EingabeUtils.scanDouble(scanner);
 
             Ueb20Fassade sort = new Ueb20Fassade();
-            Map<Integer,Artikel> result = sort.aufgabe_h_vi(lager, input, minPreis, maxPreis);
+            Map<Integer,Artikel> result = sort.aufgabe_h_vi(lager, input.trim().replaceAll("\\s+", " "), minPreis, maxPreis);
             for(Map.Entry<Integer,Artikel> entry : result.entrySet()) {
                 System.out.println(entry.getValue());
             }

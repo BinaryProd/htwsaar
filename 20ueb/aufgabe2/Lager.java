@@ -172,9 +172,12 @@ public final class Lager {
      */
     public final Artikel getArtikel(int key){
         CheckUtils.checkIfLagerIsEmpty(lagerMap);
-        CheckUtils.checkIfNotInLager(key, lagerMap);
 
         return lagerMap.get(key);
+    }
+
+    public Map<Integer,Artikel> getArtikelMap() {
+        return lagerMap;
     }
 
     /**
