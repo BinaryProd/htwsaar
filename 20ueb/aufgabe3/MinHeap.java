@@ -1,57 +1,159 @@
-import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Queue;
-import java.lang.UnsupportedOperationException;
 
-public class MinHeap<E> implements Queue<E> {
-    public boolean offer(E e){
-        // TODO
+public class MinHeap<E extends Comparable<E>> implements Queue<E> {
+    private E[] heap;
+    private int size;
+    private Comparator<E> comparator;
+
+    public MinHeap(int capacity) {
+        heap = (E[]) new Comparable[capacity];
+        size = 0;
+        comparator = Comparator.naturalOrder();
     }
 
-    public E poll(){
-        // TODO
+    @Override
+    public boolean offer(E e) {
+        if (e == null) {
+            throw new NullPointerException("Null elements not allowed");
+        }
+        if (size == heap.length) {
+            return false;
+        }
+
+        heap[size] = e;
+        heapifyUp(size);
+        size++;
+        return true;
     }
 
-    public E peek(){
-        // TODO
+    @Override
+    public E poll() {
+        if (size == 0) {
+            return null;
+        }
+
+        E root = heap[0];
+        heap[0] = heap[size - 1];
+        heap[size - 1] = null;
+        size--;
+        heapifyDown(0);
+
+        return root;
     }
 
-    public Collection<E> size(){
+    @Override
+    public E peek() {
+        return (size == 0) ? null : heap[0];
+    }
+
+    @Override
+    public boolean remove(Object o) {
         throw new UnsupportedOperationException();
     }
 
-    public Queue<E> add(E e){
-        throw new UnsupportedOperationException();
-    }
-    
-    public Collection<E> remove(Object o){
+    @Override
+    public boolean add(E e) {
         throw new UnsupportedOperationException();
     }
 
-    public Queue<E> remove(){
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean contains(Object o) {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> addAll(Collection<? extends E> c){
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> isEmpty(){
+    @Override
+    public Object[] toArray() {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> containsAll(Collection<?> c){
+    @Override
+    public <T> T[] toArray(T[] a) {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> removeAll(Collection<?> c){
+    @Override
+    public boolean containsAll(java.util.Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> toArray(){
+    @Override
+    public boolean addAll(java.util.Collection<? extends E> c) {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<E> toArray(T[] a){
+    @Override
+    public boolean removeAll(java.util.Collection<?> c) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean retainAll(java.util.Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public E remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public E element() {
+        throw new UnsupportedOperationException();
+    }
+
+    private void heapifyDown(int index) {
+        int leftChild = 2 * index + 1;
+        int rightChild = 2 * index + 2;
+        int smallest = index;
+
+        if (leftChild < size && comparator.compare(heap[leftChild], heap[smallest]) < 0) {
+            smallest = leftChild;
+        }
+
+        if (rightChild < size && comparator.compare(heap[rightChild], heap[smallest]) < 0) {
+            smallest = rightChild;
+        }
+
+        if (smallest != index) {
+            swap(index, smallest);
+            heapifyDown(smallest);
+        }
+    }
+
+    private void heapifyUp(int index) {
+        int parent = (index - 1) / 2;
+
+        if (index > 0 && comparator.compare(heap[index], heap[parent]) < 0) {
+            swap(index, parent);
+            heapifyUp(parent);
+        }
+    }
+
+    private void swap(int i, int j) {
+        E temp = heap[i];
+        heap[i] = heap[j];
+        heap[j] = temp;
     }
 }
