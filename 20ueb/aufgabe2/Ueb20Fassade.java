@@ -191,6 +191,7 @@ public class Ueb20Fassade {
                 try {
                     Artikel artikel = lager.getArtikel(i);
                     if (artikel instanceof Buch) {
+                        System.out.println("Buch gefunden: " + artikel);
                         buchMap.put(i, artikel);
                     }
                 } catch (Exception e) {

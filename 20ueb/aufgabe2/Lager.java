@@ -17,9 +17,6 @@ import java.util.function.Predicate;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public final class Lager {
     private Map<Integer, Artikel> lagerMap;
     private static final int STANDARD_LAGER_SIZE = 10;
