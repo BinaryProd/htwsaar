@@ -5,6 +5,12 @@ int main() {
 
     printf("Nettopreis (in Euro): ");
     scanf("%f", &nettopreis);
+
+    if ( nettopreis <= 0 ) {
+        printf("Die Zahl soll positiv sein");
+        return 1;
+    }
+
     mwst = nettopreis * 0.2;
     bruttopreis = nettopreis + mwst;
     skonto = bruttopreis * 0.02;
