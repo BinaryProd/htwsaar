@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#define mehrwertsteuer 0.2
+#define zwei_prozent 0.02
+
 int main() {
     float nettopreis, bruttopreis, rechnungsbetrag, mwst, skonto;
 
@@ -11,9 +14,9 @@ int main() {
         return 1;
     }
 
-    mwst = nettopreis * 0.2;
+    mwst = nettopreis * mehrwertsteuer;
     bruttopreis = nettopreis + mwst;
-    skonto = bruttopreis * 0.02;
+    skonto = bruttopreis * zwei_prozent;
     rechnungsbetrag = bruttopreis - skonto;
 
     printf("Nettopreis\t\t\tEuro %.2f\n", nettopreis);
