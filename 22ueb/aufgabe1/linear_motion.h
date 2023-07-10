@@ -1,0 +1,12 @@
+#ifndef LINEAR_MOTION_H
+#define LINEAR_MOTION_H
+
+typedef double WegLineareGleichfoermigeBewegung;
+typedef double WegLineareBeschleunigteBewegung;
+typedef double GeschwindigkeitLineareBeschleunigteBewegung;
+
+WegLineareGleichfoermigeBewegung wegLineareGleichfoermigeBewegungBerechnen(double velocity, double time, double time0);
+WegLineareBeschleunigteBewegung wegLineareBeschleunigteBewegungBerechnen(double velocity, double velocity0, double acceleration);
+GeschwindigkeitLineareBeschleunigteBewegung geschwindigkeitLineareBeschleunigteBewegungBerechnen(double velocity0, double acceleration, double time, double time0);
+
+#endif
