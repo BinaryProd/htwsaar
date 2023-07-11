@@ -5,7 +5,7 @@ WegLineareGleichfoermigeBewegung wegLineareGleichfoermigeBewegungBerechnen(doubl
 }
 
 WegLineareBeschleunigteBewegung wegLineareBeschleunigteBewegungBerechnen(double velocity, double velocity0, double acceleration) {
-    return ((velocity * velocity) - (velocity0 * velocity0)) / (2 * acceleration);
+    return ((velocity * velocity) - (velocity0 * velocity0)) / (2.0 * acceleration);
 }
 
 GeschwindigkeitLineareBeschleunigteBewegung geschwindigkeitLineareBeschleunigteBewegungBerechnen(double velocity0, double acceleration, double time, double time0) {

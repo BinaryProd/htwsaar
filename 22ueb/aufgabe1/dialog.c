@@ -46,9 +46,15 @@ void calculateVelocityAcceleratedLinearMotion(double velocity0, double accelerat
     printf("Geschwindigkeit: %lf\n", velocity);
 }
 
-int main() {
+int run() {
     int choice;
-    double displacement, time, velocity, time0, mass, velocity0, acceleration;
+    double displacement;
+    double time;
+    double velocity;
+    double time0; 
+    double mass; 
+    double velocity0;
+    double acceleration;
 
     do {
         printMenu();
@@ -117,4 +123,8 @@ int main() {
     } while (choice != 0);
 
     return 0;
+}
+
+int main() {
+    run();
 }
